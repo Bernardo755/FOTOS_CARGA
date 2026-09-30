@@ -12,710 +12,440 @@
 
 <style>
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    font-family:
-        Inter,
-        Arial,
-        sans-serif;
-    background:#f4f7fb;
-    color:#172033;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
 }
 
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:24px;
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 25px;
 }
 
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-.header{
-    background:#ffffff;
-    border-radius:18px;
-    padding:22px 26px;
-    margin-bottom:20px;
-    box-shadow:
-        0 8px 30px rgba(15,23,42,.07);
+.header {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
 }
 
-.header h1{
-    margin:0;
-    font-size:25px;
+.header h1 {
+    margin: 0;
+    font-size: 25px;
 }
 
-.header p{
-    margin:6px 0 0;
-    color:#64748b;
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-/* =========================================================
-   TABS
-   ========================================================= */
-
-.tabs{
-    display:flex;
-    gap:8px;
-    background:#e8edf5;
-    padding:6px;
-    border-radius:14px;
-    margin-bottom:20px;
+.tab {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #e5e7eb;
+    font-weight: 600;
 }
 
-.tab{
-    flex:1;
-    border:none;
-    background:transparent;
-    padding:13px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:700;
-    color:#475569;
-    transition:.2s;
+.tab.active {
+    background: #2563eb;
+    color: white;
 }
 
-.tab:hover{
-    background:#ffffff;
+.module {
+    display: none;
 }
 
-.tab.active{
-    background:#2563eb;
-    color:#ffffff;
+.module.active {
+    display: block;
 }
 
-/* =========================================================
-   PANEL
-   ========================================================= */
-
-.panel{
-    background:#ffffff;
-    border-radius:18px;
-    padding:24px;
-    box-shadow:
-        0 8px 30px rgba(15,23,42,.07);
-    margin-bottom:20px;
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
 }
 
-.panel h2{
-    margin-top:0;
+.card h2 {
+    margin-top: 0;
 }
 
-/* =========================================================
-   FORMULARIOS
-   ========================================================= */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
 
-.form-grid{
-    display:grid;
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2563eb;
+}
+
+.upload-box {
+    margin-top: 20px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 25px;
+    text-align: center;
+    background: #f8fafc;
+}
+
+.upload-btn {
+    display: flex;
+    width: max-content;
+    min-width: 210px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.upload-btn:hover {
+    opacity: .9;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    border-radius: 9px;
+    padding: 11px 17px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.photo-grid {
+    display: grid;
     grid-template-columns:
-        repeat(2,minmax(0,1fr));
-    gap:18px;
-}
-
-.field{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
-}
-
-.field label{
-    font-size:13px;
-    font-weight:700;
-    color:#334155;
-}
-
-.field input{
-    width:100%;
-    border:1px solid #d7dee9;
-    border-radius:10px;
-    padding:12px 14px;
-    outline:none;
-    font-size:14px;
-}
-
-.field input:focus{
-    border-color:#2563eb;
-    box-shadow:
-        0 0 0 3px rgba(37,99,235,.10);
+        repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
 /* =========================================================
-   CARGA DE ARCHIVOS
+   FOTOGRAFÍAS ARRASTRABLES
    ========================================================= */
 
-.upload-grid{
-    display:grid;
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
-    gap:18px;
-    margin-top:22px;
+.photo-card {
+    position: relative;
+    background: white;
+    border-radius: 13px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    cursor: grab;
+    transition:
+        transform .15s ease,
+        opacity .15s ease,
+        border-color .15s ease;
 }
 
-.upload-box{
-
-    border:2px dashed #d7dee9;
-
-    border-radius:16px;
-
-    padding:24px 18px;
-
-    text-align:center;
-
-    min-height:180px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    transition:.2s;
+.photo-card:active {
+    cursor: grabbing;
 }
 
-.upload-box:hover{
-    border-color:#2563eb;
-    background:#f8fbff;
+.photo-card.dragging {
+    opacity: .45;
+    transform: scale(.97);
+    border-color: #2563eb;
 }
 
-.upload-box h3{
-    margin:0 0 7px;
-    font-size:16px;
+.photo-card.drag-over {
+    border-color: #14b8a6;
+    transform: scale(1.02);
 }
 
-.upload-box p{
-    margin:0 0 16px;
-    color:#64748b;
-    font-size:13px;
+.photo-card img {
+    display: block;
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
 }
 
-.upload-btn{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    width:max-content;
-
-    min-width:210px;
-
-    margin-left:auto;
-    margin-right:auto;
-
-    background:#2563eb;
-
-    color:#ffffff;
-
-    padding:11px 18px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    font-weight:700;
-
-    font-size:14px;
-
-    border:none;
-
-    text-align:center;
-
-    transition:.2s;
+.photo-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    min-width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 2;
 }
 
-.upload-btn:hover{
-    background:#1d4ed8;
-    transform:translateY(-1px);
+.photo-delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    background: #dc2626;
+    color: white;
+    z-index: 3;
 }
 
-.upload-btn input{
-    display:none;
+.photo-name {
+    padding: 9px;
+    font-size: 12px;
+    word-break: break-word;
 }
 
-.file-count{
-    margin-top:10px;
-    font-size:13px;
-    color:#64748b;
+.drop-help {
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 13px;
 }
 
-/* =========================================================
-   PREVISUALIZACIÓN
-   ========================================================= */
-
-.preview-grid{
-    display:grid;
-    grid-template-columns:
-        repeat(auto-fill,minmax(150px,1fr));
-    gap:14px;
-    margin-top:20px;
+.pdf-list {
+    margin-top: 15px;
 }
 
-.preview-card{
-    background:#f8fafc;
-    border:1px solid #e2e8f0;
-    border-radius:14px;
-    overflow:hidden;
-    position:relative;
+.pdf-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #f8fafc;
+    border-radius: 10px;
 }
 
-.preview-card img{
-    width:100%;
-    height:125px;
-    object-fit:cover;
-    display:block;
+.pdf-info {
+    min-width: 0;
 }
 
-.preview-info{
-    padding:9px;
+.pdf-name {
+    font-weight: 600;
+    word-break: break-word;
 }
 
-.preview-name{
-    font-size:12px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+.pdf-size {
+    color: #64748b;
+    font-size: 12px;
 }
 
-.preview-number{
-    color:#2563eb;
-    font-weight:800;
+.login-box {
+    max-width: 420px;
+    margin: 40px auto;
 }
 
-.remove-preview{
-    position:absolute;
-    top:7px;
-    right:7px;
-    width:28px;
-    height:28px;
-    border:none;
-    border-radius:50%;
-    background:#ef4444;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
+.hidden {
+    display: none !important;
 }
 
-/* =========================================================
-   BOTONES
-   ========================================================= */
-
-.actions{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:22px;
+.loading {
+    text-align: center;
+    padding: 25px;
 }
 
-.btn{
-    border:none;
-    border-radius:10px;
-    padding:12px 20px;
-    cursor:pointer;
-    font-weight:700;
-    transition:.2s;
+.status {
+    padding: 12px;
+    border-radius: 9px;
+    margin-top: 15px;
+    display: none;
 }
 
-.btn:hover{
-    transform:translateY(-1px);
+.status.ok {
+    display: block;
+    background: #dcfce7;
+    color: #166534;
 }
 
-.btn-primary{
-    background:#2563eb;
-    color:#ffffff;
+.status.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
 }
 
-.btn-secondary{
-    background:#e8edf5;
-    color:#334155;
+.table-wrap {
+    overflow-x: auto;
 }
 
-.btn-danger{
-    background:#ef4444;
-    color:#ffffff;
-}
-
-.btn-success{
-    background:#16a34a;
-    color:#ffffff;
-}
-
-/* =========================================================
-   LOGIN
-   ========================================================= */
-
-.login-box{
-    max-width:450px;
-    margin:50px auto;
-}
-
-.login-box h2{
-    text-align:center;
-}
-
-/* =========================================================
-   FILTROS
-   ========================================================= */
-
-.filters{
-    display:grid;
-    grid-template-columns:
-        2fr 1.2fr 1.5fr auto;
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.filters input{
-    border:1px solid #d7dee9;
-    border-radius:10px;
-    padding:11px 13px;
-}
-
-/* =========================================================
-   TABLA
-   ========================================================= */
-
-.table-wrap{
-    overflow:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
 th,
-td{
-    padding:12px 10px;
-    border-bottom:1px solid #e5eaf1;
-    text-align:left;
-    font-size:13px;
-    vertical-align:middle;
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
 }
 
-th{
-    background:#f8fafc;
-    color:#475569;
+th {
+    background: #f8fafc;
 }
 
-tr:hover td{
-    background:#fafcff;
+.badge {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 12px;
+    font-weight: 600;
 }
 
-/* =========================================================
-   BADGES
-   ========================================================= */
-
-.badges{
-    display:flex;
-    flex-wrap:wrap;
-    gap:5px;
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
 }
 
-.badge{
-    display:inline-flex;
-    align-items:center;
-    padding:4px 8px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:800;
+.modal.show {
+    display: flex;
 }
 
-.badge-photo{
-    background:#dbeafe;
-    color:#1d4ed8;
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 1000px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;
+    padding: 20px;
 }
 
-.badge-acta{
-    background:#dcfce7;
-    color:#15803d;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
-.badge-lista{
-    background:#fef3c7;
-    color:#b45309;
+.modal-header h3 {
+    margin: 0;
 }
 
-/* =========================================================
-   GALERÍA MÓDULO 2
-   ========================================================= */
-
-.gallery{
-    display:grid;
-    grid-template-columns:
-        repeat(auto-fill,minmax(210px,1fr));
-    gap:16px;
-    margin-top:20px;
+.modal-close {
+    background: #e5e7eb;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 0;
 }
 
-.gallery-card{
-    background:#ffffff;
-    border:1px solid #e2e8f0;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:
-        0 4px 15px rgba(15,23,42,.05);
+.modal-image {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    margin-top: 15px;
 }
 
-.gallery-image{
-    width:100%;
-    height:180px;
-    background:#eef2f7;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
+.selection-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.gallery-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
+.folder-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.gallery-loading{
-    color:#64748b;
-    font-size:13px;
+.folder-link:hover {
+    text-decoration: underline;
 }
 
-.gallery-info{
-    padding:12px;
-}
+@media(max-width:700px) {
 
-.gallery-title{
-    font-weight:700;
-    font-size:13px;
-    word-break:break-word;
-}
-
-.gallery-actions{
-    display:flex;
-    gap:7px;
-    margin-top:10px;
-}
-
-.gallery-actions button{
-    flex:1;
-    border:none;
-    border-radius:8px;
-    padding:8px;
-    cursor:pointer;
-    font-size:12px;
-    font-weight:700;
-}
-
-/* =========================================================
-   PDF
-   ========================================================= */
-
-.pdf-section{
-    margin-top:28px;
-}
-
-.pdf-section h3{
-    margin-bottom:12px;
-}
-
-.pdf-list{
-    display:grid;
-    gap:10px;
-}
-
-.pdf-card{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    border:1px solid #e2e8f0;
-    border-radius:12px;
-    padding:12px 14px;
-}
-
-.pdf-name{
-    font-weight:700;
-    font-size:13px;
-    word-break:break-word;
-}
-
-.pdf-size{
-    color:#64748b;
-    font-size:12px;
-    margin-top:3px;
-}
-
-.pdf-actions{
-    display:flex;
-    gap:7px;
-    flex-shrink:0;
-}
-
-.pdf-actions a,
-.pdf-actions button{
-    text-decoration:none;
-    border:none;
-    border-radius:8px;
-    padding:8px 11px;
-    cursor:pointer;
-    font-size:12px;
-    font-weight:700;
-}
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(15,23,42,.65);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:9999;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-content{
-    width:min(1000px,95vw);
-    max-height:92vh;
-    overflow:auto;
-    background:#ffffff;
-    border-radius:18px;
-    padding:20px;
-    position:relative;
-}
-
-.modal-close{
-    position:absolute;
-    right:15px;
-    top:12px;
-    width:35px;
-    height:35px;
-    border:none;
-    border-radius:50%;
-    background:#eef2f7;
-    cursor:pointer;
-    font-size:18px;
-}
-
-.modal-image{
-    width:100%;
-    max-height:78vh;
-    object-fit:contain;
-    display:block;
-}
-
-/* =========================================================
-   MENSAJES
-   ========================================================= */
-
-.message{
-    padding:12px 15px;
-    border-radius:10px;
-    margin-top:15px;
-    display:none;
-}
-
-.message.show{
-    display:block;
-}
-
-.message.success{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.message.error{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-.message.info{
-    background:#dbeafe;
-    color:#1e40af;
-}
-
-/* =========================================================
-   LOADER
-   ========================================================= */
-
-.loader{
-    width:20px;
-    height:20px;
-    border:3px solid #dbeafe;
-    border-top-color:#2563eb;
-    border-radius:50%;
-    animation:
-        spin .8s linear infinite;
-    display:inline-block;
-    vertical-align:middle;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media(max-width:900px){
-
-    .upload-grid{
-        grid-template-columns:1fr;
+    .container {
+        padding: 12px;
     }
 
-    .form-grid{
-        grid-template-columns:1fr;
+    .tabs {
+        flex-direction: column;
     }
 
-    .filters{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:650px){
-
-    .container{
-        padding:12px;
+    .photo-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 
-    .panel{
-        padding:16px;
+    .photo-card img {
+        height: 130px;
     }
 
-    .tabs{
-        flex-direction:column;
-    }
-
-    .pdf-card{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .pdf-actions{
-        width:100%;
-    }
-
-    .pdf-actions a,
-    .pdf-actions button{
-        flex:1;
+    .pdf-item {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 
@@ -723,24 +453,13 @@ tr:hover td{
 
 </head>
 
-
 <body>
 
 <div class="container">
 
-    <!-- =====================================================
-         HEADER
-         ===================================================== -->
-
     <div class="header">
 
-        <h1>
-            📷 Gestor de Fotografías
-        </h1>
-
-        <p>
-            Administración de fotografías, actas y listas.
-        </p>
+        <h1>Gestor de Fotografías</h1>
 
     </div>
 
@@ -752,20 +471,20 @@ tr:hover td{
     <div class="tabs">
 
         <button
-            id="tabBtnCarga"
             class="tab active"
+            id="tabCarga"
             onclick="mostrarModulo('carga')">
 
-            📤 Nueva carga
+            Nueva carga
 
         </button>
 
         <button
-            id="tabBtnGestor"
             class="tab"
+            id="tabGestor"
             onclick="entrarGestor()">
 
-            📂 Gestor
+            Gestor
 
         </button>
 
@@ -776,540 +495,350 @@ tr:hover td{
          MÓDULO 1
          ===================================================== -->
 
-    <section
+    <div
         id="moduloCarga"
-        class="panel">
+        class="module active">
 
-        <h2>
-            Nueva carga
-        </h2>
+        <div class="card">
 
-        <p style="color:#64748b">
-            Las fotografías son obligatorias.
-            Las actas y listas son opcionales.
-        </p>
+            <h2>Nueva carga</h2>
 
+            <div class="form-grid">
 
-        <div class="form-grid">
+                <div>
 
-            <div class="field">
+                    <label>
+                        Título / Nombre
+                    </label>
 
-                <label>
-                    Título / nombre
-                </label>
+                    <input
+                        type="text"
+                        id="titulo"
+                        placeholder="Nombre de la carga">
 
-                <input
-                    id="titulo"
-                    type="text"
-                    placeholder="Ej. Actividad Tolcayuca">
+                </div>
 
-            </div>
+                <div>
 
+                    <label>
+                        Cargador
+                    </label>
 
-            <div class="field">
+                    <input
+                        type="text"
+                        id="cargador"
+                        placeholder="Nombre de quien realiza la carga">
 
-                <label>
-                    Cargador
-                </label>
-
-                <input
-                    id="cargador"
-                    type="text"
-                    placeholder="Nombre de quien realiza la carga">
+                </div>
 
             </div>
 
-        </div>
 
-
-        <!-- =================================================
-             ARCHIVOS
-             ================================================= -->
-
-        <div class="upload-grid">
-
-
-            <!-- FOTOS -->
+            <!-- =================================================
+                 FOTOGRAFÍAS
+                 ================================================= -->
 
             <div class="upload-box">
 
-                <h3>
-                    📷 Fotografías
-                </h3>
+                <div>
+                    Fotografías
+                </div>
 
-                <p>
-                    Selecciona una o varias fotografías.
-                </p>
-
-                <label class="upload-btn">
+                <label
+                    for="inputFotos"
+                    class="upload-btn">
 
                     Seleccionar fotografías
 
-                    <input
-                        id="inputFotos"
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        onchange="seleccionarFotos(this.files)">
-
                 </label>
 
-                <div
-                    id="contadorFotos"
-                    class="file-count">
+                <input
+                    type="file"
+                    id="inputFotos"
+                    accept="image/*"
+                    multiple>
 
-                    0 fotografías
+                <div class="drop-help">
+
+                    Puedes seleccionar varias fotografías.
+                    Después puedes
+                    <strong>arrastrarlas para cambiar el orden</strong>.
 
                 </div>
 
             </div>
 
 
-            <!-- ACTAS -->
+            <div
+                id="contadorFotos"
+                class="drop-help">
+
+                0 fotografías seleccionadas
+
+            </div>
+
+
+            <div
+                id="gridFotos"
+                class="photo-grid">
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTAS
+                 ================================================= -->
 
             <div class="upload-box">
 
-                <h3>
-                    📄 Actas
-                </h3>
+                <div>
+                    Actas (PDF)
+                </div>
 
-                <p>
-                    Opcional. Solo archivos PDF.
-                </p>
-
-                <label class="upload-btn">
+                <label
+                    for="inputActas"
+                    class="upload-btn">
 
                     Seleccionar actas
 
-                    <input
-                        id="inputActas"
-                        type="file"
-                        accept="application/pdf,.pdf"
-                        multiple
-                        onchange="seleccionarPDF(this.files,'ACTA')">
-
                 </label>
 
-                <div
-                    id="contadorActas"
-                    class="file-count">
+                <input
+                    type="file"
+                    id="inputActas"
+                    accept="application/pdf"
+                    multiple>
 
-                    0 actas
+                <div
+                    class="drop-help">
+
+                    Este apartado es opcional.
 
                 </div>
 
             </div>
 
 
-            <!-- LISTAS -->
+            <div
+                id="listaActas"
+                class="pdf-list">
+
+            </div>
+
+
+            <!-- =================================================
+                 LISTAS
+                 ================================================= -->
 
             <div class="upload-box">
 
-                <h3>
-                    📋 Listas
-                </h3>
+                <div>
+                    Listas (PDF)
+                </div>
 
-                <p>
-                    Opcional. Solo archivos PDF.
-                </p>
-
-                <label class="upload-btn">
+                <label
+                    for="inputListas"
+                    class="upload-btn">
 
                     Seleccionar listas
 
-                    <input
-                        id="inputListas"
-                        type="file"
-                        accept="application/pdf,.pdf"
-                        multiple
-                        onchange="seleccionarPDF(this.files,'LISTA')">
-
                 </label>
 
-                <div
-                    id="contadorListas"
-                    class="file-count">
+                <input
+                    type="file"
+                    id="inputListas"
+                    accept="application/pdf"
+                    multiple>
 
-                    0 listas
+                <div
+                    class="drop-help">
+
+                    Este apartado es opcional.
 
                 </div>
 
             </div>
 
+
+            <div
+                id="listaListas"
+                class="pdf-list">
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="btn-success"
+                    onclick="guardarCarga()">
+
+                    Guardar carga
+
+                </button>
+
+                <button
+                    class="btn-secondary"
+                    onclick="limpiarCarga()">
+
+                    Limpiar
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="statusCarga"
+                class="status">
+
+            </div>
+
         </div>
 
-
-        <!-- =================================================
-             PREVISUALIZACIÓN FOTOS
-             ================================================= -->
-
-        <div id="previewFotos"
-             class="preview-grid">
-        </div>
-
-
-        <!-- =================================================
-             BOTONES
-             ================================================= -->
-
-        <div class="actions">
-
-            <button
-                class="btn btn-primary"
-                onclick="guardarCarga()">
-
-                💾 Guardar carga
-
-            </button>
-
-            <button
-                class="btn btn-secondary"
-                onclick="limpiarFormulario()">
-
-                Limpiar
-
-            </button>
-
-        </div>
-
-
-        <div
-            id="mensajeCarga"
-            class="message">
-        </div>
-
-    </section>
+    </div>
 
 
     <!-- =====================================================
          MÓDULO 2
          ===================================================== -->
 
-    <section
+    <div
         id="moduloGestor"
-        class="panel"
-        style="display:none">
+        class="module">
 
-        <div id="loginGestor">
+        <div
+            id="loginBox"
+            class="card login-box">
 
-            <div class="login-box">
+            <h2>Acceso al Gestor</h2>
 
-                <h2>
-                    🔐 Acceso al gestor
-                </h2>
+            <label>
+                Contraseña
+            </label>
 
-                <p
-                    style="
-                    text-align:center;
-                    color:#64748b;
-                    ">
+            <input
+                type="password"
+                id="password">
 
-                    Introduce la contraseña para acceder.
-
-                </p>
-
-                <div class="field">
-
-                    <label>
-                        Contraseña
-                    </label>
-
-                    <input
-                        id="password"
-                        type="password"
-                        placeholder="Contraseña"
-                        onkeydown="
-                            if(event.key==='Enter')
-                                iniciarSesion();
-                        ">
-
-                </div>
+            <div class="actions">
 
                 <button
-                    class="btn btn-primary"
-                    style="
-                    width:100%;
-                    margin-top:15px;
-                    "
+                    class="btn-primary"
                     onclick="iniciarSesion()">
 
                     Entrar
 
                 </button>
 
-                <div
-                    id="mensajeLogin"
-                    class="message">
-                </div>
+            </div>
+
+            <div
+                id="statusLogin"
+                class="status">
 
             </div>
 
         </div>
 
-
-        <!-- =================================================
-             GESTOR AUTENTICADO
-             ================================================= -->
 
         <div
             id="gestorContenido"
-            style="display:none">
-
-
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                gap:10px;
-                flex-wrap:wrap;
-                margin-bottom:18px;
-            ">
-
-                <div>
-
-                    <h2 style="margin-bottom:4px">
-                        Gestor de cargas
-                    </h2>
-
-                    <div
-                        style="
-                        color:#64748b;
-                        font-size:13px;
-                        ">
-
-                        Consulta y administra las cargas realizadas.
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="cerrarSesion()">
-
-                    Cerrar sesión
-
-                </button>
-
-            </div>
+            class="hidden">
 
 
             <!-- =================================================
-                 FILTROS
+                 BÚSQUEDA
                  ================================================= -->
 
-            <div class="filters">
+            <div class="card">
 
-                <input
-                    id="filtroTitulo"
-                    type="text"
-                    placeholder="Buscar por título">
+                <h2>Buscar cargas</h2>
 
-                <input
-                    id="filtroFecha"
-                    type="text"
-                    placeholder="Fecha DD/MM/YYYY">
-
-                <input
-                    id="filtroCargador"
-                    type="text"
-                    placeholder="Buscar por cargador">
-
-                <button
-                    class="btn btn-primary"
-                    onclick="consultarCargas()">
-
-                    Buscar
-
-                </button>
-
-            </div>
-
-
-            <div
-                id="mensajeGestor"
-                class="message">
-            </div>
-
-
-            <!-- =================================================
-                 TABLA
-                 ================================================= -->
-
-            <div class="table-wrap">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>
-                                Carga
-                            </th>
-
-                            <th>
-                                Cargador
-                            </th>
-
-                            <th>
-                                Fecha
-                            </th>
-
-                            <th>
-                                Archivos
-                            </th>
-
-                            <th>
-                                Acciones
-                            </th>
-
-                        </tr>
-
-                    </thead>
-
-                    <tbody
-                        id="tablaCargas">
-                    </tbody>
-
-                </table>
-
-            </div>
-
-
-            <!-- =================================================
-                 DETALLE
-                 ================================================= -->
-
-            <div
-                id="detalleCarga"
-                style="display:none; margin-top:30px">
-
-                <hr
-                    style="
-                    border:none;
-                    border-top:1px solid #e2e8f0;
-                    margin-bottom:25px;
-                    ">
-
-                <div
-                    style="
-                    display:flex;
-                    justify-content:space-between;
-                    gap:15px;
-                    align-items:center;
-                    flex-wrap:wrap;
-                    ">
+                <div class="form-grid">
 
                     <div>
 
-                        <h2
-                            id="detalleTitulo"
-                            style="margin:0">
+                        <label>
+                            Título
+                        </label>
 
-                        </h2>
-
-                        <div
-                            id="detalleInfo"
-                            style="
-                            color:#64748b;
-                            margin-top:5px;
-                            ">
-
-                        </div>
+                        <input
+                            type="text"
+                            id="filtroTitulo"
+                            placeholder="Buscar por título">
 
                     </div>
 
+                    <div>
 
-                    <div class="actions"
-                         style="margin-top:0">
+                        <label>
+                            Fecha
+                        </label>
 
-                        <button
-                            class="btn btn-secondary"
-                            onclick="cerrarDetalle()">
+                        <input
+                            type="date"
+                            id="filtroFecha">
 
-                            Cerrar
+                    </div>
 
-                        </button>
+                    <div>
 
-                        <button
-                            class="btn btn-primary"
-                            onclick="editarNombreCarga()">
+                        <label>
+                            Cargador
+                        </label>
 
-                            ✏️ Editar nombre
-
-                        </button>
-
-                        <button
-                            class="btn btn-success"
-                            onclick="abrirCarpetaDrive()">
-
-                            📁 Abrir carpeta
-
-                        </button>
+                        <input
+                            type="text"
+                            id="filtroCargador"
+                            placeholder="Buscar cargador">
 
                     </div>
 
                 </div>
 
+                <div class="actions">
 
-                <!-- =================================================
-                     FOTOS
-                     ================================================= -->
+                    <button
+                        class="btn-primary"
+                        onclick="buscarCargas()">
 
-                <div
-                    class="pdf-section">
+                        Buscar
 
-                    <h3>
-                        📷 Fotografías
-                    </h3>
+                    </button>
 
-                    <div
-                        id="galeriaFotos"
-                        class="gallery">
+                    <button
+                        class="btn-secondary"
+                        onclick="limpiarFiltros()">
 
-                    </div>
+                        Limpiar filtros
 
-                </div>
+                    </button>
 
+                    <button
+                        class="btn-danger"
+                        onclick="cerrarSesion()">
 
-                <!-- =================================================
-                     ACTAS
-                     ================================================= -->
+                        Cerrar sesión
 
-                <div
-                    class="pdf-section">
-
-                    <h3>
-                        📄 Actas
-                    </h3>
-
-                    <div
-                        id="listaActas"
-                        class="pdf-list">
-
-                    </div>
+                    </button>
 
                 </div>
 
+            </div>
 
-                <!-- =================================================
-                     LISTAS
-                     ================================================= -->
+
+            <!-- =================================================
+                 RESULTADOS
+                 ================================================= -->
+
+            <div class="card">
+
+                <h2>Registros</h2>
 
                 <div
-                    class="pdf-section">
-
-                    <h3>
-                        📋 Listas
-                    </h3>
-
-                    <div
-                        id="listaListas"
-                        class="pdf-list">
-
-                    </div>
+                    id="tablaCargas"
+                    class="table-wrap">
 
                 </div>
 
@@ -1317,41 +846,41 @@ tr:hover td{
 
         </div>
 
-    </section>
+    </div>
 
 </div>
 
 
 <!-- =========================================================
-     MODAL FOTO
+     MODAL
      ========================================================= -->
 
 <div
-    id="modalFoto"
-    class="modal"
-    onclick="cerrarModalFoto(event)">
+    id="modal"
+    class="modal">
 
-    <div
-        class="modal-content"
-        onclick="event.stopPropagation()">
+    <div class="modal-content">
 
-        <button
-            class="modal-close"
-            onclick="cerrarModalFoto()">
+        <div class="modal-header">
 
-            ×
+            <h3 id="modalTitulo">
+                Archivos
+            </h3>
 
-        </button>
+            <button
+                class="modal-close"
+                onclick="cerrarModal()">
 
-        <h3
-            id="modalFotoTitulo">
+                ×
 
-        </h3>
+            </button>
 
-        <img
-            id="modalFotoImagen"
-            class="modal-image"
-            alt="Fotografía">
+        </div>
+
+        <div
+            id="modalContenido">
+
+        </div>
 
     </div>
 
@@ -1360,19 +889,20 @@ tr:hover td{
 
 <script>
 
+
 // ============================================================
 // CONFIGURACIÓN
 // ============================================================
 
 const SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbzzHBQ-eSHmlkkyeDvyplqLfC6XZ_PDkhRDbZfHj50CUOg3i3dKAwnV3IDeT0MMxsqO/exec';
+    'https://script.google.com/macros/s/AKfycbw_J3okYqFmMvFAWw9khjIKaq3rHqkgTtdgs1SaskMVC7qxcPKn8RLjgLghX8DL6yIm/exec';
 
 
 // ============================================================
 // VARIABLES
 // ============================================================
 
-let tokenSesion =
+let token =
     sessionStorage.getItem(
         'GESTOR_TOKEN'
     ) || '';
@@ -1385,56 +915,34 @@ let listasSeleccionadas = [];
 
 let cargaActual = null;
 
-let contenidoActual = null;
-
 
 // ============================================================
-// FETCH POST
+// PETICIÓN AL SERVIDOR
 // ============================================================
 
-async function postJSON(datos){
+async function api(
+    datos
+) {
 
     const respuesta =
         await fetch(
             SCRIPT_URL,
             {
-                method:'POST',
-
-                headers:{
-                    'Content-Type':
-                        'text/plain;charset=utf-8'
-                },
-
-                body:
-                    JSON.stringify(datos)
+                method: 'POST',
+                body: JSON.stringify(datos)
             }
         );
 
-    const texto =
-        await respuesta.text();
+    const resultado =
+        await respuesta.json();
 
-    let resultado;
-
-    try{
-
-        resultado =
-            JSON.parse(texto);
-
-    }catch(error){
+    if (
+        resultado.ok === false
+    ) {
 
         throw new Error(
-            'Respuesta inválida del servidor.'
-        );
-    }
-
-    if(
-        resultado &&
-        resultado.error &&
-        !resultado.ok
-    ){
-
-        throw new Error(
-            resultado.error
+            resultado.error ||
+            'Ocurrió un error.'
         );
     }
 
@@ -1446,94 +954,116 @@ async function postJSON(datos){
 // CAMBIAR MÓDULO
 // ============================================================
 
-function mostrarModulo(modulo){
+function mostrarModulo(
+    modulo
+) {
 
-    const carga =
-        document.getElementById(
-            'moduloCarga'
+    document
+        .querySelectorAll('.module')
+        .forEach(
+            el =>
+                el.classList.remove(
+                    'active'
+                )
         );
 
-    const gestor =
-        document.getElementById(
-            'moduloGestor'
+    document
+        .querySelectorAll('.tab')
+        .forEach(
+            el =>
+                el.classList.remove(
+                    'active'
+                )
         );
 
-    const tabCarga =
-        document.getElementById(
-            'tabBtnCarga'
-        );
+    if (
+        modulo === 'carga'
+    ) {
 
-    const tabGestor =
-        document.getElementById(
-            'tabBtnGestor'
-        );
+        document
+            .getElementById(
+                'moduloCarga'
+            )
+            .classList.add(
+                'active'
+            );
 
-    if(modulo === 'carga'){
+        document
+            .getElementById(
+                'tabCarga'
+            )
+            .classList.add(
+                'active'
+            );
 
-        carga.style.display =
-            'block';
-
-        gestor.style.display =
-            'none';
-
-        tabCarga.classList.add(
-            'active'
-        );
-
-        tabGestor.classList.remove(
-            'active'
-        );
-
-    }else{
-
-        carga.style.display =
-            'none';
-
-        gestor.style.display =
-            'block';
-
-        tabCarga.classList.remove(
-            'active'
-        );
-
-        tabGestor.classList.add(
-            'active'
-        );
+        return;
     }
+
+    document
+        .getElementById(
+            'moduloGestor'
+        )
+        .classList.add(
+            'active'
+        );
+
+    document
+        .getElementById(
+            'tabGestor'
+        )
+        .classList.add(
+            'active'
+        );
 }
 
 
 // ============================================================
-// ENTRAR GESTOR
+// ENTRAR AL GESTOR
 // ============================================================
 
-function entrarGestor(){
+function entrarGestor() {
 
     mostrarModulo(
         'gestor'
     );
 
-    if(tokenSesion){
-
-        mostrarGestorAutenticado();
-
-        consultarCargas();
-
-    }else{
+    if (token) {
 
         document
             .getElementById(
-                'loginGestor'
+                'loginBox'
             )
-            .style.display =
-            'block';
+            .classList.add(
+                'hidden'
+            );
 
         document
             .getElementById(
                 'gestorContenido'
             )
-            .style.display =
-            'none';
+            .classList.remove(
+                'hidden'
+            );
+
+        buscarCargas();
+
+    } else {
+
+        document
+            .getElementById(
+                'loginBox'
+            )
+            .classList.remove(
+                'hidden'
+            );
+
+        document
+            .getElementById(
+                'gestorContenido'
+            )
+            .classList.add(
+                'hidden'
+            );
     }
 }
 
@@ -1542,7 +1072,7 @@ function entrarGestor(){
 // LOGIN
 // ============================================================
 
-async function iniciarSesion(){
+async function iniciarSesion() {
 
     const password =
         document
@@ -1551,110 +1081,77 @@ async function iniciarSesion(){
             )
             .value;
 
-    if(!password){
-
-        mostrarMensaje(
-            'mensajeLogin',
-            'Introduce la contraseña.',
-            'error'
-        );
-
-        return;
-    }
-
-    try{
-
-        mostrarMensaje(
-            'mensajeLogin',
-            'Verificando...',
-            'info'
-        );
+    try {
 
         const resultado =
-            await postJSON({
-
-                accion:'login',
-
-                password:password
+            await api({
+                accion: 'login',
+                password: password
             });
 
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error ||
-                'No fue posible iniciar sesión.'
-            );
-        }
-
-        tokenSesion =
+        token =
             resultado.token;
 
         sessionStorage.setItem(
             'GESTOR_TOKEN',
-            tokenSesion
+            token
         );
 
         document
             .getElementById(
-                'password'
+                'loginBox'
             )
-            .value = '';
+            .classList.add(
+                'hidden'
+            );
 
-        mostrarGestorAutenticado();
+        document
+            .getElementById(
+                'gestorContenido'
+            )
+            .classList.remove(
+                'hidden'
+            );
 
-        consultarCargas();
+        document
+            .getElementById(
+                'statusLogin'
+            )
+            .className =
+            'status';
 
-    }catch(error){
+        buscarCargas();
 
-        mostrarMensaje(
-            'mensajeLogin',
+    } catch (error) {
+
+        mostrarStatus(
+            'statusLogin',
             error.message,
-            'error'
+            false
         );
     }
 }
 
 
 // ============================================================
-// MOSTRAR GESTOR
+// LOGOUT
 // ============================================================
 
-function mostrarGestorAutenticado(){
+async function cerrarSesion() {
 
-    document
-        .getElementById(
-            'loginGestor'
-        )
-        .style.display =
-        'none';
+    try {
 
-    document
-        .getElementById(
-            'gestorContenido'
-        )
-        .style.display =
-        'block';
-}
+        if (token) {
 
+            await api({
+                accion: 'logout',
+                token: token
+            });
+        }
 
-// ============================================================
-// CERRAR SESIÓN
-// ============================================================
+    } catch (e) {}
 
-async function cerrarSesion(){
-
-    try{
-
-        await postJSON({
-
-            accion:'logout',
-
-            token:tokenSesion
-        });
-
-    }catch(error){}
-
-    tokenSesion = '';
+    token = '';
 
     sessionStorage.removeItem(
         'GESTOR_TOKEN'
@@ -1664,101 +1161,78 @@ async function cerrarSesion(){
         .getElementById(
             'gestorContenido'
         )
-        .style.display =
-        'none';
+        .classList.add(
+            'hidden'
+        );
 
     document
         .getElementById(
-            'loginGestor'
+            'loginBox'
         )
-        .style.display =
-        'block';
+        .classList.remove(
+            'hidden'
+        );
 
     document
         .getElementById(
-            'detalleCarga'
+            'password'
         )
-        .style.display =
-        'none';
+        .value = '';
 }
 
 
 // ============================================================
-// SELECCIONAR FOTOS
+// FOTOGRAFÍAS
 // ============================================================
 
-function seleccionarFotos(files){
+document
+    .getElementById(
+        'inputFotos'
+    )
+    .addEventListener(
+        'change',
+        function(e) {
 
-    fotosSeleccionadas =
-        Array.from(files);
+            const archivos =
+                Array.from(
+                    e.target.files
+                );
 
-    actualizarPreviewFotos();
-}
+            archivos.forEach(
+                function(archivo) {
 
+                    fotosSeleccionadas.push(
+                        archivo
+                    );
+                }
+            );
 
-// ============================================================
-// SELECCIONAR PDF
-// ============================================================
+            renderizarFotos();
 
-function seleccionarPDF(
-    files,
-    tipo
-){
+            e.target.value = '';
 
-    const archivos =
-        Array.from(files);
-
-    const noPDF =
-        archivos.filter(
-            function(file){
-
-                return file.type !==
-                    'application/pdf' &&
-                    !file.name
-                        .toLowerCase()
-                        .endsWith('.pdf');
-            }
-        );
-
-    if(noPDF.length){
-
-        alert(
-            'Solo se permiten archivos PDF.'
-        );
-
-        return;
-    }
-
-    if(tipo === 'ACTA'){
-
-        actasSeleccionadas =
-            archivos;
-
-    }else{
-
-        listasSeleccionadas =
-            archivos;
-    }
-
-    actualizarContadores();
-}
+        }
+    );
 
 
 // ============================================================
-// PREVIEW FOTOS
+// RENDERIZAR FOTOS
 // ============================================================
 
-function actualizarPreviewFotos(){
+function renderizarFotos() {
 
     const contenedor =
         document.getElementById(
-            'previewFotos'
+            'gridFotos'
         );
 
     contenedor.innerHTML = '';
 
     fotosSeleccionadas.forEach(
-        function(file,index){
+        function(
+            archivo,
+            index
+        ) {
 
             const card =
                 document.createElement(
@@ -1766,34 +1240,197 @@ function actualizarPreviewFotos(){
                 );
 
             card.className =
-                'preview-card';
+                'photo-card';
+
+            card.draggable = true;
+
+            card.dataset.index =
+                index;
+
+
+            // ------------------------------------------------
+            // DRAG START
+            // ------------------------------------------------
+
+            card.addEventListener(
+                'dragstart',
+                function(e) {
+
+                    card.classList.add(
+                        'dragging'
+                    );
+
+                    e.dataTransfer.effectAllowed =
+                        'move';
+
+                    e.dataTransfer.setData(
+                        'text/plain',
+                        String(index)
+                    );
+                }
+            );
+
+
+            // ------------------------------------------------
+            // DRAG END
+            // ------------------------------------------------
+
+            card.addEventListener(
+                'dragend',
+                function() {
+
+                    card.classList.remove(
+                        'dragging'
+                    );
+
+                    document
+                        .querySelectorAll(
+                            '.photo-card'
+                        )
+                        .forEach(
+                            el => {
+
+                                el.classList.remove(
+                                    'drag-over'
+                                );
+                            }
+                        );
+                }
+            );
+
+
+            // ------------------------------------------------
+            // DRAG OVER
+            // ------------------------------------------------
+
+            card.addEventListener(
+                'dragover',
+                function(e) {
+
+                    e.preventDefault();
+
+                    e.dataTransfer.dropEffect =
+                        'move';
+
+                    card.classList.add(
+                        'drag-over'
+                    );
+                }
+            );
+
+
+            // ------------------------------------------------
+            // DRAG LEAVE
+            // ------------------------------------------------
+
+            card.addEventListener(
+                'dragleave',
+                function() {
+
+                    card.classList.remove(
+                        'drag-over'
+                    );
+                }
+            );
+
+
+            // ------------------------------------------------
+            // DROP
+            // ------------------------------------------------
+
+            card.addEventListener(
+                'drop',
+                function(e) {
+
+                    e.preventDefault();
+
+                    card.classList.remove(
+                        'drag-over'
+                    );
+
+                    const origen =
+                        Number(
+                            e.dataTransfer.getData(
+                                'text/plain'
+                            )
+                        );
+
+                    const destino =
+                        Number(
+                            card.dataset.index
+                        );
+
+                    if (
+                        origen === destino ||
+                        isNaN(origen) ||
+                        isNaN(destino)
+                    ) {
+                        return;
+                    }
+
+                    const elemento =
+                        fotosSeleccionadas.splice(
+                            origen,
+                            1
+                        )[0];
+
+                    fotosSeleccionadas.splice(
+                        destino,
+                        0,
+                        elemento
+                    );
+
+                    renderizarFotos();
+                }
+            );
+
+
+            // ------------------------------------------------
+            // NUMERO
+            // ------------------------------------------------
+
+            const numero =
+                document.createElement(
+                    'div'
+                );
+
+            numero.className =
+                'photo-number';
+
+            numero.textContent =
+                index + 1;
+
+
+            // ------------------------------------------------
+            // IMAGEN
+            // ------------------------------------------------
 
             const img =
                 document.createElement(
                     'img'
                 );
 
-            img.src =
-                URL.createObjectURL(
-                    file
-                );
+            img.alt =
+                archivo.name;
 
-            const info =
-                document.createElement(
-                    'div'
-                );
+            const reader =
+                new FileReader();
 
-            info.className =
-                'preview-info';
+            reader.onload =
+                function(event) {
 
-            info.innerHTML =
-                '<div class="preview-number">' +
-                '#' +
-                (index + 1) +
-                '</div>' +
-                '<div class="preview-name">' +
-                escapeHTML(file.name) +
-                '</div>';
+                    img.src =
+                        event.target.result;
+                };
+
+            reader.readAsDataURL(
+                archivo
+            );
+
+
+            // ------------------------------------------------
+            // BOTÓN ELIMINAR
+            // ------------------------------------------------
 
             const eliminar =
                 document.createElement(
@@ -1801,32 +1438,65 @@ function actualizarPreviewFotos(){
                 );
 
             eliminar.className =
-                'remove-preview';
+                'photo-delete';
 
-            eliminar.innerHTML =
+            eliminar.type =
+                'button';
+
+            eliminar.textContent =
                 '×';
 
-            eliminar.onclick =
-                function(){
+            eliminar.title =
+                'Eliminar fotografía';
+
+            eliminar.addEventListener(
+                'click',
+                function(e) {
+
+                    e.preventDefault();
+
+                    e.stopPropagation();
 
                     fotosSeleccionadas.splice(
                         index,
                         1
                     );
 
-                    actualizarPreviewFotos();
-                };
+                    renderizarFotos();
+                }
+            );
+
+
+            // ------------------------------------------------
+            // NOMBRE
+            // ------------------------------------------------
+
+            const nombre =
+                document.createElement(
+                    'div'
+                );
+
+            nombre.className =
+                'photo-name';
+
+            nombre.textContent =
+                archivo.name;
+
+
+            card.appendChild(
+                numero
+            );
 
             card.appendChild(
                 img
             );
 
             card.appendChild(
-                info
+                eliminar
             );
 
             card.appendChild(
-                eliminar
+                nombre
             );
 
             contenedor.appendChild(
@@ -1835,15 +1505,6 @@ function actualizarPreviewFotos(){
         }
     );
 
-    actualizarContadores();
-}
-
-
-// ============================================================
-// CONTADORES
-// ============================================================
-
-function actualizarContadores(){
 
     document
         .getElementById(
@@ -1853,33 +1514,221 @@ function actualizarContadores(){
         fotosSeleccionadas.length +
         (
             fotosSeleccionadas.length === 1
-                ? ' fotografía'
-                : ' fotografías'
+                ? ' fotografía seleccionada'
+                : ' fotografías seleccionadas'
+        );
+}
+
+
+// ============================================================
+// ACTAS
+// ============================================================
+
+document
+    .getElementById(
+        'inputActas'
+    )
+    .addEventListener(
+        'change',
+        function(e) {
+
+            const archivos =
+                Array.from(
+                    e.target.files
+                );
+
+            archivos.forEach(
+                function(archivo) {
+
+                    if (
+                        archivo.type !==
+                        'application/pdf'
+                    ) {
+
+                        alert(
+                            'Solo se permiten archivos PDF.'
+                        );
+
+                        return;
+                    }
+
+                    actasSeleccionadas.push(
+                        archivo
+                    );
+                }
+            );
+
+            renderizarPDFs(
+                actasSeleccionadas,
+                'listaActas',
+                'ACTA'
+            );
+
+            e.target.value = '';
+        }
+    );
+
+
+// ============================================================
+// LISTAS
+// ============================================================
+
+document
+    .getElementById(
+        'inputListas'
+    )
+    .addEventListener(
+        'change',
+        function(e) {
+
+            const archivos =
+                Array.from(
+                    e.target.files
+                );
+
+            archivos.forEach(
+                function(archivo) {
+
+                    if (
+                        archivo.type !==
+                        'application/pdf'
+                    ) {
+
+                        alert(
+                            'Solo se permiten archivos PDF.'
+                        );
+
+                        return;
+                    }
+
+                    listasSeleccionadas.push(
+                        archivo
+                    );
+                }
+            );
+
+            renderizarPDFs(
+                listasSeleccionadas,
+                'listaListas',
+                'LISTA'
+            );
+
+            e.target.value = '';
+        }
+    );
+
+
+// ============================================================
+// RENDERIZAR PDF
+// ============================================================
+
+function renderizarPDFs(
+    lista,
+    contenedorId,
+    tipo
+) {
+
+    const contenedor =
+        document.getElementById(
+            contenedorId
         );
 
-    document
-        .getElementById(
-            'contadorActas'
-        )
-        .textContent =
-        actasSeleccionadas.length +
-        (
-            actasSeleccionadas.length === 1
-                ? ' acta'
-                : ' actas'
-        );
+    contenedor.innerHTML = '';
 
-    document
-        .getElementById(
-            'contadorListas'
-        )
-        .textContent =
-        listasSeleccionadas.length +
-        (
-            listasSeleccionadas.length === 1
-                ? ' lista'
-                : ' listas'
-        );
+    lista.forEach(
+        function(
+            archivo,
+            index
+        ) {
+
+            const item =
+                document.createElement(
+                    'div'
+                );
+
+            item.className =
+                'pdf-item';
+
+            const info =
+                document.createElement(
+                    'div'
+                );
+
+            info.className =
+                'pdf-info';
+
+            const nombre =
+                document.createElement(
+                    'div'
+                );
+
+            nombre.className =
+                'pdf-name';
+
+            nombre.textContent =
+                archivo.name;
+
+            const size =
+                document.createElement(
+                    'div'
+                );
+
+            size.className =
+                'pdf-size';
+
+            size.textContent =
+                formatearTamano(
+                    archivo.size
+                );
+
+            info.appendChild(
+                nombre
+            );
+
+            info.appendChild(
+                size
+            );
+
+
+            const boton =
+                document.createElement(
+                    'button'
+                );
+
+            boton.className =
+                'btn-danger';
+
+            boton.textContent =
+                'Eliminar';
+
+            boton.onclick =
+                function() {
+
+                    lista.splice(
+                        index,
+                        1
+                    );
+
+                    renderizarPDFs(
+                        lista,
+                        contenedorId,
+                        tipo
+                    );
+                };
+
+            item.appendChild(
+                info
+            );
+
+            item.appendChild(
+                boton
+            );
+
+            contenedor.appendChild(
+                item
+            );
+        }
+    );
 }
 
 
@@ -1887,7 +1736,7 @@ function actualizarContadores(){
 // GUARDAR CARGA
 // ============================================================
 
-async function guardarCarga(){
+async function guardarCarga() {
 
     const titulo =
         document
@@ -1905,203 +1754,197 @@ async function guardarCarga(){
             .value
             .trim();
 
-    if(!titulo){
+    if (!titulo) {
 
-        mostrarMensaje(
-            'mensajeCarga',
-            'Escribe el título de la carga.',
-            'error'
+        mostrarStatus(
+            'statusCarga',
+            'Debes indicar el título o nombre.',
+            false
         );
 
         return;
     }
 
-    if(!cargador){
+    if (!cargador) {
 
-        mostrarMensaje(
-            'mensajeCarga',
-            'Escribe quién realiza la carga.',
-            'error'
+        mostrarStatus(
+            'statusCarga',
+            'Debes indicar quién realiza la carga.',
+            false
         );
 
         return;
     }
 
-    if(
-        fotosSeleccionadas.length === 0
-    ){
+    if (
+        fotosSeleccionadas.length === 0 &&
+        actasSeleccionadas.length === 0 &&
+        listasSeleccionadas.length === 0
+    ) {
 
-        mostrarMensaje(
-            'mensajeCarga',
-            'Debes seleccionar al menos una fotografía.',
-            'error'
+        mostrarStatus(
+            'statusCarga',
+            'Debes seleccionar al menos una fotografía, acta o lista.',
+            false
         );
 
         return;
     }
 
-    try{
 
-        mostrarMensaje(
-            'mensajeCarga',
-            'Creando carpeta...',
-            'info'
+    try {
+
+        mostrarStatus(
+            'statusCarga',
+            'Creando carga...',
+            true
         );
+
+
+        // ------------------------------------------------------
+        // CREAR CARPETA
+        // ------------------------------------------------------
 
         const carga =
-            await postJSON({
-
-                accion:
-                    'crearCarga',
-
-                titulo:
-                    titulo,
-
-                cargador:
-                    cargador
+            await api({
+                accion: 'crearCarga',
+                titulo: titulo,
+                cargador: cargador
             });
 
-        if(!carga.ok){
+        const cargaId =
+            carga.cargaId;
 
-            throw new Error(
-                carga.error
-            );
-        }
 
-        // ----------------------------------------------------
-        // FOTOS
-        // ----------------------------------------------------
+        // ------------------------------------------------------
+        // SUBIR FOTOGRAFÍAS
+        // ------------------------------------------------------
 
-        for(
+        for (
             let i = 0;
             i < fotosSeleccionadas.length;
             i++
-        ){
+        ) {
 
-            const file =
+            const archivo =
                 fotosSeleccionadas[i];
 
-            const extension =
-                obtenerExtensionJS(
-                    file.name
-                );
-
-            const nombre =
-                titulo +
-                '_' +
-                padJS(i + 1,3) +
-                extension;
-
-            mostrarMensaje(
-                'mensajeCarga',
+            mostrarStatus(
+                'statusCarga',
                 'Subiendo fotografía ' +
                 (i + 1) +
                 ' de ' +
                 fotosSeleccionadas.length +
                 '...',
-                'info'
+                true
             );
 
             const base64 =
                 await archivoABase64(
-                    file
+                    archivo
                 );
 
-            await postJSON({
+            const nombre =
+                titulo +
+                '_' +
+                padJS(i + 1, 3) +
+                obtenerExtensionJS(
+                    archivo.name
+                );
 
-                accion:
-                    'subirFoto',
-
-                cargaId:
-                    carga.cargaId,
-
-                nombre:
-                    nombre,
-
+            await api({
+                accion: 'subirFoto',
+                cargaId: cargaId,
+                nombre: nombre,
                 mimeType:
-                    file.type ||
+                    archivo.type ||
                     'image/jpeg',
-
-                base64:
-                    base64
+                base64: base64
             });
         }
 
 
-        // ----------------------------------------------------
-        // ACTAS
-        // ----------------------------------------------------
+        // ------------------------------------------------------
+        // SUBIR ACTAS
+        // ------------------------------------------------------
 
-        for(
+        for (
             let i = 0;
             i < actasSeleccionadas.length;
             i++
-        ){
+        ) {
+
+            mostrarStatus(
+                'statusCarga',
+                'Subiendo acta ' +
+                (i + 1) +
+                ' de ' +
+                actasSeleccionadas.length +
+                '...',
+                true
+            );
 
             await subirPDFPorBloques(
-
-                carga.cargaId,
-
+                cargaId,
                 actasSeleccionadas[i],
-
                 'ACTA',
-
-                i
+                titulo
             );
         }
 
 
-        // ----------------------------------------------------
-        // LISTAS
-        // ----------------------------------------------------
+        // ------------------------------------------------------
+        // SUBIR LISTAS
+        // ------------------------------------------------------
 
-        for(
+        for (
             let i = 0;
             i < listasSeleccionadas.length;
             i++
-        ){
+        ) {
+
+            mostrarStatus(
+                'statusCarga',
+                'Subiendo lista ' +
+                (i + 1) +
+                ' de ' +
+                listasSeleccionadas.length +
+                '...',
+                true
+            );
 
             await subirPDFPorBloques(
-
-                carga.cargaId,
-
+                cargaId,
                 listasSeleccionadas[i],
-
                 'LISTA',
-
-                i
+                titulo
             );
         }
 
 
-        // ----------------------------------------------------
+        // ------------------------------------------------------
         // FINALIZAR
-        // ----------------------------------------------------
+        // ------------------------------------------------------
 
-        await postJSON({
-
-            accion:
-                'finalizarCarga',
-
-            cargaId:
-                carga.cargaId
+        await api({
+            accion: 'finalizarCarga',
+            cargaId: cargaId
         });
 
-
-        mostrarMensaje(
-            'mensajeCarga',
+        mostrarStatus(
+            'statusCarga',
             'Carga guardada correctamente.',
-            'success'
+            true
         );
 
-        limpiarFormulario();
+        limpiarCarga();
 
-    }catch(error){
+    } catch (error) {
 
-        mostrarMensaje(
-            'mensajeCarga',
+        mostrarStatus(
+            'statusCarga',
             error.message,
-            'error'
+            false
         );
     }
 }
@@ -2113,61 +1956,42 @@ async function guardarCarga(){
 
 async function subirPDFPorBloques(
     cargaId,
-    file,
+    archivo,
     tipo,
-    indice
-){
+    titulo
+) {
 
     const inicio =
-        await postJSON({
-
-            accion:
-                'iniciarDocumento',
-
-            cargaId:
-                cargaId,
-
-            tipo:
-                tipo,
-
-            nombre:
-                file.name,
-
-            mimeType:
-                'application/pdf',
-
-            size:
-                file.size
+        await api({
+            accion: 'iniciarDocumento',
+            cargaId: cargaId,
+            tipo: tipo,
+            nombre: archivo.name,
+            mimeType: 'application/pdf',
+            tamano: archivo.size
         });
-
-    if(!inicio.ok){
-
-        throw new Error(
-            inicio.error
-        );
-    }
 
     const uploadId =
         inicio.uploadId;
 
-    const CHUNK =
+    const chunkBytes =
+        inicio.chunkBytes ||
         4 * 1024 * 1024;
 
-    let posicion =
-        inicio.siguienteInicio || 0;
+    let posicion = 0;
 
-    while(
-        posicion < file.size
-    ){
+    while (
+        posicion < archivo.size
+    ) {
 
         const fin =
             Math.min(
-                posicion + CHUNK,
-                file.size
+                posicion + chunkBytes,
+                archivo.size
             ) - 1;
 
         const blob =
-            file.slice(
+            archivo.slice(
                 posicion,
                 fin + 1
             );
@@ -2177,283 +2001,66 @@ async function subirPDFPorBloques(
                 blob
             );
 
-        mostrarMensaje(
-            'mensajeCarga',
-            'Subiendo ' +
-            tipo.toLowerCase() +
-            ' ' +
-            (indice + 1) +
-            ' (' +
-            Math.round(
-                ((fin + 1) / file.size) * 100
-            ) +
-            '%)...',
-            'info'
-        );
-
         const resultado =
-            await postJSON({
-
-                accion:
-                    'subirChunkDocumento',
-
-                uploadId:
-                    uploadId,
-
-                inicio:
-                    posicion,
-
-                fin:
-                    fin,
-
-                total:
-                    file.size,
-
-                base64:
-                    base64
+            await api({
+                accion: 'subirChunkDocumento',
+                uploadId: uploadId,
+                inicio: posicion,
+                fin: fin,
+                total: archivo.size,
+                base64: base64
             });
 
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error
-            );
-        }
-
-        if(resultado.terminado){
+        if (
+            resultado.terminado
+        ) {
 
             break;
         }
 
         posicion =
-            resultado.siguienteInicio;
+            fin + 1;
     }
 }
 
 
 // ============================================================
-// CONSULTAR CARGAS
+// ARCHIVO A BASE64
 // ============================================================
 
-async function consultarCargas(){
+function archivoABase64(
+    archivo
+) {
 
-    if(!tokenSesion){
-        return;
-    }
+    return new Promise(
+        function(
+            resolve,
+            reject
+        ) {
 
-    try{
+            const reader =
+                new FileReader();
 
-        mostrarMensaje(
-            'mensajeGestor',
-            'Consultando cargas...',
-            'info'
-        );
+            reader.onload =
+                function() {
 
-        const resultado =
-            await postJSON({
+                    const resultado =
+                        reader.result;
 
-                accion:
-                    'consultarCargas',
+                    const base64 =
+                        resultado
+                            .split(',')[1];
 
-                token:
-                    tokenSesion,
+                    resolve(
+                        base64
+                    );
+                };
 
-                filtros:{
+            reader.onerror =
+                reject;
 
-                    titulo:
-                        document
-                            .getElementById(
-                                'filtroTitulo'
-                            )
-                            .value
-                            .trim(),
-
-                    fecha:
-                        document
-                            .getElementById(
-                                'filtroFecha'
-                            )
-                            .value
-                            .trim(),
-
-                    cargador:
-                        document
-                            .getElementById(
-                                'filtroCargador'
-                            )
-                            .value
-                            .trim()
-                }
-            });
-
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error
-            );
-        }
-
-        renderizarTabla(
-            resultado.cargas || []
-        );
-
-        ocultarMensaje(
-            'mensajeGestor'
-        );
-
-    }catch(error){
-
-        if(
-            error.message
-                .toLowerCase()
-                .includes('sesión')
-        ){
-
-            cerrarSesion();
-
-        }else{
-
-            mostrarMensaje(
-                'mensajeGestor',
-                error.message,
-                'error'
-            );
-        }
-    }
-}
-
-
-// ============================================================
-// TABLA
-// ============================================================
-
-function renderizarTabla(
-    cargas
-){
-
-    const tbody =
-        document.getElementById(
-            'tablaCargas'
-        );
-
-    tbody.innerHTML = '';
-
-    if(!cargas.length){
-
-        tbody.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="5"
-                    style="
-                    text-align:center;
-                    color:#64748b;
-                    padding:30px;
-                    ">
-
-                    No se encontraron cargas.
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-    }
-
-    cargas.forEach(
-        function(carga){
-
-            const tr =
-                document.createElement(
-                    'tr'
-                );
-
-            tr.innerHTML = `
-
-                <td>
-
-                    <strong>
-                        ${escapeHTML(
-                            carga.titulo
-                        )}
-                    </strong>
-
-                    <div style="
-                        font-size:11px;
-                        color:#64748b;
-                        margin-top:3px;
-                    ">
-
-                        ${escapeHTML(
-                            carga.carpeta
-                        )}
-
-                    </div>
-
-                </td>
-
-
-                <td>
-                    ${escapeHTML(
-                        carga.cargador
-                    )}
-                </td>
-
-
-                <td>
-                    ${escapeHTML(
-                        carga.fecha
-                    )}
-                </td>
-
-
-                <td>
-
-                    <div class="badges">
-
-                        <span class="badge badge-photo">
-                            📷 ${carga.totalFotos}
-                        </span>
-
-                        <span class="badge badge-acta">
-                            📄 ${carga.totalActas}
-                        </span>
-
-                        <span class="badge badge-lista">
-                            📋 ${carga.totalListas}
-                        </span>
-
-                    </div>
-
-                </td>
-
-
-                <td>
-
-                    <button
-                        class="btn btn-primary"
-                        style="
-                        padding:8px 12px;
-                        "
-                        onclick='verCarga(
-                            ${JSON.stringify(
-                                carga
-                            )}
-                        )'>
-
-                        Ver
-
-                    </button>
-
-                </td>
-
-            `;
-
-            tbody.appendChild(
-                tr
+            reader.readAsDataURL(
+                archivo
             );
         }
     );
@@ -2461,272 +2068,39 @@ function renderizarTabla(
 
 
 // ============================================================
-// VER CARGA
+// BLOB A BASE64
 // ============================================================
 
-async function verCarga(
-    carga
-){
-
-    cargaActual =
-        carga;
-
-    document
-        .getElementById(
-            'detalleCarga'
-        )
-        .style.display =
-        'block';
-
-    document
-        .getElementById(
-            'detalleTitulo'
-        )
-        .textContent =
-        carga.titulo;
-
-    document
-        .getElementById(
-            'detalleInfo'
-        )
-        .textContent =
-        'Cargador: ' +
-        carga.cargador +
-        ' · ' +
-        carga.fecha;
-
-
-    document
-        .getElementById(
-            'galeriaFotos'
-        )
-        .innerHTML =
-        '<div style="color:#64748b">' +
-        '<span class="loader"></span> ' +
-        'Cargando fotografías...' +
-        '</div>';
-
-    document
-        .getElementById(
-            'listaActas'
-        )
-        .innerHTML =
-        '';
-
-    document
-        .getElementById(
-            'listaListas'
-        )
-        .innerHTML =
-        '';
-
-    try{
-
-        const resultado =
-            await postJSON({
-
-                accion:
-                    'obtenerContenidoCarpeta',
-
-                token:
-                    tokenSesion,
-
-                folderId:
-                    carga.carpetaId
-            });
-
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error
-            );
-        }
-
-        contenidoActual =
-            resultado;
-
-        renderizarFotos(
-            resultado.fotos || []
-        );
-
-        renderizarPDFs(
-            resultado.actas || [],
-            'listaActas',
-            'ACTA'
-        );
-
-        renderizarPDFs(
-            resultado.listas || [],
-            'listaListas',
-            'LISTA'
-        );
-
-        document
-            .getElementById(
-                'detalleCarga'
-            )
-            .scrollIntoView({
-                behavior:'smooth',
-                block:'start'
-            });
-
-    }catch(error){
-
-        document
-            .getElementById(
-                'galeriaFotos'
-            )
-            .innerHTML =
-            '<div class="message show error">' +
-            escapeHTML(
-                error.message
-            ) +
-            '</div>';
-    }
-}
-
-
-// ============================================================
-// RENDERIZAR FOTOS
-// ============================================================
-
-function renderizarFotos(
-    fotos
-){
-
-    const contenedor =
-        document.getElementById(
-            'galeriaFotos'
-        );
-
-    contenedor.innerHTML = '';
-
-    if(!fotos.length){
-
-        contenedor.innerHTML = `
-
-            <div style="
-                color:#64748b;
-                padding:15px;
-            ">
-
-                No hay fotografías en esta carga.
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-    fotos.forEach(
-        function(foto,index){
-
-            const card =
-                document.createElement(
-                    'div'
-                );
-
-            card.className =
-                'gallery-card';
-
-            card.innerHTML = `
-
-                <div class="gallery-image"
-                     id="foto-${foto.fileId}">
-
-                    <div class="gallery-loading">
-
-                        <span class="loader"></span>
-                        Cargando...
-
-                    </div>
-
-                </div>
-
-                <div class="gallery-info">
-
-                    <div class="gallery-title">
-
-                        ${escapeHTML(
-                            foto.nombre
-                        )}
-
-                    </div>
-
-                    <div style="
-                        color:#64748b;
-                        font-size:11px;
-                        margin-top:4px;
-                    ">
-
-                        Fotografía ${index + 1}
-
-                    </div>
-
-                    <div class="gallery-actions">
-
-                        <button
-                            style="
-                            background:#2563eb;
-                            color:#fff;
-                            "
-                            onclick="
-                                cargarFotoModal(
-                                    '${foto.fileId}'
-                                )
-                            ">
-
-                            Ver
-
-                        </button>
-
-                        <button
-                            style="
-                            background:#e8edf5;
-                            color:#334155;
-                            "
-                            onclick="
-                                descargarArchivo(
-                                    '${foto.fileId}'
-                                )
-                            ">
-
-                            Descargar
-
-                        </button>
-
-                        <button
-                            style="
-                            background:#fee2e2;
-                            color:#991b1b;
-                            "
-                            onclick="
-                                eliminarArchivoDesdeGestor(
-                                    '${foto.fileId}',
-                                    'fotografía'
-                                )
-                            ">
-
-                            Eliminar
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-            contenedor.appendChild(
-                card
-            );
-
-            // IMPORTANTE:
-            // Se solicita la foto al servidor.
-            cargarMiniatura(
-                foto,
-                index
+function blobABase64(
+    blob
+) {
+
+    return new Promise(
+        function(
+            resolve,
+            reject
+        ) {
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function() {
+
+                    const resultado =
+                        reader.result;
+
+                    resolve(
+                        resultado
+                            .split(',')[1]
+                    );
+                };
+
+            reader.onerror =
+                reject;
+
+            reader.readAsDataURL(
+                blob
             );
         }
     );
@@ -2734,564 +2108,10 @@ function renderizarFotos(
 
 
 // ============================================================
-// CARGAR MINIATURA
+// LIMPIAR CARGA
 // ============================================================
 
-async function cargarMiniatura(
-    foto,
-    index
-){
-
-    const contenedor =
-        document.getElementById(
-            'foto-' +
-            foto.fileId
-        );
-
-    if(!contenedor){
-        return;
-    }
-
-    try{
-
-        const resultado =
-            await postJSON({
-
-                accion:
-                    'obtenerFotoBase64',
-
-                token:
-                    tokenSesion,
-
-                folderId:
-                    cargaActual.carpetaId,
-
-                fileId:
-                    foto.fileId
-            });
-
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error
-            );
-        }
-
-        const img =
-            document.createElement(
-                'img'
-            );
-
-        img.src =
-            'data:' +
-            resultado.mimeType +
-            ';base64,' +
-            resultado.base64;
-
-        img.alt =
-            resultado.nombre;
-
-        img.loading =
-            'lazy';
-
-        img.onclick =
-            function(){
-
-                abrirModalConImagen(
-                    img.src,
-                    resultado.nombre
-                );
-            };
-
-        contenedor.innerHTML = '';
-
-        contenedor.appendChild(
-            img
-        );
-
-    }catch(error){
-
-        contenedor.innerHTML = `
-
-            <div style="
-                text-align:center;
-                padding:15px;
-                color:#ef4444;
-                font-size:12px;
-            ">
-
-                No se pudo cargar la imagen.
-
-            </div>
-
-        `;
-    }
-}
-
-
-// ============================================================
-// RENDERIZAR PDFS
-// ============================================================
-
-function renderizarPDFs(
-    archivos,
-    contenedorId,
-    tipo
-){
-
-    const contenedor =
-        document.getElementById(
-            contenedorId
-        );
-
-    contenedor.innerHTML = '';
-
-    if(!archivos.length){
-
-        contenedor.innerHTML = `
-
-            <div style="
-                color:#64748b;
-                padding:10px 0;
-            ">
-
-                No hay
-                ${tipo === 'ACTA'
-                    ? 'actas'
-                    : 'listas'
-                }
-                en esta carga.
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-    archivos.forEach(
-        function(archivo){
-
-            const card =
-                document.createElement(
-                    'div'
-                );
-
-            card.className =
-                'pdf-card';
-
-            card.innerHTML = `
-
-                <div>
-
-                    <div class="pdf-name">
-
-                        📄
-                        ${escapeHTML(
-                            archivo.nombre
-                        )}
-
-                    </div>
-
-                    <div class="pdf-size">
-
-                        ${escapeHTML(
-                            archivo.tamano
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="pdf-actions">
-
-                    <a
-                        href="${archivo.viewUrl}"
-                        target="_blank"
-                        style="
-                        background:#dbeafe;
-                        color:#1d4ed8;
-                        ">
-
-                        Ver
-
-                    </a>
-
-
-                    <a
-                        href="${archivo.downloadUrl}"
-                        target="_blank"
-                        style="
-                        background:#dcfce7;
-                        color:#166534;
-                        ">
-
-                        Descargar
-
-                    </a>
-
-
-                    <button
-                        style="
-                        background:#fee2e2;
-                        color:#991b1b;
-                        "
-                        onclick="
-                            eliminarArchivoDesdeGestor(
-                                '${archivo.fileId}',
-                                '${tipo.toLowerCase()}'
-                            )
-                        ">
-
-                        Eliminar
-
-                    </button>
-
-                </div>
-
-            `;
-
-            contenedor.appendChild(
-                card
-            );
-        }
-    );
-}
-
-
-// ============================================================
-// CARGAR FOTO EN MODAL
-// ============================================================
-
-async function cargarFotoModal(
-    fileId
-){
-
-    try{
-
-        const resultado =
-            await postJSON({
-
-                accion:
-                    'obtenerFotoBase64',
-
-                token:
-                    tokenSesion,
-
-                folderId:
-                    cargaActual.carpetaId,
-
-                fileId:
-                    fileId
-            });
-
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error
-            );
-        }
-
-        const src =
-            'data:' +
-            resultado.mimeType +
-            ';base64,' +
-            resultado.base64;
-
-        abrirModalConImagen(
-            src,
-            resultado.nombre
-        );
-
-    }catch(error){
-
-        alert(
-            error.message
-        );
-    }
-}
-
-
-// ============================================================
-// MODAL
-// ============================================================
-
-function abrirModalConImagen(
-    src,
-    nombre
-){
-
-    document
-        .getElementById(
-            'modalFotoImagen'
-        )
-        .src =
-        src;
-
-    document
-        .getElementById(
-            'modalFotoTitulo'
-        )
-        .textContent =
-        nombre;
-
-    document
-        .getElementById(
-            'modalFoto'
-        )
-        .classList.add(
-            'show'
-        );
-}
-
-
-function cerrarModalFoto(
-    event
-){
-
-    if(
-        event &&
-        event.target &&
-        event.target.id !==
-            'modalFoto'
-    ){
-        return;
-    }
-
-    document
-        .getElementById(
-            'modalFoto'
-        )
-        .classList.remove(
-            'show'
-        );
-
-    document
-        .getElementById(
-            'modalFotoImagen'
-        )
-        .src =
-        '';
-}
-
-
-// ============================================================
-// DESCARGAR ARCHIVO
-// ============================================================
-
-function descargarArchivo(
-    fileId
-){
-
-    const url =
-        'https://drive.google.com/uc?export=download&id=' +
-        encodeURIComponent(
-            fileId
-        );
-
-    window.open(
-        url,
-        '_blank'
-    );
-}
-
-
-// ============================================================
-// ELIMINAR ARCHIVO
-// ============================================================
-
-async function eliminarArchivoDesdeGestor(
-    fileId,
-    tipo
-){
-
-    if(
-        !confirm(
-            '¿Deseas eliminar esta ' +
-            tipo +
-            '?'
-        )
-    ){
-
-        return;
-    }
-
-    try{
-
-        const resultado =
-            await postJSON({
-
-                accion:
-                    'eliminarArchivo',
-
-                token:
-                    tokenSesion,
-
-                folderId:
-                    cargaActual.carpetaId,
-
-                fileId:
-                    fileId
-            });
-
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error
-            );
-        }
-
-        // Recargar contenido
-        await verCarga(
-            cargaActual
-        );
-
-        consultarCargas();
-
-    }catch(error){
-
-        alert(
-            error.message
-        );
-    }
-}
-
-
-// ============================================================
-// EDITAR NOMBRE
-// ============================================================
-
-async function editarNombreCarga(){
-
-    if(!cargaActual){
-        return;
-    }
-
-    const nuevoNombre =
-        prompt(
-            'Nuevo nombre de la carga:',
-            cargaActual.titulo
-        );
-
-    if(
-        nuevoNombre === null
-    ){
-        return;
-    }
-
-    const nombre =
-        nuevoNombre.trim();
-
-    if(!nombre){
-
-        alert(
-            'El nombre no puede estar vacío.'
-        );
-
-        return;
-    }
-
-    try{
-
-        const resultado =
-            await postJSON({
-
-                accion:
-                    'editarCarga',
-
-                token:
-                    tokenSesion,
-
-                carpetaId:
-                    cargaActual.carpetaId,
-
-                nuevoNombre:
-                    nombre
-            });
-
-        if(!resultado.ok){
-
-            throw new Error(
-                resultado.error
-            );
-        }
-
-        cargaActual.titulo =
-            nombre;
-
-        cargaActual.carpeta =
-            nombre;
-
-        document
-            .getElementById(
-                'detalleTitulo'
-            )
-            .textContent =
-            nombre;
-
-        await verCarga(
-            cargaActual
-        );
-
-        consultarCargas();
-
-    }catch(error){
-
-        alert(
-            error.message
-        );
-    }
-}
-
-
-// ============================================================
-// ABRIR CARPETA DRIVE
-// ============================================================
-
-function abrirCarpetaDrive(){
-
-    if(!cargaActual){
-        return;
-    }
-
-    const url =
-        'https://drive.google.com/drive/folders/' +
-        cargaActual.carpetaId;
-
-    window.open(
-        url,
-        '_blank'
-    );
-}
-
-
-// ============================================================
-// CERRAR DETALLE
-// ============================================================
-
-function cerrarDetalle(){
-
-    document
-        .getElementById(
-            'detalleCarga'
-        )
-        .style.display =
-        'none';
-
-    cargaActual =
-        null;
-
-    contenidoActual =
-        null;
-}
-
-
-// ============================================================
-// LIMPIAR FORMULARIO
-// ============================================================
-
-function limpiarFormulario(){
+function limpiarCarga() {
 
     document
         .getElementById(
@@ -3305,52 +2125,874 @@ function limpiarFormulario(){
         )
         .value = '';
 
-    document
-        .getElementById(
-            'inputFotos'
-        )
-        .value = '';
+    fotosSeleccionadas = [];
 
-    document
-        .getElementById(
-            'inputActas'
-        )
-        .value = '';
+    actasSeleccionadas = [];
 
-    document
-        .getElementById(
-            'inputListas'
-        )
-        .value = '';
+    listasSeleccionadas = [];
 
-    fotosSeleccionadas =
-        [];
+    renderizarFotos();
 
-    actasSeleccionadas =
-        [];
+    renderizarPDFs(
+        actasSeleccionadas,
+        'listaActas',
+        'ACTA'
+    );
 
-    listasSeleccionadas =
-        [];
-
-    document
-        .getElementById(
-            'previewFotos'
-        )
-        .innerHTML = '';
-
-    actualizarContadores();
+    renderizarPDFs(
+        listasSeleccionadas,
+        'listaListas',
+        'LISTA'
+    );
 }
 
 
 // ============================================================
-// MENSAJE
+// BUSCAR CARGAS
 // ============================================================
 
-function mostrarMensaje(
+async function buscarCargas() {
+
+    if (!token) {
+        return;
+    }
+
+    const titulo =
+        document
+            .getElementById(
+                'filtroTitulo'
+            )
+            .value
+            .trim();
+
+    const cargador =
+        document
+            .getElementById(
+                'filtroCargador'
+            )
+            .value
+            .trim();
+
+    const fechaInput =
+        document
+            .getElementById(
+                'filtroFecha'
+            )
+            .value;
+
+    let fecha = '';
+
+    if (fechaInput) {
+
+        const partes =
+            fechaInput.split('-');
+
+        fecha =
+            partes[2] +
+            '/' +
+            partes[1] +
+            '/' +
+            partes[0];
+    }
+
+    const contenedor =
+        document.getElementById(
+            'tablaCargas'
+        );
+
+    contenedor.innerHTML =
+        '<div class="loading">Consultando...</div>';
+
+    try {
+
+        const resultado =
+            await api({
+                accion: 'consultarCargas',
+                token: token,
+                filtros: {
+                    titulo: titulo,
+                    fecha: fecha,
+                    cargador: cargador
+                }
+            });
+
+        renderizarTabla(
+            resultado.cargas
+        );
+
+    } catch (error) {
+
+        contenedor.innerHTML =
+            '<div class="status error">' +
+            escapeHTML(
+                error.message
+            ) +
+            '</div>';
+    }
+}
+
+
+// ============================================================
+// RENDERIZAR TABLA
+// ============================================================
+
+function renderizarTabla(
+    cargas
+) {
+
+    const contenedor =
+        document.getElementById(
+            'tablaCargas'
+        );
+
+    if (
+        !cargas ||
+        cargas.length === 0
+    ) {
+
+        contenedor.innerHTML =
+            '<div class="loading">' +
+            'No se encontraron cargas.' +
+            '</div>';
+
+        return;
+    }
+
+    let html = '';
+
+    html += '<table>';
+
+    html += '<thead>';
+
+    html += '<tr>';
+
+    html += '<th>Seleccionar</th>';
+    html += '<th>Título</th>';
+    html += '<th>Cargador</th>';
+    html += '<th>Fecha</th>';
+    html += '<th>Fotos</th>';
+    html += '<th>Actas</th>';
+    html += '<th>Listas</th>';
+    html += '<th>Carpeta</th>';
+    html += '<th>Acciones</th>';
+
+    html += '</tr>';
+
+    html += '</thead>';
+
+    html += '<tbody>';
+
+    cargas.forEach(
+        function(carga) {
+
+            html += '<tr>';
+
+            html +=
+                '<td>' +
+                '<div class="selection-row">' +
+                '<input type="checkbox" class="selector-carga" ' +
+                'data-folder="' +
+                escapeHTML(carga.carpetaId) +
+                '">' +
+                '</div>' +
+                '</td>';
+
+            html +=
+                '<td>' +
+                escapeHTML(
+                    carga.titulo
+                ) +
+                '</td>';
+
+            html +=
+                '<td>' +
+                escapeHTML(
+                    carga.cargador
+                ) +
+                '</td>';
+
+            html +=
+                '<td>' +
+                escapeHTML(
+                    formatoFechaJS(
+                        carga.fecha
+                    )
+                ) +
+                '</td>';
+
+            html +=
+                '<td>' +
+                '<span class="badge">' +
+                carga.totalFotos +
+                '</span>' +
+                '</td>';
+
+            html +=
+                '<td>' +
+                '<span class="badge">' +
+                carga.totalActas +
+                '</span>' +
+                '</td>';
+
+            html +=
+                '<td>' +
+                '<span class="badge">' +
+                carga.totalListas +
+                '</span>' +
+                '</td>';
+
+            html +=
+                '<td>' +
+                '<a class="folder-link" ' +
+                'href="' +
+                escapeHTML(carga.url) +
+                '" target="_blank">' +
+                'Abrir' +
+                '</a>' +
+                '</td>';
+
+            html +=
+                '<td>' +
+
+                '<button ' +
+                'class="btn-primary" ' +
+                'onclick=\'verContenido(' +
+                JSON.stringify(carga)
+                .replace(/'/g, '&#39;') +
+                ')\'>Ver</button> ' +
+
+                '<button ' +
+                'class="btn-secondary" ' +
+                'onclick=\'editarCargaUI(' +
+                JSON.stringify(carga)
+                .replace(/'/g, '&#39;') +
+                ')\'>Editar</button>' +
+
+                '</td>';
+
+            html += '</tr>';
+        }
+    );
+
+    html += '</tbody>';
+
+    html += '</table>';
+
+    contenedor.innerHTML =
+        html;
+}
+
+
+// ============================================================
+// VER CONTENIDO
+// ============================================================
+
+async function verContenido(
+    carga
+) {
+
+    cargaActual =
+        carga;
+
+    document
+        .getElementById(
+            'modalTitulo'
+        )
+        .textContent =
+        carga.titulo;
+
+    const contenido =
+        document.getElementById(
+            'modalContenido'
+        );
+
+    contenido.innerHTML =
+        '<div class="loading">Cargando archivos...</div>';
+
+    abrirModal();
+
+    try {
+
+        const resultado =
+            await api({
+                accion:
+                    'obtenerContenidoCarpeta',
+                token: token,
+                folderId:
+                    carga.carpetaId
+            });
+
+        renderizarContenidoModal(
+            resultado
+        );
+
+    } catch (error) {
+
+        contenido.innerHTML =
+            '<div class="status error">' +
+            escapeHTML(
+                error.message
+            ) +
+            '</div>';
+    }
+}
+
+
+// ============================================================
+// RENDERIZAR CONTENIDO MODAL
+// ============================================================
+
+function renderizarContenidoModal(
+    resultado
+) {
+
+    const contenido =
+        document.getElementById(
+            'modalContenido'
+        );
+
+    let html = '';
+
+    // --------------------------------------------------------
+    // FOTOS
+    // --------------------------------------------------------
+
+    html +=
+        '<h3>Fotografías (' +
+        resultado.fotos.length +
+        ')</h3>';
+
+    html +=
+        '<div id="galeriaModal" class="photo-grid">';
+
+    resultado.fotos.forEach(
+        function(
+            foto,
+            index
+        ) {
+
+            html +=
+                '<div class="photo-card">' +
+
+                '<div class="photo-number">' +
+                (index + 1) +
+                '</div>' +
+
+                '<div id="foto-' +
+                foto.fileId +
+                '" ' +
+                'style="height:170px;display:flex;' +
+                'align-items:center;justify-content:center;' +
+                'background:#f1f5f9;">' +
+                'Cargando...' +
+                '</div>' +
+
+                '<div class="photo-name">' +
+                escapeHTML(
+                    foto.nombre
+                ) +
+                '</div>' +
+
+                '<div style="padding:9px;">' +
+
+                '<button ' +
+                'class="btn-primary" ' +
+                'onclick=\'cargarFotoModal(' +
+                JSON.stringify(foto)
+                .replace(/'/g, '&#39;') +
+                ')\'>Ver</button> ' +
+
+                '<button ' +
+                'class="btn-danger" ' +
+                'onclick="eliminarArchivoUI(\'' +
+                foto.fileId +
+                '\')">' +
+                'Eliminar' +
+                '</button>' +
+
+                '</div>' +
+
+                '</div>';
+
+        }
+    );
+
+    html += '</div>';
+
+
+    // --------------------------------------------------------
+    // ACTAS
+    // --------------------------------------------------------
+
+    html +=
+        '<h3 style="margin-top:25px;">' +
+        'Actas (' +
+        resultado.actas.length +
+        ')' +
+        '</h3>';
+
+    html +=
+        '<div class="pdf-list">';
+
+    resultado.actas.forEach(
+        function(acta) {
+
+            html +=
+                '<div class="pdf-item">' +
+
+                '<div class="pdf-info">' +
+
+                '<div class="pdf-name">' +
+                escapeHTML(
+                    acta.nombre
+                ) +
+                '</div>' +
+
+                '<div class="pdf-size">' +
+                formatearTamano(
+                    acta.size
+                ) +
+                '</div>' +
+
+                '</div>' +
+
+                '<div>' +
+
+                '<a href="' +
+                escapeHTML(
+                    acta.url
+                ) +
+                '" target="_blank">' +
+                '<button class="btn-primary">' +
+                'Ver' +
+                '</button>' +
+                '</a> ' +
+
+                '<a href="' +
+                escapeHTML(
+                    acta.url
+                ) +
+                '" target="_blank">' +
+                '<button class="btn-secondary">' +
+                'Descargar' +
+                '</button>' +
+                '</a> ' +
+
+                '<button class="btn-danger" ' +
+                'onclick="eliminarArchivoUI(\'' +
+                acta.fileId +
+                '\')">' +
+                'Eliminar' +
+                '</button>' +
+
+                '</div>' +
+
+                '</div>';
+        }
+    );
+
+    html += '</div>';
+
+
+    // --------------------------------------------------------
+    // LISTAS
+    // --------------------------------------------------------
+
+    html +=
+        '<h3 style="margin-top:25px;">' +
+        'Listas (' +
+        resultado.listas.length +
+        ')' +
+        '</h3>';
+
+    html +=
+        '<div class="pdf-list">';
+
+    resultado.listas.forEach(
+        function(lista) {
+
+            html +=
+                '<div class="pdf-item">' +
+
+                '<div class="pdf-info">' +
+
+                '<div class="pdf-name">' +
+                escapeHTML(
+                    lista.nombre
+                ) +
+                '</div>' +
+
+                '<div class="pdf-size">' +
+                formatearTamano(
+                    lista.size
+                ) +
+                '</div>' +
+
+                '</div>' +
+
+                '<div>' +
+
+                '<a href="' +
+                escapeHTML(
+                    lista.url
+                ) +
+                '" target="_blank">' +
+                '<button class="btn-primary">' +
+                'Ver' +
+                '</button>' +
+                '</a> ' +
+
+                '<a href="' +
+                escapeHTML(
+                    lista.url
+                ) +
+                '" target="_blank">' +
+                '<button class="btn-secondary">' +
+                'Descargar' +
+                '</button>' +
+                '</a> ' +
+
+                '<button class="btn-danger" ' +
+                'onclick="eliminarArchivoUI(\'' +
+                lista.fileId +
+                '\')">' +
+                'Eliminar' +
+                '</button>' +
+
+                '</div>' +
+
+                '</div>';
+        }
+    );
+
+    html += '</div>';
+
+    contenido.innerHTML =
+        html;
+
+
+    // --------------------------------------------------------
+    // CARGAR MINIATURAS
+    // --------------------------------------------------------
+
+    resultado.fotos.forEach(
+        function(foto) {
+
+            cargarMiniatura(
+                foto
+            );
+        }
+    );
+}
+
+
+// ============================================================
+// CARGAR MINIATURA
+// ============================================================
+
+async function cargarMiniatura(
+    foto
+) {
+
+    const contenedor =
+        document.getElementById(
+            'foto-' +
+            foto.fileId
+        );
+
+    if (!contenedor) {
+        return;
+    }
+
+    try {
+
+        const resultado =
+            await api({
+                accion:
+                    'obtenerFotoBase64',
+                token: token,
+                folderId:
+                    cargaActual.carpetaId,
+                fileId:
+                    foto.fileId
+            });
+
+        const img =
+            document.createElement(
+                'img'
+            );
+
+        img.src =
+            'data:' +
+            resultado.mimeType +
+            ';base64,' +
+            resultado.base64;
+
+        img.style.width =
+            '100%';
+
+        img.style.height =
+            '170px';
+
+        img.style.objectFit =
+            'cover';
+
+        img.style.cursor =
+            'pointer';
+
+        img.onclick =
+            function() {
+
+                cargarFotoModal(
+                    foto
+                );
+            };
+
+        contenedor.replaceWith(
+            img
+        );
+
+    } catch (error) {
+
+        contenedor.innerHTML =
+            'No se pudo cargar';
+    }
+}
+
+
+// ============================================================
+// VER FOTO EN MODAL
+// ============================================================
+
+async function cargarFotoModal(
+    foto
+) {
+
+    const contenido =
+        document.getElementById(
+            'modalContenido'
+        );
+
+    contenido.innerHTML =
+        '<div class="loading">Cargando fotografía...</div>';
+
+    try {
+
+        const resultado =
+            await api({
+                accion:
+                    'obtenerFotoBase64',
+                token: token,
+                folderId:
+                    cargaActual.carpetaId,
+                fileId:
+                    foto.fileId
+            });
+
+        contenido.innerHTML =
+
+            '<div style="text-align:center;">' +
+
+            '<h3>' +
+            escapeHTML(
+                foto.nombre
+            ) +
+            '</h3>' +
+
+            '<img class="modal-image" src="data:' +
+            resultado.mimeType +
+            ';base64,' +
+            resultado.base64 +
+            '">' +
+
+            '<div class="actions">' +
+
+            '<button class="btn-secondary" ' +
+            'onclick="verContenido(cargaActual)">' +
+            'Volver' +
+            '</button>' +
+
+            '</div>' +
+
+            '</div>';
+
+    } catch (error) {
+
+        contenido.innerHTML =
+            '<div class="status error">' +
+            escapeHTML(
+                error.message
+            ) +
+            '</div>';
+    }
+}
+
+
+// ============================================================
+// ELIMINAR ARCHIVO DESDE MODAL
+// ============================================================
+
+async function eliminarArchivoUI(
+    fileId
+) {
+
+    if (
+        !confirm(
+            '¿Deseas eliminar este archivo?'
+        )
+    ) {
+        return;
+    }
+
+    try {
+
+        await api({
+            accion:
+                'eliminarArchivo',
+            token: token,
+            folderId:
+                cargaActual.carpetaId,
+            fileId: fileId
+        });
+
+        await verContenido(
+            cargaActual
+        );
+
+        buscarCargas();
+
+    } catch (error) {
+
+        alert(
+            error.message
+        );
+    }
+}
+
+
+// ============================================================
+// EDITAR CARGA
+// ============================================================
+
+async function editarCargaUI(
+    carga
+) {
+
+    const nuevoNombre =
+        prompt(
+            'Nuevo nombre de la carga:',
+            carga.titulo
+        );
+
+    if (
+        nuevoNombre === null
+    ) {
+        return;
+    }
+
+    if (
+        !nuevoNombre.trim()
+    ) {
+
+        alert(
+            'El nombre no puede estar vacío.'
+        );
+
+        return;
+    }
+
+    try {
+
+        await api({
+            accion:
+                'editarCarga',
+            token: token,
+            carpetaId:
+                carga.carpetaId,
+            nuevoNombre:
+                nuevoNombre.trim()
+        });
+
+        alert(
+            'Carga actualizada correctamente.'
+        );
+
+        buscarCargas();
+
+    } catch (error) {
+
+        alert(
+            error.message
+        );
+    }
+}
+
+
+// ============================================================
+// MODAL
+// ============================================================
+
+function abrirModal() {
+
+    document
+        .getElementById(
+            'modal'
+        )
+        .classList.add(
+            'show'
+        );
+}
+
+
+function cerrarModal() {
+
+    document
+        .getElementById(
+            'modal'
+        )
+        .classList.remove(
+            'show'
+        );
+}
+
+
+// ============================================================
+// LIMPIAR FILTROS
+// ============================================================
+
+function limpiarFiltros() {
+
+    document
+        .getElementById(
+            'filtroTitulo'
+        )
+        .value = '';
+
+    document
+        .getElementById(
+            'filtroFecha'
+        )
+        .value = '';
+
+    document
+        .getElementById(
+            'filtroCargador'
+        )
+        .value = '';
+
+    buscarCargas();
+}
+
+
+// ============================================================
+// UTILIDADES
+// ============================================================
+
+function mostrarStatus(
     id,
-    texto,
-    tipo
-){
+    mensaje,
+    correcto
+) {
 
     const elemento =
         document.getElementById(
@@ -3358,158 +3000,128 @@ function mostrarMensaje(
         );
 
     elemento.textContent =
-        texto;
+        mensaje;
 
     elemento.className =
-        'message show ' +
-        tipo;
+        correcto
+            ? 'status ok'
+            : 'status error';
 }
 
 
-function ocultarMensaje(
-    id
-){
+function formatearTamano(
+    bytes
+) {
 
-    const elemento =
-        document.getElementById(
-            id
+    bytes =
+        Number(bytes || 0);
+
+    if (bytes < 1024) {
+        return bytes + ' B';
+    }
+
+    if (bytes < 1024 * 1024) {
+
+        return (
+            (bytes / 1024)
+                .toFixed(1) +
+            ' KB'
         );
+    }
 
-    elemento.className =
-        'message';
-}
+    if (
+        bytes <
+        1024 * 1024 * 1024
+    ) {
 
+        return (
+            (bytes /
+                (1024 * 1024))
+                .toFixed(1) +
+            ' MB'
+        );
+    }
 
-// ============================================================
-// BASE64 ARCHIVO
-// ============================================================
-
-function archivoABase64(
-    file
-){
-
-    return new Promise(
-        function(resolve,reject){
-
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function(){
-
-                    const resultado =
-                        reader.result;
-
-                    const coma =
-                        resultado.indexOf(',');
-
-                    resolve(
-                        resultado.substring(
-                            coma + 1
-                        )
-                    );
-                };
-
-            reader.onerror =
-                reject;
-
-            reader.readAsDataURL(
-                file
-            );
-        }
+    return (
+        (bytes /
+            (1024 * 1024 * 1024))
+            .toFixed(2) +
+        ' GB'
     );
 }
 
-
-// ============================================================
-// BASE64 BLOB
-// ============================================================
-
-function blobABase64(
-    blob
-){
-
-    return new Promise(
-        function(resolve,reject){
-
-            const reader =
-                new FileReader();
-
-            reader.onload =
-                function(){
-
-                    const resultado =
-                        reader.result;
-
-                    const coma =
-                        resultado.indexOf(',');
-
-                    resolve(
-                        resultado.substring(
-                            coma + 1
-                        )
-                    );
-                };
-
-            reader.onerror =
-                reject;
-
-            reader.readAsDataURL(
-                blob
-            );
-        }
-    );
-}
-
-
-// ============================================================
-// EXTENSIÓN
-// ============================================================
 
 function obtenerExtensionJS(
     nombre
-){
+) {
 
-    const punto =
+    const posicion =
         nombre.lastIndexOf('.');
 
-    if(punto === -1){
+    if (posicion < 0) {
         return '';
     }
 
-    return nombre
-        .substring(punto)
-        .toLowerCase();
+    return nombre.substring(
+        posicion
+    );
 }
 
 
-// ============================================================
-// PAD
-// ============================================================
-
 function padJS(
     numero,
-    cantidad
-){
+    longitud
+) {
 
     return String(numero)
         .padStart(
-            cantidad,
+            longitud,
             '0'
         );
 }
 
 
-// ============================================================
-// ESCAPE HTML
-// ============================================================
+function formatoFechaJS(
+    fecha
+) {
+
+    if (!fecha) {
+        return '';
+    }
+
+    const d =
+        new Date(fecha);
+
+    if (
+        isNaN(
+            d.getTime()
+        )
+    ) {
+        return String(fecha);
+    }
+
+    return (
+        String(
+            d.getDate()
+        ).padStart(2, '0') +
+        '/' +
+        String(
+            d.getMonth() + 1
+        ).padStart(2, '0') +
+        '/' +
+        d.getFullYear()
+    );
+}
+
 
 function escapeHTML(
     texto
-){
+) {
 
     return String(
-        texto ?? ''
+        texto == null
+            ? ''
+            : texto
     )
     .replace(
         /&/g,
@@ -3535,18 +3147,27 @@ function escapeHTML(
 
 
 // ============================================================
-// INICIO
+// INICIALIZACIÓN
 // ============================================================
 
 document.addEventListener(
     'DOMContentLoaded',
-    function(){
+    function() {
 
-        actualizarContadores();
+        renderizarFotos();
 
-        mostrarModulo(
-            'carga'
+        renderizarPDFs(
+            actasSeleccionadas,
+            'listaActas',
+            'ACTA'
         );
+
+        renderizarPDFs(
+            listasSeleccionadas,
+            'listaListas',
+            'LISTA'
+        );
+
     }
 );
 
