@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -6,1743 +5,719 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Gestor de Fotografías</title>
 
 <style>
 
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
-
-:root{
-
-  --primary:#2563eb;
-  --primary-dark:#1d4ed8;
-  --accent:#14b8a6;
-
-  --success:#16a34a;
-  --danger:#dc2626;
-  --warning:#d97706;
-
-  --bg:#f4f7fb;
-  --card:#ffffff;
-  --text:#172033;
-  --muted:#64748b;
-  --border:#e2e8f0;
-
-  --shadow:
-    0 10px 30px rgba(15,23,42,.07);
-
-  --radius:18px;
-
-}
-
 
 body{
-
-  margin:0;
-
-  font-family:
-    Inter,
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  background:
-    var(--bg);
-
-  color:
-    var(--text);
-
+    margin:0;
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+    background:#f4f7fb;
+    color:#172033;
 }
-
-
-button,
-input{
-
-  font:inherit;
-
-}
-
-
-button{
-
-  cursor:pointer;
-
-}
-
-
-.app{
-
-  min-height:100vh;
-
-}
-
-
-/* ============================================================
-   HEADER
-   ============================================================ */
-
-.header{
-
-  background:
-    linear-gradient(
-      135deg,
-      #172554,
-      #2563eb
-    );
-
-  color:white;
-
-  padding:
-    22px 30px;
-
-  box-shadow:
-    0 5px 25px
-    rgba(15,23,42,.15);
-
-}
-
-
-.header-inner{
-
-  max-width:1400px;
-
-  margin:auto;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-}
-
-
-.brand{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:14px;
-
-}
-
-
-.brand-icon{
-
-  width:48px;
-  height:48px;
-
-  border-radius:14px;
-
-  background:
-    rgba(255,255,255,.15);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:24px;
-
-}
-
-
-.brand h1{
-
-  margin:0;
-
-  font-size:21px;
-
-}
-
-
-.brand p{
-
-  margin:3px 0 0;
-
-  opacity:.78;
-
-  font-size:13px;
-
-}
-
-
-.status{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:8px;
-
-  font-size:13px;
-
-}
-
-
-.status-dot{
-
-  width:9px;
-  height:9px;
-
-  border-radius:50%;
-
-  background:#4ade80;
-
-  box-shadow:
-    0 0 0 4px
-    rgba(74,222,128,.15);
-
-}
-
-
-/* ============================================================
-   CONTAINER
-   ============================================================ */
 
 .container{
-
-  max-width:1400px;
-
-  margin:auto;
-
-  padding:28px;
-
+    max-width:1400px;
+    margin:auto;
+    padding:24px;
 }
 
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-/* ============================================================
+.header{
+    background:#ffffff;
+    border-radius:18px;
+    padding:22px 26px;
+    margin-bottom:20px;
+    box-shadow:
+        0 8px 30px rgba(15,23,42,.07);
+}
+
+.header h1{
+    margin:0;
+    font-size:25px;
+}
+
+.header p{
+    margin:6px 0 0;
+    color:#64748b;
+}
+
+/* =========================================================
    TABS
-   ============================================================ */
+   ========================================================= */
 
 .tabs{
-
-  display:flex;
-
-  gap:8px;
-
-  margin-bottom:24px;
-
+    display:flex;
+    gap:8px;
+    background:#e8edf5;
+    padding:6px;
+    border-radius:14px;
+    margin-bottom:20px;
 }
-
 
 .tab{
-
-  border:0;
-
-  background:white;
-
-  color:var(--muted);
-
-  padding:
-    12px 20px;
-
-  border-radius:12px;
-
-  font-weight:700;
-
-  box-shadow:
-    0 3px 12px
-    rgba(15,23,42,.05);
-
+    flex:1;
+    border:none;
+    background:transparent;
+    padding:13px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    color:#475569;
+    transition:.2s;
 }
 
+.tab:hover{
+    background:#ffffff;
+}
 
 .tab.active{
-
-  color:white;
-
-  background:
-    var(--primary);
-
+    background:#2563eb;
+    color:#ffffff;
 }
 
-
-/* ============================================================
-   PANELS
-   ============================================================ */
+/* =========================================================
+   PANEL
+   ========================================================= */
 
 .panel{
-
-  display:none;
-
+    background:#ffffff;
+    border-radius:18px;
+    padding:24px;
+    box-shadow:
+        0 8px 30px rgba(15,23,42,.07);
+    margin-bottom:20px;
 }
 
-
-.panel.active{
-
-  display:block;
-
+.panel h2{
+    margin-top:0;
 }
 
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
 
-/* ============================================================
-   CARDS
-   ============================================================ */
-
-.card{
-
-  background:
-    var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:
-    var(--radius);
-
-  box-shadow:
-    var(--shadow);
-
-  padding:24px;
-
-  margin-bottom:22px;
-
+.form-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+    gap:18px;
 }
-
-
-.card-title{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:15px;
-
-  margin-bottom:20px;
-
-}
-
-
-.card-title h2{
-
-  margin:0;
-
-  font-size:19px;
-
-}
-
-
-.card-title p{
-
-  margin:5px 0 0;
-
-  color:var(--muted);
-
-  font-size:13px;
-
-}
-
-
-/* ============================================================
-   FORM
-   ============================================================ */
-
-.grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0,1fr));
-
-  gap:18px;
-
-}
-
 
 .field{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:7px;
-
+    display:flex;
+    flex-direction:column;
+    gap:7px;
 }
-
 
 .field label{
-
-  font-size:13px;
-
-  font-weight:700;
-
+    font-size:13px;
+    font-weight:700;
+    color:#334155;
 }
-
 
 .field input{
-
-  border:
-    1px solid var(--border);
-
-  background:#fff;
-
-  border-radius:12px;
-
-  padding:
-    12px 14px;
-
-  outline:none;
-
+    width:100%;
+    border:1px solid #d7dee9;
+    border-radius:10px;
+    padding:12px 14px;
+    outline:none;
+    font-size:14px;
 }
-
 
 .field input:focus{
-
-  border-color:
-    var(--primary);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(37,99,235,.10);
-
+    border-color:#2563eb;
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.10);
 }
 
+/* =========================================================
+   CARGA DE ARCHIVOS
+   ========================================================= */
 
-/* ============================================================
-   UPLOAD BOX
-   ============================================================ */
+.upload-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+    gap:18px;
+    margin-top:22px;
+}
 
 .upload-box{
 
-  border:
-    2px dashed #cbd5e1;
+    border:2px dashed #d7dee9;
 
-  border-radius:16px;
+    border-radius:16px;
 
-  padding:26px;
+    padding:24px 18px;
 
-  text-align:center;
+    text-align:center;
 
-  background:#f8fafc;
+    min-height:180px;
 
-  transition:.2s;
-
-  /* NUEVO:
-     centra correctamente todo el contenido */
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-}
-
-
-.upload-box:hover{
-
-  border-color:
-    var(--primary);
-
-  background:
-    #f8fbff;
-
-}
-
-
-.upload-box strong{
-
-  display:block;
-
-  margin-bottom:6px;
-
-}
-
-
-.upload-box span{
-
-  color:var(--muted);
-
-  font-size:13px;
-
-}
-
-
-.upload-box input{
-
-  display:none;
-
-}
-
-
-.upload-btn{
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:8px;
-
-  background:
-    var(--primary);
-
-  color:white;
-
-  border:0;
-
-  padding:
-    11px 17px;
-
-  border-radius:11px;
-
-  font-weight:700;
-
-  margin-top:13px;
-
-  /* NUEVO:
-     evita que el botón se pegue a un lado */
-  align-self:center;
-
-}
-
-
-.upload-btn:hover{
-
-  background:
-    var(--primary-dark);
-
-}
-
-
-/* ============================================================
-   FILE SECTION
-   ============================================================ */
-
-.file-section{
-
-  margin-top:22px;
-
-}
-
-
-.file-section-header{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:15px;
-
-  margin-bottom:12px;
-
-}
-
-
-.file-section-header h3{
-
-  margin:0;
-
-  font-size:15px;
-
-}
-
-
-.file-count{
-
-  color:var(--muted);
-
-  font-size:13px;
-
-}
-
-
-.selected-files{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(220px,1fr)
-    );
-
-  gap:10px;
-
-}
-
-
-.file-item{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:10px;
-
-  border:
-    1px solid var(--border);
-
-  background:#fff;
-
-  padding:
-    10px 12px;
-
-  border-radius:12px;
-
-}
-
-
-.file-info{
-
-  min-width:0;
-
-}
-
-
-.file-name{
-
-  font-size:13px;
-
-  font-weight:700;
-
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-
-}
-
-
-.file-size{
-
-  font-size:11px;
-
-  color:var(--muted);
-
-  margin-top:3px;
-
-}
-
-
-.remove-file{
-
-  border:0;
-
-  background:
-    #fee2e2;
-
-  color:
-    #b91c1c;
-
-  width:30px;
-
-  height:30px;
-
-  border-radius:9px;
-
-  font-weight:bold;
-
-}
-
-
-/* ============================================================
-   PHOTOS PREVIEW
-   ============================================================ */
-
-.photo-preview{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(150px,1fr)
-    );
-
-  gap:14px;
-
-  margin-top:18px;
-
-}
-
-
-.photo-card{
-
-  position:relative;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:14px;
-
-  overflow:hidden;
-
-  background:#fff;
-
-  cursor:grab;
-
-}
-
-
-.photo-card:active{
-
-  cursor:grabbing;
-
-}
-
-
-.photo-card.dragging{
-
-  opacity:.4;
-
-}
-
-
-.photo-image{
-
-  width:100%;
-
-  height:140px;
-
-  object-fit:cover;
-
-  display:block;
-
-  background:#e2e8f0;
-
-}
-
-
-.photo-footer{
-
-  padding:9px;
-
-}
-
-
-.photo-number{
-
-  font-size:11px;
-
-  color:var(--primary);
-
-  font-weight:800;
-
-}
-
-
-.photo-name{
-
-  font-size:12px;
-
-  margin-top:3px;
-
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-
-}
-
-
-.photo-delete{
-
-  position:absolute;
-
-  top:7px;
-
-  right:7px;
-
-  border:0;
-
-  width:30px;
-
-  height:30px;
-
-  border-radius:9px;
-
-  background:
-    rgba(255,255,255,.94);
-
-  color:#b91c1c;
-
-  box-shadow:
-    0 3px 10px
-    rgba(0,0,0,.12);
-
-}
-
-
-/* ============================================================
-   BUTTONS
-   ============================================================ */
-
-.actions{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:10px;
-
-  margin-top:22px;
-
-  /* CORRECCIÓN:
-     centra los botones horizontalmente */
-  justify-content:center;
-
-  align-items:center;
-
-  width:100%;
-
-}
-
-
-.actions .btn{
-
-  margin-left:0 !important;
-
-  margin-right:0 !important;
-
-}
-
-
-.btn{
-
-  border:0;
-
-  border-radius:11px;
-
-  padding:
-    11px 16px;
-
-  font-weight:700;
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:8px;
-
-}
-
-
-.btn-primary{
-
-  background:
-    var(--primary);
-
-  color:white;
-
-}
-
-
-.btn-primary:hover{
-
-  background:
-    var(--primary-dark);
-
-}
-
-
-.btn-secondary{
-
-  background:
-    #e2e8f0;
-
-  color:#334155;
-
-}
-
-
-.btn-success{
-
-  background:
-    var(--success);
-
-  color:white;
-
-}
-
-
-.btn-danger{
-
-  background:
-    #fee2e2;
-
-  color:#b91c1c;
-
-}
-
-
-.btn-small{
-
-  padding:
-    8px 11px;
-
-  font-size:12px;
-
-}
-
-
-/* ============================================================
-   LOGIN
-   ============================================================ */
-
-.login-box{
-
-  max-width:450px;
-
-  margin:
-    50px auto;
-
-}
-
-
-.login-icon{
-
-  width:65px;
-  height:65px;
-
-  margin:
-    0 auto 15px;
-
-  border-radius:18px;
-
-  background:
-    #dbeafe;
-
-  color:
-    var(--primary);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:30px;
-
-}
-
-
-/* ============================================================
-   FILTERS
-   ============================================================ */
-
-.filters{
-
-  display:grid;
-
-  grid-template-columns:
-    1.5fr
-    1fr
-    1fr
-    auto;
-
-  gap:10px;
-
-}
-
-
-.filters input{
-
-  width:100%;
-
-  padding:
-    11px 13px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:11px;
-
-  outline:none;
-
-}
-
-
-/* ============================================================
-   TABLE
-   ============================================================ */
-
-.table-wrap{
-
-  overflow:auto;
-
-}
-
-
-table{
-
-  width:100%;
-
-  border-collapse:
-    collapse;
-
-}
-
-
-th{
-
-  text-align:left;
-
-  font-size:12px;
-
-  color:var(--muted);
-
-  padding:
-    12px 10px;
-
-  border-bottom:
-    1px solid var(--border);
-
-  white-space:nowrap;
-
-}
-
-
-td{
-
-  padding:
-    13px 10px;
-
-  border-bottom:
-    1px solid #eef2f7;
-
-  font-size:13px;
-
-  vertical-align:middle;
-
-}
-
-
-tr:hover td{
-
-  background:#fafcff;
-
-}
-
-
-.badges{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:5px;
-
-}
-
-
-.badge{
-
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:4px;
-
-  border-radius:999px;
-
-  padding:
-    4px 8px;
-
-  font-size:11px;
-
-  font-weight:800;
-
-}
-
-
-.badge-photo{
-
-  background:#dbeafe;
-
-  color:#1d4ed8;
-
-}
-
-
-.badge-acta{
-
-  background:#fef3c7;
-
-  color:#92400e;
-
-}
-
-
-.badge-lista{
-
-  background:#dcfce7;
-
-  color:#166534;
-
-}
-
-
-/* ============================================================
-   CHECKBOX
-   ============================================================ */
-
-.select-check{
-
-  width:17px;
-  height:17px;
-
-}
-
-
-/* ============================================================
-   GALLERY
-   ============================================================ */
-
-.modal{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(15,23,42,.62);
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:20px;
-
-  z-index:1000;
-
-}
-
-
-.modal.show{
-
-  display:flex;
-
-}
-
-
-.modal-box{
-
-  width:
-    min(1100px,100%);
-
-  max-height:
-    92vh;
-
-  overflow:auto;
-
-  background:white;
-
-  border-radius:20px;
-
-  box-shadow:
-    0 25px 70px
-    rgba(0,0,0,.25);
-
-}
-
-
-.modal-header{
-
-  position:sticky;
-
-  top:0;
-
-  z-index:2;
-
-  background:white;
-
-  padding:
-    18px 22px;
-
-  border-bottom:
-    1px solid var(--border);
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:10px;
-
-}
-
-
-.modal-header h2{
-
-  margin:0;
-
-  font-size:18px;
-
-}
-
-
-.modal-close{
-
-  border:0;
-
-  background:#f1f5f9;
-
-  width:38px;
-
-  height:38px;
-
-  border-radius:10px;
-
-  font-size:20px;
-
-}
-
-
-.modal-body{
-
-  padding:22px;
-
-}
-
-
-.gallery-tabs{
-
-  display:flex;
-
-  gap:8px;
-
-  margin-bottom:18px;
-
-}
-
-
-.gallery-tab{
-
-  border:0;
-
-  background:#f1f5f9;
-
-  color:#475569;
-
-  padding:
-    9px 14px;
-
-  border-radius:10px;
-
-  font-weight:700;
-
-}
-
-
-.gallery-tab.active{
-
-  background:
-    var(--primary);
-
-  color:white;
-
-}
-
-
-.gallery-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(180px,1fr)
-    );
-
-  gap:14px;
-
-}
-
-
-.gallery-item{
-
-  border:
-    1px solid var(--border);
-
-  border-radius:14px;
-
-  overflow:hidden;
-
-  background:#fff;
-
-}
-
-
-.gallery-item img{
-
-  width:100%;
-
-  height:160px;
-
-  object-fit:cover;
-
-  display:block;
-
-}
-
-
-.gallery-info{
-
-  padding:10px;
-
-}
-
-
-.gallery-name{
-
-  font-size:12px;
-
-  font-weight:700;
-
-  word-break:break-word;
-
-}
-
-
-.gallery-actions{
-
-  display:flex;
-
-  gap:6px;
-
-  margin-top:8px;
-
-  flex-wrap:wrap;
-
-}
-
-
-.gallery-empty{
-
-  padding:35px;
-
-  text-align:center;
-
-  color:var(--muted);
-
-}
-
-
-/* ============================================================
-   PDF CARD
-   ============================================================ */
-
-.pdf-card{
-
-  border:
-    1px solid var(--border);
-
-  border-radius:15px;
-
-  padding:15px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:12px;
-
-  background:
-    #fff;
-
-}
-
-
-.pdf-icon{
-
-  width:48px;
-  height:48px;
-
-  border-radius:13px;
-
-  background:
-    #fee2e2;
-
-  color:
-    #b91c1c;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-weight:900;
-
-  font-size:12px;
-
-}
-
-
-.pdf-name{
-
-  font-size:13px;
-
-  font-weight:800;
-
-  word-break:break-word;
-
-}
-
-
-.pdf-size{
-
-  color:var(--muted);
-
-  font-size:11px;
-
-}
-
-
-.pdf-actions{
-
-  display:flex;
-
-  gap:7px;
-
-  flex-wrap:wrap;
-
-}
-
-
-/* ============================================================
-   DOWNLOAD MODAL
-   ============================================================ */
-
-.download-list{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:10px;
-
-}
-
-
-.download-row{
-
-  border:
-    1px solid var(--border);
-
-  border-radius:13px;
-
-  padding:
-    12px;
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:10px;
-
-}
-
-
-.download-row strong{
-
-  font-size:13px;
-
-}
-
-
-.download-row span{
-
-  display:block;
-
-  color:var(--muted);
-
-  font-size:11px;
-
-  margin-top:3px;
-
-}
-
-
-/* ============================================================
-   PROGRESS
-   ============================================================ */
-
-.progress-box{
-
-  margin-top:18px;
-
-  display:none;
-
-}
-
-
-.progress-box.show{
-
-  display:block;
-
-}
-
-
-.progress-text{
-
-  font-size:13px;
-
-  color:var(--muted);
-
-  margin-bottom:7px;
-
-}
-
-
-.progress{
-
-  height:10px;
-
-  background:#e2e8f0;
-
-  border-radius:999px;
-
-  overflow:hidden;
-
-}
-
-
-.progress-bar{
-
-  height:100%;
-
-  width:0%;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--primary),
-      var(--accent)
-    );
-
-  transition:
-    width .2s;
-
-}
-
-
-/* ============================================================
-   TOAST
-   ============================================================ */
-
-.toast{
-
-  position:fixed;
-
-  right:22px;
-
-  bottom:22px;
-
-  z-index:3000;
-
-  min-width:280px;
-
-  max-width:450px;
-
-  background:
-    #172033;
-
-  color:white;
-
-  padding:
-    14px 17px;
-
-  border-radius:13px;
-
-  box-shadow:
-    0 15px 40px
-    rgba(0,0,0,.22);
-
-  display:none;
-
-}
-
-
-.toast.show{
-
-  display:block;
-
-}
-
-
-.toast.success{
-
-  border-left:
-    4px solid #4ade80;
-
-}
-
-
-.toast.error{
-
-  border-left:
-    4px solid #f87171;
-
-}
-
-
-/* ============================================================
-   INFO
-   ============================================================ */
-
-.info{
-
-  background:
-    #eff6ff;
-
-  border:
-    1px solid #bfdbfe;
-
-  color:
-    #1e40af;
-
-  padding:
-    12px 14px;
-
-  border-radius:12px;
-
-  font-size:12px;
-
-  line-height:1.5;
-
-}
-
-
-.warning{
-
-  background:
-    #fffbeb;
-
-  border:
-    1px solid #fde68a;
-
-  color:
-    #92400e;
-
-  padding:
-    12px 14px;
-
-  border-radius:12px;
-
-  font-size:12px;
-
-  line-height:1.5;
-
-}
-
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-
-@media(
-  max-width:900px
-){
-
-  .grid{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .filters{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .header-inner{
-
-    align-items:flex-start;
+    display:flex;
 
     flex-direction:column;
-
-  }
-
-}
-
-
-@media(
-  max-width:650px
-){
-
-  .container{
-
-    padding:15px;
-
-  }
-
-  .card{
-
-    padding:17px;
-
-  }
-
-  .tabs{
-
-    flex-direction:column;
-
-  }
-
-  .selected-files{
-
-    grid-template-columns:1fr;
-
-  }
-
-  /* CORRECCIÓN RESPONSIVE */
-  .actions{
-
-    justify-content:center;
 
     align-items:center;
 
-    width:100%;
+    justify-content:center;
 
-  }
-
-  .actions .btn{
-
-    margin-left:0 !important;
-
-    margin-right:0 !important;
-
-  }
-
-  .upload-btn{
-
-    align-self:center;
-
-  }
-
+    transition:.2s;
 }
 
+.upload-box:hover{
+    border-color:#2563eb;
+    background:#f8fbff;
+}
+
+.upload-box h3{
+    margin:0 0 7px;
+    font-size:16px;
+}
+
+.upload-box p{
+    margin:0 0 16px;
+    color:#64748b;
+    font-size:13px;
+}
+
+.upload-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:max-content;
+
+    min-width:210px;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    padding:11px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    font-size:14px;
+
+    border:none;
+
+    text-align:center;
+
+    transition:.2s;
+}
+
+.upload-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-1px);
+}
+
+.upload-btn input{
+    display:none;
+}
+
+.file-count{
+    margin-top:10px;
+    font-size:13px;
+    color:#64748b;
+}
+
+/* =========================================================
+   PREVISUALIZACIÓN
+   ========================================================= */
+
+.preview-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(150px,1fr));
+    gap:14px;
+    margin-top:20px;
+}
+
+.preview-card{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    overflow:hidden;
+    position:relative;
+}
+
+.preview-card img{
+    width:100%;
+    height:125px;
+    object-fit:cover;
+    display:block;
+}
+
+.preview-info{
+    padding:9px;
+}
+
+.preview-name{
+    font-size:12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.preview-number{
+    color:#2563eb;
+    font-weight:800;
+}
+
+.remove-preview{
+    position:absolute;
+    top:7px;
+    right:7px;
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:50%;
+    background:#ef4444;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.actions{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+.btn{
+    border:none;
+    border-radius:10px;
+    padding:12px 20px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:#ffffff;
+}
+
+.btn-secondary{
+    background:#e8edf5;
+    color:#334155;
+}
+
+.btn-danger{
+    background:#ef4444;
+    color:#ffffff;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:#ffffff;
+}
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+.login-box{
+    max-width:450px;
+    margin:50px auto;
+}
+
+.login-box h2{
+    text-align:center;
+}
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.filters{
+    display:grid;
+    grid-template-columns:
+        2fr 1.2fr 1.5fr auto;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.filters input{
+    border:1px solid #d7dee9;
+    border-radius:10px;
+    padding:11px 13px;
+}
+
+/* =========================================================
+   TABLA
+   ========================================================= */
+
+.table-wrap{
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:12px 10px;
+    border-bottom:1px solid #e5eaf1;
+    text-align:left;
+    font-size:13px;
+    vertical-align:middle;
+}
+
+th{
+    background:#f8fafc;
+    color:#475569;
+}
+
+tr:hover td{
+    background:#fafcff;
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 8px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.badge-photo{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.badge-acta{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.badge-lista{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+/* =========================================================
+   GALERÍA MÓDULO 2
+   ========================================================= */
+
+.gallery{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(210px,1fr));
+    gap:16px;
+    margin-top:20px;
+}
+
+.gallery-card{
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:
+        0 4px 15px rgba(15,23,42,.05);
+}
+
+.gallery-image{
+    width:100%;
+    height:180px;
+    background:#eef2f7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.gallery-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.gallery-loading{
+    color:#64748b;
+    font-size:13px;
+}
+
+.gallery-info{
+    padding:12px;
+}
+
+.gallery-title{
+    font-weight:700;
+    font-size:13px;
+    word-break:break-word;
+}
+
+.gallery-actions{
+    display:flex;
+    gap:7px;
+    margin-top:10px;
+}
+
+.gallery-actions button{
+    flex:1;
+    border:none;
+    border-radius:8px;
+    padding:8px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* =========================================================
+   PDF
+   ========================================================= */
+
+.pdf-section{
+    margin-top:28px;
+}
+
+.pdf-section h3{
+    margin-bottom:12px;
+}
+
+.pdf-list{
+    display:grid;
+    gap:10px;
+}
+
+.pdf-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:12px 14px;
+}
+
+.pdf-name{
+    font-weight:700;
+    font-size:13px;
+    word-break:break-word;
+}
+
+.pdf-size{
+    color:#64748b;
+    font-size:12px;
+    margin-top:3px;
+}
+
+.pdf-actions{
+    display:flex;
+    gap:7px;
+    flex-shrink:0;
+}
+
+.pdf-actions a,
+.pdf-actions button{
+    text-decoration:none;
+    border:none;
+    border-radius:8px;
+    padding:8px 11px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.65);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:9999;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    width:min(1000px,95vw);
+    max-height:92vh;
+    overflow:auto;
+    background:#ffffff;
+    border-radius:18px;
+    padding:20px;
+    position:relative;
+}
+
+.modal-close{
+    position:absolute;
+    right:15px;
+    top:12px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#eef2f7;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-image{
+    width:100%;
+    max-height:78vh;
+    object-fit:contain;
+    display:block;
+}
+
+/* =========================================================
+   MENSAJES
+   ========================================================= */
+
+.message{
+    padding:12px 15px;
+    border-radius:10px;
+    margin-top:15px;
+    display:none;
+}
+
+.message.show{
+    display:block;
+}
+
+.message.success{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.message.error{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.message.info{
+    background:#dbeafe;
+    color:#1e40af;
+}
+
+/* =========================================================
+   LOADER
+   ========================================================= */
+
+.loader{
+    width:20px;
+    height:20px;
+    border:3px solid #dbeafe;
+    border-top-color:#2563eb;
+    border-radius:50%;
+    animation:
+        spin .8s linear infinite;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+    .upload-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .filters{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .container{
+        padding:12px;
+    }
+
+    .panel{
+        padding:16px;
+    }
+
+    .tabs{
+        flex-direction:column;
+    }
+
+    .pdf-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .pdf-actions{
+        width:100%;
+    }
+
+    .pdf-actions a,
+    .pdf-actions button{
+        flex:1;
+    }
+}
 
 </style>
 
@@ -1751,1040 +726,815 @@ tr:hover td{
 
 <body>
 
+<div class="container">
 
-<div class="app">
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
-
-<!-- ==========================================================
-     HEADER
-     ========================================================== -->
-
-<header class="header">
-
-  <div class="header-inner">
-
-    <div class="brand">
-
-      <div class="brand-icon">
-        📷
-      </div>
-
-      <div>
+    <div class="header">
 
         <h1>
-          Gestor de Fotografías
+            📷 Gestor de Fotografías
         </h1>
 
         <p>
-          Fotografías · Actas · Listas
+            Administración de fotografías, actas y listas.
         </p>
 
-      </div>
-
     </div>
 
 
-    <div class="status">
-
-      <span class="status-dot"></span>
-
-      Sistema disponible
-
-    </div>
-
-  </div>
-
-</header>
-
-
-
-<div class="container">
-
-
-<!-- ==========================================================
-     TABS
-     ========================================================== -->
-
-<div class="tabs">
-
-  <button
-    class="tab active"
-    onclick="mostrarTab('carga',this)"
-  >
-    📤 Nueva carga
-  </button>
-
-  <button
-    class="tab"
-    onclick="abrirGestor()"
-  >
-    🗂️ Gestor
-  </button>
-
-</div>
-
-
-
-<!-- ==========================================================
-     MODULO 1
-     ========================================================== -->
-
-<section
-  id="panel-carga"
-  class="panel active"
->
-
-
-<div class="card">
-
-  <div class="card-title">
-
-    <div>
-
-      <h2>
-        Nueva carga
-      </h2>
-
-      <p>
-        Registra fotografías y, si es necesario,
-        actas y listas en la misma carpeta.
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="grid">
-
-
-    <div class="field">
-
-      <label>
-        Nombre / título
-      </label>
-
-      <input
-        id="titulo"
-        type="text"
-        placeholder="Ej. Jornada Tolcayuca"
-      >
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        Cargador
-      </label>
-
-      <input
-        id="cargador"
-        type="text"
-        placeholder="Nombre de quien realiza la carga"
-      >
-
-    </div>
-
-
-  </div>
-
-
-  <div class="file-section">
-
-    <div class="file-section-header">
-
-      <h3>
-        📷 Fotografías
-      </h3>
-
-      <span
-        id="photoCount"
-        class="file-count"
-      >
-        0 seleccionadas
-      </span>
-
-    </div>
-
-
-    <div class="upload-box">
-
-      <strong>
-        Selecciona las fotografías
-      </strong>
-
-      <span>
-        Puedes seleccionar varias y después arrastrarlas
-        para cambiar su orden.
-      </span>
-
-
-      <label class="upload-btn">
-
-        📷 Seleccionar fotografías
-
-        <input
-          id="photoInput"
-          type="file"
-          accept="image/*"
-          multiple
-        >
-
-      </label>
-
-    </div>
-
-
-    <div
-      id="photoPreview"
-      class="photo-preview"
-    ></div>
-
-  </div>
-
-
-
-  <!-- ========================================================
-       ACTAS
-       ======================================================== -->
-
-  <div class="file-section">
-
-    <div class="file-section-header">
-
-      <h3>
-        📄 Actas — opcional
-      </h3>
-
-      <span
-        id="actaCount"
-        class="file-count"
-      >
-        0 seleccionadas
-      </span>
-
-    </div>
-
-
-    <div class="upload-box">
-
-      <strong>
-        Agregar actas en PDF
-      </strong>
-
-      <span>
-        Este apartado es opcional.
-  
-      </span>
-
-
-      <label class="upload-btn">
-
-        📄 Seleccionar actas
-
-        <input
-          id="actaInput"
-          type="file"
-          accept="application/pdf,.pdf"
-          multiple
-        >
-
-      </label>
-
-    </div>
-
-
-    <div
-      id="actaFiles"
-      class="selected-files"
-    ></div>
-
-  </div>
-
-
-
-  <!-- ========================================================
-       LISTAS
-       ======================================================== -->
-
-  <div class="file-section">
-
-    <div class="file-section-header">
-
-      <h3>
-        📋 Listas — opcional
-      </h3>
-
-      <span
-        id="listaCount"
-        class="file-count"
-      >
-        0 seleccionadas
-      </span>
-
-    </div>
-
-
-    <div class="upload-box">
-
-      <strong>
-        Agregar listas en PDF
-      </strong>
-
-      <span>
-        Este apartado es opcional.
-
-      </span>
-
-
-      <label class="upload-btn">
-
-        📋 Seleccionar listas
-
-        <input
-          id="listaInput"
-          type="file"
-          accept="application/pdf,.pdf"
-          multiple
-        >
-
-      </label>
-
-    </div>
-
-
-    <div
-      id="listaFiles"
-      class="selected-files"
-    ></div>
-
-  </div>
-
-
-
-  <div class="info">
-
-    <strong>Importante:</strong>
-    las actas y listas pueden ser archivos PDF grandes.
-    La aplicación los envía por bloques para evitar enviar
-    el archivo completo en una sola petición.
-
-  </div>
-
-
-
-  <div
-    id="progressBox"
-    class="progress-box"
-  >
-
-    <div
-      id="progressText"
-      class="progress-text"
-    >
-      Preparando...
-    </div>
-
-    <div class="progress">
-
-      <div
-        id="progressBar"
-        class="progress-bar"
-      ></div>
-
-    </div>
-
-  </div>
-
-
-
-  <div class="actions">
-
-    <button
-      class="btn btn-primary"
-      onclick="guardarCarga()"
-    >
-      💾 Guardar carga
-    </button>
-
-
-    <button
-      class="btn btn-secondary"
-      onclick="limpiarFormulario()"
-    >
-      Limpiar
-    </button>
-
-  </div>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- ==========================================================
-     MODULO 2
-     ========================================================== -->
-
-<section
-  id="panel-gestor"
-  class="panel"
->
-
-
-<div
-  id="loginArea"
-  class="card login-box"
->
-
-  <div class="login-icon">
-    🔐
-  </div>
-
-  <h2 style="text-align:center;margin:0 0 8px;">
-    Acceso al gestor
-  </h2>
-
-  <p
-    style="
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:22px;
-    "
-  >
-    Este módulo requiere contraseña.
-  </p>
-
-
-  <div class="field">
-
-    <label>
-      Contraseña
-    </label>
-
-    <input
-      id="password"
-      type="password"
-      placeholder="Introduce la contraseña"
-      onkeydown="
-        if(event.key==='Enter')
-          iniciarSesion();
-      "
-    >
-
-  </div>
-
-
-  <button
-    class="btn btn-primary"
-    style="width:100%;margin-top:15px;"
-    onclick="iniciarSesion()"
-  >
-    Entrar al gestor
-  </button>
-
-
-</div>
-
-
-
-<div
-  id="gestorArea"
-  style="display:none;"
->
-
-
-<div class="card">
-
-  <div class="card-title">
-
-    <div>
-
-      <h2>
-        🗂️ Cargas registradas
-      </h2>
-
-      <p>
-        Consulta fotografías, actas y listas.
-      </p>
-
-    </div>
-
-
-    <button
-      class="btn btn-secondary btn-small"
-      onclick="cerrarSesion()"
-    >
-      Cerrar sesión
-    </button>
-
-  </div>
-
-
-
-  <div class="filters">
-
-    <input
-      id="filterTitulo"
-      placeholder="Buscar por título..."
-    >
-
-    <input
-      id="filterFecha"
-      placeholder="Fecha DD/MM/YYYY"
-    >
-
-    <input
-      id="filterCargador"
-      placeholder="Buscar por cargador..."
-    >
-
-    <button
-      class="btn btn-primary"
-      onclick="buscarCargas()"
-    >
-      🔎 Buscar
-    </button>
-
-  </div>
-
-
-
-  <div
-    class="actions"
-    style="margin-top:15px;"
-  >
-
-    <button
-      class="btn btn-secondary btn-small"
-      onclick="seleccionarTodos()"
-    >
-      ☑ Seleccionar todo
-    </button>
-
-
-    <button
-      class="btn btn-secondary btn-small"
-      onclick="deseleccionarTodos()"
-    >
-      ☐ Deseleccionar
-    </button>
-
-
-    <button
-      class="btn btn-primary btn-small"
-      onclick="descargarSeleccionadas()"
-    >
-      ⬇ Descargar seleccionadas
-    </button>
-
-  </div>
-
-
-</div>
-
-
-
-<div class="card">
-
-  <div class="table-wrap">
-
-    <table>
-
-      <thead>
-
-        <tr>
-
-          <th>
-            <input
-              id="selectAll"
-              type="checkbox"
-              class="select-check"
-              onchange="toggleTodos(this.checked)"
-            >
-          </th>
-
-          <th>
-            Título
-          </th>
-
-          <th>
-            Cargador
-          </th>
-
-          <th>
-            Fecha
-          </th>
-
-          <th>
-            Archivos
-          </th>
-
-          <th>
-            Acciones
-          </th>
-
-        </tr>
-
-      </thead>
-
-
-      <tbody
-        id="tablaCargas"
-      >
-
-      </tbody>
-
-    </table>
-
-  </div>
-
-
-  <div
-    id="emptyTable"
-    class="gallery-empty"
-    style="display:none;"
-  >
-    No se encontraron cargas.
-  </div>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-</div>
-
-
-</div>
-
-
-
-<!-- ==========================================================
-     MODAL CONTENIDO
-     ========================================================== -->
-
-<div
-  id="contentModal"
-  class="modal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-header">
-
-      <h2 id="modalTitle">
-        Contenido
-      </h2>
-
-      <button
-        class="modal-close"
-        onclick="cerrarModal('contentModal')"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="modal-body">
-
-
-      <div class="gallery-tabs">
+    <!-- =====================================================
+         TABS
+         ===================================================== -->
+
+    <div class="tabs">
 
         <button
-          class="gallery-tab active"
-          onclick="mostrarGaleriaTab('fotos',this)"
-        >
-          📷 Fotos
+            id="tabBtnCarga"
+            class="tab active"
+            onclick="mostrarModulo('carga')">
+
+            📤 Nueva carga
+
         </button>
 
         <button
-          class="gallery-tab"
-          onclick="mostrarGaleriaTab('actas',this)"
-        >
-          📄 Actas
+            id="tabBtnGestor"
+            class="tab"
+            onclick="entrarGestor()">
+
+            📂 Gestor
+
         </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         MÓDULO 1
+         ===================================================== -->
+
+    <section
+        id="moduloCarga"
+        class="panel">
+
+        <h2>
+            Nueva carga
+        </h2>
+
+        <p style="color:#64748b">
+            Las fotografías son obligatorias.
+            Las actas y listas son opcionales.
+        </p>
+
+
+        <div class="form-grid">
+
+            <div class="field">
+
+                <label>
+                    Título / nombre
+                </label>
+
+                <input
+                    id="titulo"
+                    type="text"
+                    placeholder="Ej. Actividad Tolcayuca">
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Cargador
+                </label>
+
+                <input
+                    id="cargador"
+                    type="text"
+                    placeholder="Nombre de quien realiza la carga">
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ARCHIVOS
+             ================================================= -->
+
+        <div class="upload-grid">
+
+
+            <!-- FOTOS -->
+
+            <div class="upload-box">
+
+                <h3>
+                    📷 Fotografías
+                </h3>
+
+                <p>
+                    Selecciona una o varias fotografías.
+                </p>
+
+                <label class="upload-btn">
+
+                    Seleccionar fotografías
+
+                    <input
+                        id="inputFotos"
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onchange="seleccionarFotos(this.files)">
+
+                </label>
+
+                <div
+                    id="contadorFotos"
+                    class="file-count">
+
+                    0 fotografías
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTAS -->
+
+            <div class="upload-box">
+
+                <h3>
+                    📄 Actas
+                </h3>
+
+                <p>
+                    Opcional. Solo archivos PDF.
+                </p>
+
+                <label class="upload-btn">
+
+                    Seleccionar actas
+
+                    <input
+                        id="inputActas"
+                        type="file"
+                        accept="application/pdf,.pdf"
+                        multiple
+                        onchange="seleccionarPDF(this.files,'ACTA')">
+
+                </label>
+
+                <div
+                    id="contadorActas"
+                    class="file-count">
+
+                    0 actas
+
+                </div>
+
+            </div>
+
+
+            <!-- LISTAS -->
+
+            <div class="upload-box">
+
+                <h3>
+                    📋 Listas
+                </h3>
+
+                <p>
+                    Opcional. Solo archivos PDF.
+                </p>
+
+                <label class="upload-btn">
+
+                    Seleccionar listas
+
+                    <input
+                        id="inputListas"
+                        type="file"
+                        accept="application/pdf,.pdf"
+                        multiple
+                        onchange="seleccionarPDF(this.files,'LISTA')">
+
+                </label>
+
+                <div
+                    id="contadorListas"
+                    class="file-count">
+
+                    0 listas
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PREVISUALIZACIÓN FOTOS
+             ================================================= -->
+
+        <div id="previewFotos"
+             class="preview-grid">
+        </div>
+
+
+        <!-- =================================================
+             BOTONES
+             ================================================= -->
+
+        <div class="actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="guardarCarga()">
+
+                💾 Guardar carga
+
+            </button>
+
+            <button
+                class="btn btn-secondary"
+                onclick="limpiarFormulario()">
+
+                Limpiar
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="mensajeCarga"
+            class="message">
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MÓDULO 2
+         ===================================================== -->
+
+    <section
+        id="moduloGestor"
+        class="panel"
+        style="display:none">
+
+        <div id="loginGestor">
+
+            <div class="login-box">
+
+                <h2>
+                    🔐 Acceso al gestor
+                </h2>
+
+                <p
+                    style="
+                    text-align:center;
+                    color:#64748b;
+                    ">
+
+                    Introduce la contraseña para acceder.
+
+                </p>
+
+                <div class="field">
+
+                    <label>
+                        Contraseña
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Contraseña"
+                        onkeydown="
+                            if(event.key==='Enter')
+                                iniciarSesion();
+                        ">
+
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    style="
+                    width:100%;
+                    margin-top:15px;
+                    "
+                    onclick="iniciarSesion()">
+
+                    Entrar
+
+                </button>
+
+                <div
+                    id="mensajeLogin"
+                    class="message">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             GESTOR AUTENTICADO
+             ================================================= -->
+
+        <div
+            id="gestorContenido"
+            style="display:none">
+
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:10px;
+                flex-wrap:wrap;
+                margin-bottom:18px;
+            ">
+
+                <div>
+
+                    <h2 style="margin-bottom:4px">
+                        Gestor de cargas
+                    </h2>
+
+                    <div
+                        style="
+                        color:#64748b;
+                        font-size:13px;
+                        ">
+
+                        Consulta y administra las cargas realizadas.
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="cerrarSesion()">
+
+                    Cerrar sesión
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 FILTROS
+                 ================================================= -->
+
+            <div class="filters">
+
+                <input
+                    id="filtroTitulo"
+                    type="text"
+                    placeholder="Buscar por título">
+
+                <input
+                    id="filtroFecha"
+                    type="text"
+                    placeholder="Fecha DD/MM/YYYY">
+
+                <input
+                    id="filtroCargador"
+                    type="text"
+                    placeholder="Buscar por cargador">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="consultarCargas()">
+
+                    Buscar
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="mensajeGestor"
+                class="message">
+            </div>
+
+
+            <!-- =================================================
+                 TABLA
+                 ================================================= -->
+
+            <div class="table-wrap">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Carga
+                            </th>
+
+                            <th>
+                                Cargador
+                            </th>
+
+                            <th>
+                                Fecha
+                            </th>
+
+                            <th>
+                                Archivos
+                            </th>
+
+                            <th>
+                                Acciones
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody
+                        id="tablaCargas">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- =================================================
+                 DETALLE
+                 ================================================= -->
+
+            <div
+                id="detalleCarga"
+                style="display:none; margin-top:30px">
+
+                <hr
+                    style="
+                    border:none;
+                    border-top:1px solid #e2e8f0;
+                    margin-bottom:25px;
+                    ">
+
+                <div
+                    style="
+                    display:flex;
+                    justify-content:space-between;
+                    gap:15px;
+                    align-items:center;
+                    flex-wrap:wrap;
+                    ">
+
+                    <div>
+
+                        <h2
+                            id="detalleTitulo"
+                            style="margin:0">
+
+                        </h2>
+
+                        <div
+                            id="detalleInfo"
+                            style="
+                            color:#64748b;
+                            margin-top:5px;
+                            ">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="actions"
+                         style="margin-top:0">
+
+                        <button
+                            class="btn btn-secondary"
+                            onclick="cerrarDetalle()">
+
+                            Cerrar
+
+                        </button>
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="editarNombreCarga()">
+
+                            ✏️ Editar nombre
+
+                        </button>
+
+                        <button
+                            class="btn btn-success"
+                            onclick="abrirCarpetaDrive()">
+
+                            📁 Abrir carpeta
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FOTOS
+                     ================================================= -->
+
+                <div
+                    class="pdf-section">
+
+                    <h3>
+                        📷 Fotografías
+                    </h3>
+
+                    <div
+                        id="galeriaFotos"
+                        class="gallery">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ACTAS
+                     ================================================= -->
+
+                <div
+                    class="pdf-section">
+
+                    <h3>
+                        📄 Actas
+                    </h3>
+
+                    <div
+                        id="listaActas"
+                        class="pdf-list">
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     LISTAS
+                     ================================================= -->
+
+                <div
+                    class="pdf-section">
+
+                    <h3>
+                        📋 Listas
+                    </h3>
+
+                    <div
+                        id="listaListas"
+                        class="pdf-list">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL FOTO
+     ========================================================= -->
+
+<div
+    id="modalFoto"
+    class="modal"
+    onclick="cerrarModalFoto(event)">
+
+    <div
+        class="modal-content"
+        onclick="event.stopPropagation()">
 
         <button
-          class="gallery-tab"
-          onclick="mostrarGaleriaTab('listas',this)"
-        >
-          📋 Listas
+            class="modal-close"
+            onclick="cerrarModalFoto()">
+
+            ×
+
         </button>
 
-      </div>
+        <h3
+            id="modalFotoTitulo">
 
+        </h3>
 
-      <div
-        id="galleryFotos"
-        class="gallery-grid"
-      ></div>
-
-
-      <div
-        id="galleryActas"
-        class="gallery-grid"
-        style="display:none;"
-      ></div>
-
-
-      <div
-        id="galleryListas"
-        class="gallery-grid"
-        style="display:none;"
-      ></div>
-
+        <img
+            id="modalFotoImagen"
+            class="modal-image"
+            alt="Fotografía">
 
     </div>
-
-  </div>
 
 </div>
-
-
-
-<!-- ==========================================================
-     MODAL DESCARGAS
-     ========================================================== -->
-
-<div
-  id="downloadModal"
-  class="modal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-header">
-
-      <h2>
-        ⬇ Descargar carpetas
-      </h2>
-
-      <button
-        class="modal-close"
-        onclick="cerrarModal('downloadModal')"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="modal-body">
-
-      <div class="warning">
-
-        Los archivos se descargan directamente. Esto permite trabajar correctamente
-        incluso cuando las actas o listas contienen PDF pesados.
-
-      </div>
-
-
-      <div
-        id="downloadList"
-        class="download-list"
-        style="margin-top:15px;"
-      ></div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-
-<!-- ==========================================================
-     TOAST
-     ========================================================== -->
-
-<div
-  id="toast"
-  class="toast"
-></div>
-
 
 
 <script>
-
 
 // ============================================================
 // CONFIGURACIÓN
 // ============================================================
 
 const SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbyB3l8n0vROx62QeRUgsfk9GHNMMtF36Yo-zI1Sly4VNSpBmv8MxVYH2nmbkyabS5Q5/exec';
+    'https://script.google.com/macros/s/AKfycbzzHBQ-eSHmlkkyeDvyplqLfC6XZ_PDkhRDbZfHj50CUOg3i3dKAwnV3IDeT0MMxsqO/exec';
 
 
 // ============================================================
-// ESTADO
+// VARIABLES
 // ============================================================
 
-let sessionToken =
-  sessionStorage.getItem(
-    'GESTOR_TOKEN'
-  ) || '';
+let tokenSesion =
+    sessionStorage.getItem(
+        'GESTOR_TOKEN'
+    ) || '';
 
+let fotosSeleccionadas = [];
 
-let cargasActuales =
-  [];
+let actasSeleccionadas = [];
 
+let listasSeleccionadas = [];
 
-let contenidoActual =
-  null;
+let cargaActual = null;
 
-
-let fotosSeleccionadas =
-  [];
-
-
-let actasSeleccionadas =
-  [];
-
-
-let listasSeleccionadas =
-  [];
-
-
-let draggedPhotoIndex =
-  null;
+let contenidoActual = null;
 
 
 // ============================================================
-// INICIALIZACIÓN
+// FETCH POST
 // ============================================================
 
-document.addEventListener(
-  'DOMContentLoaded',
-  function(){
+async function postJSON(datos){
 
-    document
-      .getElementById('photoInput')
-      .addEventListener(
-        'change',
-        manejarFotos
-      );
+    const respuesta =
+        await fetch(
+            SCRIPT_URL,
+            {
+                method:'POST',
 
+                headers:{
+                    'Content-Type':
+                        'text/plain;charset=utf-8'
+                },
 
-    document
-      .getElementById('actaInput')
-      .addEventListener(
-        'change',
-        manejarActas
-      );
+                body:
+                    JSON.stringify(datos)
+            }
+        );
 
+    const texto =
+        await respuesta.text();
 
-    document
-      .getElementById('listaInput')
-      .addEventListener(
-        'change',
-        manejarListas
-      );
+    let resultado;
 
+    try{
 
-    if(sessionToken){
+        resultado =
+            JSON.parse(texto);
 
-      mostrarGestor();
+    }catch(error){
 
+        throw new Error(
+            'Respuesta inválida del servidor.'
+        );
     }
 
-  }
-);
+    if(
+        resultado &&
+        resultado.error &&
+        !resultado.ok
+    ){
 
+        throw new Error(
+            resultado.error
+        );
+    }
 
-// ============================================================
-// API POST
-// ============================================================
-
-async function apiPost(
-  datos
-){
-
-  const response =
-    await fetch(
-      SCRIPT_URL,
-      {
-
-        method:'POST',
-
-        headers:{
-          'Content-Type':
-            'text/plain;charset=utf-8'
-        },
-
-        body:
-          JSON.stringify(
-            datos
-          )
-
-      }
-    );
-
-
-  const texto =
-    await response.text();
-
-
-  let resultado;
-
-
-  try{
-
-    resultado =
-      JSON.parse(
-        texto
-      );
-
-  }catch(error){
-
-    throw new Error(
-      'Respuesta inválida del servidor.'
-    );
-
-  }
-
-
-  if(!resultado.ok){
-
-    throw new Error(
-      resultado.error ||
-      'Error desconocido.'
-    );
-
-  }
-
-
-  return resultado;
-
+    return resultado;
 }
 
 
 // ============================================================
-// CAMBIAR TAB
+// CAMBIAR MÓDULO
 // ============================================================
 
-function mostrarTab(
-  tab,
-  boton
-){
+function mostrarModulo(modulo){
 
-  document
-    .querySelectorAll('.tab')
-    .forEach(
-      b =>
-        b.classList.remove(
-          'active'
-        )
-    );
+    const carga =
+        document.getElementById(
+            'moduloCarga'
+        );
 
+    const gestor =
+        document.getElementById(
+            'moduloGestor'
+        );
 
-  document
-    .querySelectorAll('.panel')
-    .forEach(
-      p =>
-        p.classList.remove(
-          'active'
-        )
-    );
+    const tabCarga =
+        document.getElementById(
+            'tabBtnCarga'
+        );
 
+    const tabGestor =
+        document.getElementById(
+            'tabBtnGestor'
+        );
 
-  boton.classList.add(
-    'active'
-  );
+    if(modulo === 'carga'){
 
+        carga.style.display =
+            'block';
 
-  if(
-    tab === 'carga'
-  ){
+        gestor.style.display =
+            'none';
 
-    document
-      .getElementById(
-        'panel-carga'
-      )
-      .classList.add(
-        'active'
-      );
+        tabCarga.classList.add(
+            'active'
+        );
 
-  }
+        tabGestor.classList.remove(
+            'active'
+        );
 
+    }else{
+
+        carga.style.display =
+            'none';
+
+        gestor.style.display =
+            'block';
+
+        tabCarga.classList.remove(
+            'active'
+        );
+
+        tabGestor.classList.add(
+            'active'
+        );
+    }
 }
 
 
 // ============================================================
-// ABRIR GESTOR
+// ENTRAR GESTOR
 // ============================================================
 
-function abrirGestor(){
+function entrarGestor(){
 
-  document
-    .querySelectorAll('.tab')
-    .forEach(
-      b =>
-        b.classList.remove(
-          'active'
-        )
+    mostrarModulo(
+        'gestor'
     );
 
+    if(tokenSesion){
 
-  document
-    .querySelectorAll('.panel')
-    .forEach(
-      p =>
-        p.classList.remove(
-          'active'
-        )
-    );
+        mostrarGestorAutenticado();
 
+        consultarCargas();
 
-  document
-    .querySelectorAll('.tab')[1]
-    .classList.add(
-      'active'
-    );
+    }else{
 
+        document
+            .getElementById(
+                'loginGestor'
+            )
+            .style.display =
+            'block';
 
-  document
-    .getElementById(
-      'panel-gestor'
-    )
-    .classList.add(
-      'active'
-    );
-
-
-  if(sessionToken){
-
-    mostrarGestor();
-
-  }else{
-
-    document
-      .getElementById(
-        'loginArea'
-      )
-      .style.display =
-        'block';
-
-    document
-      .getElementById(
-        'gestorArea'
-      )
-      .style.display =
-        'none';
-
-  }
-
+        document
+            .getElementById(
+                'gestorContenido'
+            )
+            .style.display =
+            'none';
+    }
 }
 
 
@@ -2794,71 +1544,74 @@ function abrirGestor(){
 
 async function iniciarSesion(){
 
-  const password =
-    document
-      .getElementById(
-        'password'
-      )
-      .value;
+    const password =
+        document
+            .getElementById(
+                'password'
+            )
+            .value;
 
+    if(!password){
 
-  if(!password){
+        mostrarMensaje(
+            'mensajeLogin',
+            'Introduce la contraseña.',
+            'error'
+        );
 
-    mostrarToast(
-      'Introduce la contraseña.',
-      'error'
-    );
+        return;
+    }
 
-    return;
+    try{
 
-  }
+        mostrarMensaje(
+            'mensajeLogin',
+            'Verificando...',
+            'info'
+        );
 
+        const resultado =
+            await postJSON({
 
-  try{
+                accion:'login',
 
-    const resultado =
-      await apiPost({
+                password:password
+            });
 
-        accion:'login',
+        if(!resultado.ok){
 
-        password:password
+            throw new Error(
+                resultado.error ||
+                'No fue posible iniciar sesión.'
+            );
+        }
 
-      });
+        tokenSesion =
+            resultado.token;
 
+        sessionStorage.setItem(
+            'GESTOR_TOKEN',
+            tokenSesion
+        );
 
-    sessionToken =
-      resultado.token;
+        document
+            .getElementById(
+                'password'
+            )
+            .value = '';
 
+        mostrarGestorAutenticado();
 
-    sessionStorage.setItem(
-      'GESTOR_TOKEN',
-      sessionToken
-    );
+        consultarCargas();
 
+    }catch(error){
 
-    document
-      .getElementById(
-        'password'
-      )
-      .value =
-        '';
-
-
-    mostrarGestor();
-
-
-    await buscarCargas();
-
-
-  }catch(error){
-
-    mostrarToast(
-      error.message,
-      'error'
-    );
-
-  }
-
+        mostrarMensaje(
+            'mensajeLogin',
+            error.message,
+            'error'
+        );
+    }
 }
 
 
@@ -2866,23 +1619,21 @@ async function iniciarSesion(){
 // MOSTRAR GESTOR
 // ============================================================
 
-function mostrarGestor(){
+function mostrarGestorAutenticado(){
 
-  document
-    .getElementById(
-      'loginArea'
-    )
-    .style.display =
-      'none';
+    document
+        .getElementById(
+            'loginGestor'
+        )
+        .style.display =
+        'none';
 
-
-  document
-    .getElementById(
-      'gestorArea'
-    )
-    .style.display =
-      'block';
-
+    document
+        .getElementById(
+            'gestorContenido'
+        )
+        .style.display =
+        'block';
 }
 
 
@@ -2892,540 +1643,243 @@ function mostrarGestor(){
 
 async function cerrarSesion(){
 
-  try{
+    try{
 
-    if(sessionToken){
+        await postJSON({
 
-      await apiPost({
+            accion:'logout',
 
-        accion:'logout',
+            token:tokenSesion
+        });
 
-        token:sessionToken
+    }catch(error){}
 
-      });
+    tokenSesion = '';
 
-    }
+    sessionStorage.removeItem(
+        'GESTOR_TOKEN'
+    );
 
-  }catch(error){
+    document
+        .getElementById(
+            'gestorContenido'
+        )
+        .style.display =
+        'none';
 
-  }
+    document
+        .getElementById(
+            'loginGestor'
+        )
+        .style.display =
+        'block';
 
-
-  sessionToken =
-    '';
-
-
-  sessionStorage.removeItem(
-    'GESTOR_TOKEN'
-  );
-
-
-  document
-    .getElementById(
-      'gestorArea'
-    )
-    .style.display =
-      'none';
-
-
-  document
-    .getElementById(
-      'loginArea'
-    )
-    .style.display =
-      'block';
-
-
-  mostrarToast(
-    'Sesión cerrada.',
-    'success'
-  );
-
+    document
+        .getElementById(
+            'detalleCarga'
+        )
+        .style.display =
+        'none';
 }
 
 
 // ============================================================
-// MANEJAR FOTOS
+// SELECCIONAR FOTOS
 // ============================================================
 
-function manejarFotos(
-  event
+function seleccionarFotos(files){
+
+    fotosSeleccionadas =
+        Array.from(files);
+
+    actualizarPreviewFotos();
+}
+
+
+// ============================================================
+// SELECCIONAR PDF
+// ============================================================
+
+function seleccionarPDF(
+    files,
+    tipo
 ){
 
-  const archivos =
-    Array.from(
-      event.target.files || []
-    );
+    const archivos =
+        Array.from(files);
 
+    const noPDF =
+        archivos.filter(
+            function(file){
 
-  fotosSeleccionadas =
-    fotosSeleccionadas.concat(
-      archivos
-    );
+                return file.type !==
+                    'application/pdf' &&
+                    !file.name
+                        .toLowerCase()
+                        .endsWith('.pdf');
+            }
+        );
 
+    if(noPDF.length){
 
-  renderFotos();
+        alert(
+            'Solo se permiten archivos PDF.'
+        );
 
+        return;
+    }
 
-  event.target.value =
-    '';
+    if(tipo === 'ACTA'){
 
+        actasSeleccionadas =
+            archivos;
+
+    }else{
+
+        listasSeleccionadas =
+            archivos;
+    }
+
+    actualizarContadores();
 }
 
 
 // ============================================================
-// RENDER FOTOS
+// PREVIEW FOTOS
 // ============================================================
 
-function renderFotos(){
+function actualizarPreviewFotos(){
 
-  const contenedor =
-    document
-      .getElementById(
-        'photoPreview'
-      );
-
-
-  contenedor.innerHTML =
-    '';
-
-
-  document
-    .getElementById(
-      'photoCount'
-    )
-    .textContent =
-      fotosSeleccionadas.length +
-      (
-        fotosSeleccionadas.length === 1
-          ? ' seleccionada'
-          : ' seleccionadas'
-      );
-
-
-  fotosSeleccionadas.forEach(
-    function(file,index){
-
-      const card =
-        document.createElement(
-          'div'
+    const contenedor =
+        document.getElementById(
+            'previewFotos'
         );
 
+    contenedor.innerHTML = '';
 
-      card.className =
-        'photo-card';
+    fotosSeleccionadas.forEach(
+        function(file,index){
 
+            const card =
+                document.createElement(
+                    'div'
+                );
 
-      card.draggable =
-        true;
+            card.className =
+                'preview-card';
 
+            const img =
+                document.createElement(
+                    'img'
+                );
 
-      card.dataset.index =
-        index;
+            img.src =
+                URL.createObjectURL(
+                    file
+                );
 
+            const info =
+                document.createElement(
+                    'div'
+                );
 
-      card.innerHTML = `
+            info.className =
+                'preview-info';
 
-        <button
-          class="photo-delete"
-          onclick="eliminarFotoSeleccionada(${index})"
-        >
-          ×
-        </button>
+            info.innerHTML =
+                '<div class="preview-number">' +
+                '#' +
+                (index + 1) +
+                '</div>' +
+                '<div class="preview-name">' +
+                escapeHTML(file.name) +
+                '</div>';
 
-        <img
-          class="photo-image"
-          alt=""
-        >
+            const eliminar =
+                document.createElement(
+                    'button'
+                );
 
-        <div class="photo-footer">
+            eliminar.className =
+                'remove-preview';
 
-          <div class="photo-number">
-            FOTO ${String(index+1).padStart(3,'0')}
-          </div>
+            eliminar.innerHTML =
+                '×';
 
-          <div class="photo-name">
-            ${escapeHtml(file.name)}
-          </div>
+            eliminar.onclick =
+                function(){
 
-        </div>
+                    fotosSeleccionadas.splice(
+                        index,
+                        1
+                    );
 
-      `;
+                    actualizarPreviewFotos();
+                };
 
-
-      const img =
-        card.querySelector(
-          'img'
-        );
-
-
-      img.src =
-        URL.createObjectURL(
-          file
-        );
-
-
-      card.addEventListener(
-        'dragstart',
-        function(){
-
-          draggedPhotoIndex =
-            index;
-
-          card.classList.add(
-            'dragging'
-          );
-
-        }
-      );
-
-
-      card.addEventListener(
-        'dragend',
-        function(){
-
-          card.classList.remove(
-            'dragging'
-          );
-
-        }
-      );
-
-
-      card.addEventListener(
-        'dragover',
-        function(event){
-
-          event.preventDefault();
-
-        }
-      );
-
-
-      card.addEventListener(
-        'drop',
-        function(event){
-
-          event.preventDefault();
-
-          const destino =
-            Number(
-              card.dataset.index
+            card.appendChild(
+                img
             );
 
+            card.appendChild(
+                info
+            );
 
-          if(
-            draggedPhotoIndex ===
-            null ||
-            draggedPhotoIndex ===
-            destino
-          ){
+            card.appendChild(
+                eliminar
+            );
 
-            return;
-
-          }
-
-
-          const movida =
-            fotosSeleccionadas.splice(
-              draggedPhotoIndex,
-              1
-            )[0];
-
-
-          fotosSeleccionadas.splice(
-            destino,
-            0,
-            movida
-          );
-
-
-          draggedPhotoIndex =
-            null;
-
-
-          renderFotos();
-
+            contenedor.appendChild(
+                card
+            );
         }
-      );
+    );
 
-
-      contenedor.appendChild(
-        card
-      );
-
-    }
-  );
-
+    actualizarContadores();
 }
 
 
 // ============================================================
-// ELIMINAR FOTO SELECCIONADA
+// CONTADORES
 // ============================================================
 
-function eliminarFotoSeleccionada(
-  index
-){
+function actualizarContadores(){
 
-  fotosSeleccionadas.splice(
-    index,
-    1
-  );
-
-
-  renderFotos();
-
-}
-
-
-// ============================================================
-// MANEJAR ACTAS
-// ============================================================
-
-function manejarActas(
-  event
-){
-
-  const archivos =
-    Array.from(
-      event.target.files || []
-    );
-
-
-  const invalidos =
-    archivos.filter(
-      file =>
-        file.type !==
-          'application/pdf' &&
-        !file.name
-          .toLowerCase()
-          .endsWith('.pdf')
-    );
-
-
-  if(
-    invalidos.length
-  ){
-
-    mostrarToast(
-      'Solo se permiten archivos PDF para las actas.',
-      'error'
-    );
-
-  }
-
-
-  actasSeleccionadas =
-    actasSeleccionadas.concat(
-      archivos.filter(
-        file =>
-          !invalidos.includes(
-            file
-          )
-      )
-    );
-
-
-  renderDocumentos(
-    'acta'
-  );
-
-
-  event.target.value =
-    '';
-
-}
-
-
-// ============================================================
-// MANEJAR LISTAS
-// ============================================================
-
-function manejarListas(
-  event
-){
-
-  const archivos =
-    Array.from(
-      event.target.files || []
-    );
-
-
-  const invalidos =
-    archivos.filter(
-      file =>
-        file.type !==
-          'application/pdf' &&
-        !file.name
-          .toLowerCase()
-          .endsWith('.pdf')
-    );
-
-
-  if(
-    invalidos.length
-  ){
-
-    mostrarToast(
-      'Solo se permiten archivos PDF para las listas.',
-      'error'
-    );
-
-  }
-
-
-  listasSeleccionadas =
-    listasSeleccionadas.concat(
-      archivos.filter(
-        file =>
-          !invalidos.includes(
-            file
-          )
-      )
-    );
-
-
-  renderDocumentos(
-    'lista'
-  );
-
-
-  event.target.value =
-    '';
-
-}
-
-
-// ============================================================
-// RENDER DOCUMENTOS
-// ============================================================
-
-function renderDocumentos(
-  tipo
-){
-
-  const esActa =
-    tipo === 'acta';
-
-
-  const archivos =
-    esActa
-      ? actasSeleccionadas
-      : listasSeleccionadas;
-
-
-  const contenedor =
-    document.getElementById(
-      esActa
-        ? 'actaFiles'
-        : 'listaFiles'
-    );
-
-
-  const contador =
-    document.getElementById(
-      esActa
-        ? 'actaCount'
-        : 'listaCount'
-    );
-
-
-  contenedor.innerHTML =
-    '';
-
-
-  contador.textContent =
-    archivos.length +
-    (
-      archivos.length === 1
-        ? ' seleccionada'
-        : ' seleccionadas'
-    );
-
-
-  archivos.forEach(
-    function(file,index){
-
-      const item =
-        document.createElement(
-          'div'
+    document
+        .getElementById(
+            'contadorFotos'
+        )
+        .textContent =
+        fotosSeleccionadas.length +
+        (
+            fotosSeleccionadas.length === 1
+                ? ' fotografía'
+                : ' fotografías'
         );
 
+    document
+        .getElementById(
+            'contadorActas'
+        )
+        .textContent =
+        actasSeleccionadas.length +
+        (
+            actasSeleccionadas.length === 1
+                ? ' acta'
+                : ' actas'
+        );
 
-      item.className =
-        'file-item';
-
-
-      item.innerHTML = `
-
-        <div class="file-info">
-
-          <div class="file-name">
-            ${escapeHtml(file.name)}
-          </div>
-
-          <div class="file-size">
-            ${formatBytes(file.size)}
-          </div>
-
-        </div>
-
-        <button
-          class="remove-file"
-          onclick="eliminarDocumentoSeleccionado('${tipo}',${index})"
-        >
-          ×
-        </button>
-
-      `;
-
-
-      contenedor.appendChild(
-        item
-      );
-
-    }
-  );
-
-}
-
-
-// ============================================================
-// ELIMINAR DOCUMENTO SELECCIONADO
-// ============================================================
-
-function eliminarDocumentoSeleccionado(
-  tipo,
-  index
-){
-
-  if(
-    tipo === 'acta'
-  ){
-
-    actasSeleccionadas.splice(
-      index,
-      1
-    );
-
-    renderDocumentos(
-      'acta'
-    );
-
-  }else{
-
-    listasSeleccionadas.splice(
-      index,
-      1
-    );
-
-    renderDocumentos(
-      'lista'
-    );
-
-  }
-
+    document
+        .getElementById(
+            'contadorListas'
+        )
+        .textContent =
+        listasSeleccionadas.length +
+        (
+            listasSeleccionadas.length === 1
+                ? ' lista'
+                : ' listas'
+        );
 }
 
 
@@ -3435,271 +1889,221 @@ function eliminarDocumentoSeleccionado(
 
 async function guardarCarga(){
 
-  const titulo =
-    document
-      .getElementById(
-        'titulo'
-      )
-      .value
-      .trim();
+    const titulo =
+        document
+            .getElementById(
+                'titulo'
+            )
+            .value
+            .trim();
 
+    const cargador =
+        document
+            .getElementById(
+                'cargador'
+            )
+            .value
+            .trim();
 
-  const cargador =
-    document
-      .getElementById(
-        'cargador'
-      )
-      .value
-      .trim();
+    if(!titulo){
 
-
-  if(!titulo){
-
-    mostrarToast(
-      'Escribe el nombre o título.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  if(!cargador){
-
-    mostrarToast(
-      'Escribe quién realiza la carga.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  if(
-    fotosSeleccionadas.length === 0
-  ){
-
-    mostrarToast(
-      'Debes seleccionar al menos una fotografía.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    bloquearCarga(
-      true
-    );
-
-
-    mostrarProgreso(
-      true,
-      'Creando carpeta...'
-    );
-
-
-    const carga =
-      await apiPost({
-
-        accion:
-          'crearCarga',
-
-        titulo:
-          titulo,
-
-        cargador:
-          cargador
-
-      });
-
-
-    for(
-      let i=0;
-      i<fotosSeleccionadas.length;
-      i++
-    ){
-
-      const file =
-        fotosSeleccionadas[i];
-
-
-      mostrarProgreso(
-        true,
-        'Subiendo fotografía ' +
-        (i+1) +
-        ' de ' +
-        fotosSeleccionadas.length +
-        '...'
-      );
-
-
-      const base64 =
-        await fileToBase64(
-          file
+        mostrarMensaje(
+            'mensajeCarga',
+            'Escribe el título de la carga.',
+            'error'
         );
 
+        return;
+    }
 
-      await apiPost({
+    if(!cargador){
 
-        accion:
-          'subirFoto',
-
-        cargaId:
-          carga.cargaId,
-
-        nombre:
-          file.name,
-
-        mimeType:
-          file.type,
-
-        base64:
-          base64
-
-      });
-
-
-      const porcentaje =
-        Math.round(
-          (
-            (i+1) /
-            fotosSeleccionadas.length
-          ) * 40
+        mostrarMensaje(
+            'mensajeCarga',
+            'Escribe quién realiza la carga.',
+            'error'
         );
 
-
-      actualizarProgreso(
-        porcentaje
-      );
-
+        return;
     }
 
-
-    for(
-      let i=0;
-      i<actasSeleccionadas.length;
-      i++
+    if(
+        fotosSeleccionadas.length === 0
     ){
 
-      const file =
-        actasSeleccionadas[i];
-
-
-      mostrarProgreso(
-        true,
-        'Subiendo acta ' +
-        (i+1) +
-        ' de ' +
-        actasSeleccionadas.length +
-        '...'
-      );
-
-
-      await subirPdfPorBloques(
-        file,
-        carga.cargaId,
-        'ACTA',
-        i,
-        actasSeleccionadas.length
-      );
-
-    }
-
-
-    for(
-      let i=0;
-      i<listasSeleccionadas.length;
-      i++
-    ){
-
-      const file =
-        listasSeleccionadas[i];
-
-
-      mostrarProgreso(
-        true,
-        'Subiendo lista ' +
-        (i+1) +
-        ' de ' +
-        listasSeleccionadas.length +
-        '...'
-      );
-
-
-      await subirPdfPorBloques(
-        file,
-        carga.cargaId,
-        'LISTA',
-        i,
-        listasSeleccionadas.length
-      );
-
-    }
-
-
-    mostrarProgreso(
-      true,
-      'Finalizando carga...'
-    );
-
-
-    await apiPost({
-
-      accion:
-        'finalizarCarga',
-
-      cargaId:
-        carga.cargaId
-
-    });
-
-
-    actualizarProgreso(
-      100
-    );
-
-
-    mostrarToast(
-      'Carga guardada correctamente.',
-      'success'
-    );
-
-
-    limpiarFormulario();
-
-
-  }catch(error){
-
-    mostrarToast(
-      error.message,
-      'error'
-    );
-
-  }finally{
-
-    bloquearCarga(
-      false
-    );
-
-    setTimeout(
-      function(){
-
-        mostrarProgreso(
-          false
+        mostrarMensaje(
+            'mensajeCarga',
+            'Debes seleccionar al menos una fotografía.',
+            'error'
         );
 
-      },
-      1200
-    );
+        return;
+    }
 
-  }
+    try{
 
+        mostrarMensaje(
+            'mensajeCarga',
+            'Creando carpeta...',
+            'info'
+        );
+
+        const carga =
+            await postJSON({
+
+                accion:
+                    'crearCarga',
+
+                titulo:
+                    titulo,
+
+                cargador:
+                    cargador
+            });
+
+        if(!carga.ok){
+
+            throw new Error(
+                carga.error
+            );
+        }
+
+        // ----------------------------------------------------
+        // FOTOS
+        // ----------------------------------------------------
+
+        for(
+            let i = 0;
+            i < fotosSeleccionadas.length;
+            i++
+        ){
+
+            const file =
+                fotosSeleccionadas[i];
+
+            const extension =
+                obtenerExtensionJS(
+                    file.name
+                );
+
+            const nombre =
+                titulo +
+                '_' +
+                padJS(i + 1,3) +
+                extension;
+
+            mostrarMensaje(
+                'mensajeCarga',
+                'Subiendo fotografía ' +
+                (i + 1) +
+                ' de ' +
+                fotosSeleccionadas.length +
+                '...',
+                'info'
+            );
+
+            const base64 =
+                await archivoABase64(
+                    file
+                );
+
+            await postJSON({
+
+                accion:
+                    'subirFoto',
+
+                cargaId:
+                    carga.cargaId,
+
+                nombre:
+                    nombre,
+
+                mimeType:
+                    file.type ||
+                    'image/jpeg',
+
+                base64:
+                    base64
+            });
+        }
+
+
+        // ----------------------------------------------------
+        // ACTAS
+        // ----------------------------------------------------
+
+        for(
+            let i = 0;
+            i < actasSeleccionadas.length;
+            i++
+        ){
+
+            await subirPDFPorBloques(
+
+                carga.cargaId,
+
+                actasSeleccionadas[i],
+
+                'ACTA',
+
+                i
+            );
+        }
+
+
+        // ----------------------------------------------------
+        // LISTAS
+        // ----------------------------------------------------
+
+        for(
+            let i = 0;
+            i < listasSeleccionadas.length;
+            i++
+        ){
+
+            await subirPDFPorBloques(
+
+                carga.cargaId,
+
+                listasSeleccionadas[i],
+
+                'LISTA',
+
+                i
+            );
+        }
+
+
+        // ----------------------------------------------------
+        // FINALIZAR
+        // ----------------------------------------------------
+
+        await postJSON({
+
+            accion:
+                'finalizarCarga',
+
+            cargaId:
+                carga.cargaId
+        });
+
+
+        mostrarMensaje(
+            'mensajeCarga',
+            'Carga guardada correctamente.',
+            'success'
+        );
+
+        limpiarFormulario();
+
+    }catch(error){
+
+        mostrarMensaje(
+            'mensajeCarga',
+            error.message,
+            'error'
+        );
+    }
 }
 
 
@@ -3707,318 +2111,1179 @@ async function guardarCarga(){
 // SUBIR PDF POR BLOQUES
 // ============================================================
 
-async function subirPdfPorBloques(
-  file,
-  cargaId,
-  tipo,
-  indice,
-  totalArchivos
+async function subirPDFPorBloques(
+    cargaId,
+    file,
+    tipo,
+    indice
 ){
 
-  if(
-    file.type !==
-      'application/pdf' &&
-    !file.name
-      .toLowerCase()
-      .endsWith('.pdf')
-  ){
-
-    throw new Error(
-      'El archivo "' +
-      file.name +
-      '" no es un PDF.'
-    );
-
-  }
-
-
-  const inicio =
-    await apiPost({
-
-      accion:
-        'iniciarDocumento',
-
-      cargaId:
-        cargaId,
-
-      tipo:
-        tipo,
-
-      nombre:
-        file.name,
-
-      tamano:
-        file.size
-
-    });
-
-
-  const uploadId =
-    inicio.uploadId;
-
-
-  const CHUNK_SIZE =
-    4 * 1024 * 1024;
-
-
-  let start =
-    0;
-
-
-  while(
-    start < file.size
-  ){
-
-    const end =
-      Math.min(
-        start + CHUNK_SIZE,
-        file.size
-      ) - 1;
-
-
-    const blob =
-      file.slice(
-        start,
-        end + 1
-      );
-
-
-    const base64 =
-      await blobToBase64(
-        blob
-      );
-
-
-    let resultado =
-      null;
-
-
-    let reintentos =
-      0;
-
-
-    while(
-      true
-    ){
-
-      try{
-
-        resultado =
-          await apiPost({
+    const inicio =
+        await postJSON({
 
             accion:
-              'subirChunkDocumento',
+                'iniciarDocumento',
 
-            uploadId:
-              uploadId,
+            cargaId:
+                cargaId,
 
-            start:
-              start,
+            tipo:
+                tipo,
 
-            end:
-              end,
+            nombre:
+                file.name,
 
-            total:
-              file.size,
+            mimeType:
+                'application/pdf',
 
-            base64:
-              base64
+            size:
+                file.size
+        });
 
-          });
+    if(!inicio.ok){
 
-
-        break;
-
-      }catch(error){
-
-        reintentos++;
-
-
-        if(
-          reintentos > 3
-        ){
-
-          throw error;
-
-        }
-
-
-        await sleep(
-          1200 *
-          reintentos
+        throw new Error(
+            inicio.error
         );
-
-      }
-
     }
 
+    const uploadId =
+        inicio.uploadId;
 
-    if(
-      resultado.completado
+    const CHUNK =
+        4 * 1024 * 1024;
+
+    let posicion =
+        inicio.siguienteInicio || 0;
+
+    while(
+        posicion < file.size
     ){
 
-      start =
-        file.size;
+        const fin =
+            Math.min(
+                posicion + CHUNK,
+                file.size
+            ) - 1;
 
-    }else{
+        const blob =
+            file.slice(
+                posicion,
+                fin + 1
+            );
 
-      start =
-        Number(
-          resultado.siguienteInicio
+        const base64 =
+            await blobABase64(
+                blob
+            );
+
+        mostrarMensaje(
+            'mensajeCarga',
+            'Subiendo ' +
+            tipo.toLowerCase() +
+            ' ' +
+            (indice + 1) +
+            ' (' +
+            Math.round(
+                ((fin + 1) / file.size) * 100
+            ) +
+            '%)...',
+            'info'
         );
 
+        const resultado =
+            await postJSON({
 
-      if(
-        !Number.isFinite(start) ||
-        start < 0
-      ){
+                accion:
+                    'subirChunkDocumento',
 
-        start =
-          end + 1;
+                uploadId:
+                    uploadId,
 
-      }
+                inicio:
+                    posicion,
 
+                fin:
+                    fin,
+
+                total:
+                    file.size,
+
+                base64:
+                    base64
+            });
+
+        if(!resultado.ok){
+
+            throw new Error(
+                resultado.error
+            );
+        }
+
+        if(resultado.terminado){
+
+            break;
+        }
+
+        posicion =
+            resultado.siguienteInicio;
+    }
+}
+
+
+// ============================================================
+// CONSULTAR CARGAS
+// ============================================================
+
+async function consultarCargas(){
+
+    if(!tokenSesion){
+        return;
     }
 
+    try{
 
-    const progresoArchivo =
-      file.size
-        ? start / file.size
-        : 1;
+        mostrarMensaje(
+            'mensajeGestor',
+            'Consultando cargas...',
+            'info'
+        );
+
+        const resultado =
+            await postJSON({
+
+                accion:
+                    'consultarCargas',
+
+                token:
+                    tokenSesion,
+
+                filtros:{
+
+                    titulo:
+                        document
+                            .getElementById(
+                                'filtroTitulo'
+                            )
+                            .value
+                            .trim(),
+
+                    fecha:
+                        document
+                            .getElementById(
+                                'filtroFecha'
+                            )
+                            .value
+                            .trim(),
+
+                    cargador:
+                        document
+                            .getElementById(
+                                'filtroCargador'
+                            )
+                            .value
+                            .trim()
+                }
+            });
+
+        if(!resultado.ok){
+
+            throw new Error(
+                resultado.error
+            );
+        }
+
+        renderizarTabla(
+            resultado.cargas || []
+        );
+
+        ocultarMensaje(
+            'mensajeGestor'
+        );
+
+    }catch(error){
+
+        if(
+            error.message
+                .toLowerCase()
+                .includes('sesión')
+        ){
+
+            cerrarSesion();
+
+        }else{
+
+            mostrarMensaje(
+                'mensajeGestor',
+                error.message,
+                'error'
+            );
+        }
+    }
+}
 
 
-    const porcentajeBase =
-      tipo === 'ACTA'
-        ? 40
-        : 70;
+// ============================================================
+// TABLA
+// ============================================================
+
+function renderizarTabla(
+    cargas
+){
+
+    const tbody =
+        document.getElementById(
+            'tablaCargas'
+        );
+
+    tbody.innerHTML = '';
+
+    if(!cargas.length){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    style="
+                    text-align:center;
+                    color:#64748b;
+                    padding:30px;
+                    ">
+
+                    No se encontraron cargas.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+    }
+
+    cargas.forEach(
+        function(carga){
+
+            const tr =
+                document.createElement(
+                    'tr'
+                );
+
+            tr.innerHTML = `
+
+                <td>
+
+                    <strong>
+                        ${escapeHTML(
+                            carga.titulo
+                        )}
+                    </strong>
+
+                    <div style="
+                        font-size:11px;
+                        color:#64748b;
+                        margin-top:3px;
+                    ">
+
+                        ${escapeHTML(
+                            carga.carpeta
+                        )}
+
+                    </div>
+
+                </td>
 
 
-    const porcentajeRango =
-      tipo === 'ACTA'
-        ? 30
-        : 30;
+                <td>
+                    ${escapeHTML(
+                        carga.cargador
+                    )}
+                </td>
 
 
-    const progresoTotal =
-      porcentajeBase +
-      (
-        (
-          indice +
-          progresoArchivo
-        ) /
-        Math.max(
-          totalArchivos,
-          1
-        )
-      ) *
-      porcentajeRango;
+                <td>
+                    ${escapeHTML(
+                        carga.fecha
+                    )}
+                </td>
 
 
-    actualizarProgreso(
-      Math.min(
-        99,
-        Math.round(
-          progresoTotal
-        )
-      )
+                <td>
+
+                    <div class="badges">
+
+                        <span class="badge badge-photo">
+                            📷 ${carga.totalFotos}
+                        </span>
+
+                        <span class="badge badge-acta">
+                            📄 ${carga.totalActas}
+                        </span>
+
+                        <span class="badge badge-lista">
+                            📋 ${carga.totalListas}
+                        </span>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="btn btn-primary"
+                        style="
+                        padding:8px 12px;
+                        "
+                        onclick='verCarga(
+                            ${JSON.stringify(
+                                carga
+                            )}
+                        )'>
+
+                        Ver
+
+                    </button>
+
+                </td>
+
+            `;
+
+            tbody.appendChild(
+                tr
+            );
+        }
     );
-
-  }
-
 }
 
 
 // ============================================================
-// FILE TO BASE64
+// VER CARGA
 // ============================================================
 
-function fileToBase64(
-  file
+async function verCarga(
+    carga
 ){
 
-  return new Promise(
-    function(resolve,reject){
+    cargaActual =
+        carga;
 
-      const reader =
-        new FileReader();
+    document
+        .getElementById(
+            'detalleCarga'
+        )
+        .style.display =
+        'block';
+
+    document
+        .getElementById(
+            'detalleTitulo'
+        )
+        .textContent =
+        carga.titulo;
+
+    document
+        .getElementById(
+            'detalleInfo'
+        )
+        .textContent =
+        'Cargador: ' +
+        carga.cargador +
+        ' · ' +
+        carga.fecha;
 
 
-      reader.onload =
-        function(){
+    document
+        .getElementById(
+            'galeriaFotos'
+        )
+        .innerHTML =
+        '<div style="color:#64748b">' +
+        '<span class="loader"></span> ' +
+        'Cargando fotografías...' +
+        '</div>';
 
-          resolve(
-            reader.result
-          );
+    document
+        .getElementById(
+            'listaActas'
+        )
+        .innerHTML =
+        '';
 
-        };
+    document
+        .getElementById(
+            'listaListas'
+        )
+        .innerHTML =
+        '';
 
+    try{
 
-      reader.onerror =
-        function(){
+        const resultado =
+            await postJSON({
 
-          reject(
-            new Error(
-              'No fue posible leer la fotografía.'
+                accion:
+                    'obtenerContenidoCarpeta',
+
+                token:
+                    tokenSesion,
+
+                folderId:
+                    carga.carpetaId
+            });
+
+        if(!resultado.ok){
+
+            throw new Error(
+                resultado.error
+            );
+        }
+
+        contenidoActual =
+            resultado;
+
+        renderizarFotos(
+            resultado.fotos || []
+        );
+
+        renderizarPDFs(
+            resultado.actas || [],
+            'listaActas',
+            'ACTA'
+        );
+
+        renderizarPDFs(
+            resultado.listas || [],
+            'listaListas',
+            'LISTA'
+        );
+
+        document
+            .getElementById(
+                'detalleCarga'
             )
-          );
+            .scrollIntoView({
+                behavior:'smooth',
+                block:'start'
+            });
 
-        };
+    }catch(error){
 
-
-      reader.readAsDataURL(
-        file
-      );
-
+        document
+            .getElementById(
+                'galeriaFotos'
+            )
+            .innerHTML =
+            '<div class="message show error">' +
+            escapeHTML(
+                error.message
+            ) +
+            '</div>';
     }
-  );
-
 }
 
 
 // ============================================================
-// BLOB TO BASE64
+// RENDERIZAR FOTOS
 // ============================================================
 
-function blobToBase64(
-  blob
+function renderizarFotos(
+    fotos
 ){
 
-  return new Promise(
-    function(resolve,reject){
+    const contenedor =
+        document.getElementById(
+            'galeriaFotos'
+        );
 
-      const reader =
-        new FileReader();
+    contenedor.innerHTML = '';
 
+    if(!fotos.length){
 
-      reader.onload =
-        function(){
+        contenedor.innerHTML = `
 
-          resolve(
-            reader.result
-          );
+            <div style="
+                color:#64748b;
+                padding:15px;
+            ">
 
-        };
+                No hay fotografías en esta carga.
 
+            </div>
 
-      reader.onerror =
-        function(){
+        `;
 
-          reject(
-            new Error(
-              'No fue posible leer el bloque del PDF.'
-            )
-          );
-
-        };
-
-
-      reader.readAsDataURL(
-        blob
-      );
-
+        return;
     }
-  );
 
+    fotos.forEach(
+        function(foto,index){
+
+            const card =
+                document.createElement(
+                    'div'
+                );
+
+            card.className =
+                'gallery-card';
+
+            card.innerHTML = `
+
+                <div class="gallery-image"
+                     id="foto-${foto.fileId}">
+
+                    <div class="gallery-loading">
+
+                        <span class="loader"></span>
+                        Cargando...
+
+                    </div>
+
+                </div>
+
+                <div class="gallery-info">
+
+                    <div class="gallery-title">
+
+                        ${escapeHTML(
+                            foto.nombre
+                        )}
+
+                    </div>
+
+                    <div style="
+                        color:#64748b;
+                        font-size:11px;
+                        margin-top:4px;
+                    ">
+
+                        Fotografía ${index + 1}
+
+                    </div>
+
+                    <div class="gallery-actions">
+
+                        <button
+                            style="
+                            background:#2563eb;
+                            color:#fff;
+                            "
+                            onclick="
+                                cargarFotoModal(
+                                    '${foto.fileId}'
+                                )
+                            ">
+
+                            Ver
+
+                        </button>
+
+                        <button
+                            style="
+                            background:#e8edf5;
+                            color:#334155;
+                            "
+                            onclick="
+                                descargarArchivo(
+                                    '${foto.fileId}'
+                                )
+                            ">
+
+                            Descargar
+
+                        </button>
+
+                        <button
+                            style="
+                            background:#fee2e2;
+                            color:#991b1b;
+                            "
+                            onclick="
+                                eliminarArchivoDesdeGestor(
+                                    '${foto.fileId}',
+                                    'fotografía'
+                                )
+                            ">
+
+                            Eliminar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+            contenedor.appendChild(
+                card
+            );
+
+            // IMPORTANTE:
+            // Se solicita la foto al servidor.
+            cargarMiniatura(
+                foto,
+                index
+            );
+        }
+    );
+}
+
+
+// ============================================================
+// CARGAR MINIATURA
+// ============================================================
+
+async function cargarMiniatura(
+    foto,
+    index
+){
+
+    const contenedor =
+        document.getElementById(
+            'foto-' +
+            foto.fileId
+        );
+
+    if(!contenedor){
+        return;
+    }
+
+    try{
+
+        const resultado =
+            await postJSON({
+
+                accion:
+                    'obtenerFotoBase64',
+
+                token:
+                    tokenSesion,
+
+                folderId:
+                    cargaActual.carpetaId,
+
+                fileId:
+                    foto.fileId
+            });
+
+        if(!resultado.ok){
+
+            throw new Error(
+                resultado.error
+            );
+        }
+
+        const img =
+            document.createElement(
+                'img'
+            );
+
+        img.src =
+            'data:' +
+            resultado.mimeType +
+            ';base64,' +
+            resultado.base64;
+
+        img.alt =
+            resultado.nombre;
+
+        img.loading =
+            'lazy';
+
+        img.onclick =
+            function(){
+
+                abrirModalConImagen(
+                    img.src,
+                    resultado.nombre
+                );
+            };
+
+        contenedor.innerHTML = '';
+
+        contenedor.appendChild(
+            img
+        );
+
+    }catch(error){
+
+        contenedor.innerHTML = `
+
+            <div style="
+                text-align:center;
+                padding:15px;
+                color:#ef4444;
+                font-size:12px;
+            ">
+
+                No se pudo cargar la imagen.
+
+            </div>
+
+        `;
+    }
+}
+
+
+// ============================================================
+// RENDERIZAR PDFS
+// ============================================================
+
+function renderizarPDFs(
+    archivos,
+    contenedorId,
+    tipo
+){
+
+    const contenedor =
+        document.getElementById(
+            contenedorId
+        );
+
+    contenedor.innerHTML = '';
+
+    if(!archivos.length){
+
+        contenedor.innerHTML = `
+
+            <div style="
+                color:#64748b;
+                padding:10px 0;
+            ">
+
+                No hay
+                ${tipo === 'ACTA'
+                    ? 'actas'
+                    : 'listas'
+                }
+                en esta carga.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    archivos.forEach(
+        function(archivo){
+
+            const card =
+                document.createElement(
+                    'div'
+                );
+
+            card.className =
+                'pdf-card';
+
+            card.innerHTML = `
+
+                <div>
+
+                    <div class="pdf-name">
+
+                        📄
+                        ${escapeHTML(
+                            archivo.nombre
+                        )}
+
+                    </div>
+
+                    <div class="pdf-size">
+
+                        ${escapeHTML(
+                            archivo.tamano
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="pdf-actions">
+
+                    <a
+                        href="${archivo.viewUrl}"
+                        target="_blank"
+                        style="
+                        background:#dbeafe;
+                        color:#1d4ed8;
+                        ">
+
+                        Ver
+
+                    </a>
+
+
+                    <a
+                        href="${archivo.downloadUrl}"
+                        target="_blank"
+                        style="
+                        background:#dcfce7;
+                        color:#166534;
+                        ">
+
+                        Descargar
+
+                    </a>
+
+
+                    <button
+                        style="
+                        background:#fee2e2;
+                        color:#991b1b;
+                        "
+                        onclick="
+                            eliminarArchivoDesdeGestor(
+                                '${archivo.fileId}',
+                                '${tipo.toLowerCase()}'
+                            )
+                        ">
+
+                        Eliminar
+
+                    </button>
+
+                </div>
+
+            `;
+
+            contenedor.appendChild(
+                card
+            );
+        }
+    );
+}
+
+
+// ============================================================
+// CARGAR FOTO EN MODAL
+// ============================================================
+
+async function cargarFotoModal(
+    fileId
+){
+
+    try{
+
+        const resultado =
+            await postJSON({
+
+                accion:
+                    'obtenerFotoBase64',
+
+                token:
+                    tokenSesion,
+
+                folderId:
+                    cargaActual.carpetaId,
+
+                fileId:
+                    fileId
+            });
+
+        if(!resultado.ok){
+
+            throw new Error(
+                resultado.error
+            );
+        }
+
+        const src =
+            'data:' +
+            resultado.mimeType +
+            ';base64,' +
+            resultado.base64;
+
+        abrirModalConImagen(
+            src,
+            resultado.nombre
+        );
+
+    }catch(error){
+
+        alert(
+            error.message
+        );
+    }
+}
+
+
+// ============================================================
+// MODAL
+// ============================================================
+
+function abrirModalConImagen(
+    src,
+    nombre
+){
+
+    document
+        .getElementById(
+            'modalFotoImagen'
+        )
+        .src =
+        src;
+
+    document
+        .getElementById(
+            'modalFotoTitulo'
+        )
+        .textContent =
+        nombre;
+
+    document
+        .getElementById(
+            'modalFoto'
+        )
+        .classList.add(
+            'show'
+        );
+}
+
+
+function cerrarModalFoto(
+    event
+){
+
+    if(
+        event &&
+        event.target &&
+        event.target.id !==
+            'modalFoto'
+    ){
+        return;
+    }
+
+    document
+        .getElementById(
+            'modalFoto'
+        )
+        .classList.remove(
+            'show'
+        );
+
+    document
+        .getElementById(
+            'modalFotoImagen'
+        )
+        .src =
+        '';
+}
+
+
+// ============================================================
+// DESCARGAR ARCHIVO
+// ============================================================
+
+function descargarArchivo(
+    fileId
+){
+
+    const url =
+        'https://drive.google.com/uc?export=download&id=' +
+        encodeURIComponent(
+            fileId
+        );
+
+    window.open(
+        url,
+        '_blank'
+    );
+}
+
+
+// ============================================================
+// ELIMINAR ARCHIVO
+// ============================================================
+
+async function eliminarArchivoDesdeGestor(
+    fileId,
+    tipo
+){
+
+    if(
+        !confirm(
+            '¿Deseas eliminar esta ' +
+            tipo +
+            '?'
+        )
+    ){
+
+        return;
+    }
+
+    try{
+
+        const resultado =
+            await postJSON({
+
+                accion:
+                    'eliminarArchivo',
+
+                token:
+                    tokenSesion,
+
+                folderId:
+                    cargaActual.carpetaId,
+
+                fileId:
+                    fileId
+            });
+
+        if(!resultado.ok){
+
+            throw new Error(
+                resultado.error
+            );
+        }
+
+        // Recargar contenido
+        await verCarga(
+            cargaActual
+        );
+
+        consultarCargas();
+
+    }catch(error){
+
+        alert(
+            error.message
+        );
+    }
+}
+
+
+// ============================================================
+// EDITAR NOMBRE
+// ============================================================
+
+async function editarNombreCarga(){
+
+    if(!cargaActual){
+        return;
+    }
+
+    const nuevoNombre =
+        prompt(
+            'Nuevo nombre de la carga:',
+            cargaActual.titulo
+        );
+
+    if(
+        nuevoNombre === null
+    ){
+        return;
+    }
+
+    const nombre =
+        nuevoNombre.trim();
+
+    if(!nombre){
+
+        alert(
+            'El nombre no puede estar vacío.'
+        );
+
+        return;
+    }
+
+    try{
+
+        const resultado =
+            await postJSON({
+
+                accion:
+                    'editarCarga',
+
+                token:
+                    tokenSesion,
+
+                carpetaId:
+                    cargaActual.carpetaId,
+
+                nuevoNombre:
+                    nombre
+            });
+
+        if(!resultado.ok){
+
+            throw new Error(
+                resultado.error
+            );
+        }
+
+        cargaActual.titulo =
+            nombre;
+
+        cargaActual.carpeta =
+            nombre;
+
+        document
+            .getElementById(
+                'detalleTitulo'
+            )
+            .textContent =
+            nombre;
+
+        await verCarga(
+            cargaActual
+        );
+
+        consultarCargas();
+
+    }catch(error){
+
+        alert(
+            error.message
+        );
+    }
+}
+
+
+// ============================================================
+// ABRIR CARPETA DRIVE
+// ============================================================
+
+function abrirCarpetaDrive(){
+
+    if(!cargaActual){
+        return;
+    }
+
+    const url =
+        'https://drive.google.com/drive/folders/' +
+        cargaActual.carpetaId;
+
+    window.open(
+        url,
+        '_blank'
+    );
+}
+
+
+// ============================================================
+// CERRAR DETALLE
+// ============================================================
+
+function cerrarDetalle(){
+
+    document
+        .getElementById(
+            'detalleCarga'
+        )
+        .style.display =
+        'none';
+
+    cargaActual =
+        null;
+
+    contenidoActual =
+        null;
 }
 
 
@@ -4028,1309 +3293,265 @@ function blobToBase64(
 
 function limpiarFormulario(){
 
-  fotosSeleccionadas =
-    [];
-
-  actasSeleccionadas =
-    [];
-
-  listasSeleccionadas =
-    [];
-
-
-  document
-    .getElementById(
-      'titulo'
-    )
-    .value =
-      '';
-
-
-  document
-    .getElementById(
-      'cargador'
-    )
-    .value =
-      '';
-
-
-  renderFotos();
-
-  renderDocumentos(
-    'acta'
-  );
-
-  renderDocumentos(
-    'lista'
-  );
-
-
-  mostrarProgreso(
-    false
-  );
-
-}
-
-
-// ============================================================
-// BLOQUEAR CARGA
-// ============================================================
-
-function bloquearCarga(
-  bloquear
-){
-
-  document
-    .querySelectorAll(
-      '#panel-carga button'
-    )
-    .forEach(
-      function(btn){
-
-        btn.disabled =
-          bloquear;
-
-        btn.style.opacity =
-          bloquear
-            ? '.6'
-            : '1';
-
-      }
-    );
-
-}
-
-
-// ============================================================
-// MOSTRAR PROGRESO
-// ============================================================
-
-function mostrarProgreso(
-  mostrar,
-  texto
-){
-
-  const box =
     document
-      .getElementById(
-        'progressBox'
-      );
-
-
-  if(
-    mostrar
-  ){
-
-    box.classList.add(
-      'show'
-    );
-
-    if(texto){
-
-      document
         .getElementById(
-          'progressText'
+            'titulo'
         )
-        .textContent =
-          texto;
+        .value = '';
 
-    }
+    document
+        .getElementById(
+            'cargador'
+        )
+        .value = '';
 
-  }else{
+    document
+        .getElementById(
+            'inputFotos'
+        )
+        .value = '';
 
-    box.classList.remove(
-      'show'
-    );
+    document
+        .getElementById(
+            'inputActas'
+        )
+        .value = '';
 
-  }
+    document
+        .getElementById(
+            'inputListas'
+        )
+        .value = '';
 
+    fotosSeleccionadas =
+        [];
+
+    actasSeleccionadas =
+        [];
+
+    listasSeleccionadas =
+        [];
+
+    document
+        .getElementById(
+            'previewFotos'
+        )
+        .innerHTML = '';
+
+    actualizarContadores();
 }
 
 
 // ============================================================
-// ACTUALIZAR PROGRESO
+// MENSAJE
 // ============================================================
 
-function actualizarProgreso(
-  porcentaje
+function mostrarMensaje(
+    id,
+    texto,
+    tipo
 ){
 
-  document
-    .getElementById(
-      'progressBar'
-    )
-    .style.width =
-      porcentaje + '%';
+    const elemento =
+        document.getElementById(
+            id
+        );
 
+    elemento.textContent =
+        texto;
+
+    elemento.className =
+        'message show ' +
+        tipo;
+}
+
+
+function ocultarMensaje(
+    id
+){
+
+    const elemento =
+        document.getElementById(
+            id
+        );
+
+    elemento.className =
+        'message';
 }
 
 
 // ============================================================
-// BUSCAR CARGAS
+// BASE64 ARCHIVO
 // ============================================================
 
-async function buscarCargas(){
+function archivoABase64(
+    file
+){
 
-  if(!sessionToken){
+    return new Promise(
+        function(resolve,reject){
 
-    abrirGestor();
+            const reader =
+                new FileReader();
 
-    return;
+            reader.onload =
+                function(){
 
-  }
+                    const resultado =
+                        reader.result;
 
+                    const coma =
+                        resultado.indexOf(',');
 
-  try{
+                    resolve(
+                        resultado.substring(
+                            coma + 1
+                        )
+                    );
+                };
 
-    const resultado =
-      await apiPost({
+            reader.onerror =
+                reject;
 
-        accion:
-          'consultarCargas',
-
-        token:
-          sessionToken,
-
-        filtros:{
-
-          titulo:
-            document
-              .getElementById(
-                'filterTitulo'
-              )
-              .value
-              .trim(),
-
-          fecha:
-            document
-              .getElementById(
-                'filterFecha'
-              )
-              .value
-              .trim(),
-
-          cargador:
-            document
-              .getElementById(
-                'filterCargador'
-              )
-              .value
-              .trim()
-
+            reader.readAsDataURL(
+                file
+            );
         }
-
-      });
-
-
-    cargasActuales =
-      resultado.cargas ||
-      [];
+    );
+}
 
 
-    renderTabla();
+// ============================================================
+// BASE64 BLOB
+// ============================================================
+
+function blobABase64(
+    blob
+){
+
+    return new Promise(
+        function(resolve,reject){
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function(){
+
+                    const resultado =
+                        reader.result;
+
+                    const coma =
+                        resultado.indexOf(',');
+
+                    resolve(
+                        resultado.substring(
+                            coma + 1
+                        )
+                    );
+                };
+
+            reader.onerror =
+                reject;
+
+            reader.readAsDataURL(
+                blob
+            );
+        }
+    );
+}
 
 
-  }catch(error){
+// ============================================================
+// EXTENSIÓN
+// ============================================================
 
-    if(
-      error.message
-        .toLowerCase()
-        .includes('sesión')
-    ){
+function obtenerExtensionJS(
+    nombre
+){
 
-      cerrarSesion();
+    const punto =
+        nombre.lastIndexOf('.');
 
+    if(punto === -1){
+        return '';
     }
 
-
-    mostrarToast(
-      error.message,
-      'error'
-    );
-
-  }
-
+    return nombre
+        .substring(punto)
+        .toLowerCase();
 }
 
 
 // ============================================================
-// RENDER TABLA
+// PAD
 // ============================================================
 
-function renderTabla(){
+function padJS(
+    numero,
+    cantidad
+){
 
-  const tbody =
-    document
-      .getElementById(
-        'tablaCargas'
-      );
-
-
-  const empty =
-    document
-      .getElementById(
-        'emptyTable'
-      );
-
-
-  tbody.innerHTML =
-    '';
-
-
-  if(
-    cargasActuales.length === 0
-  ){
-
-    empty.style.display =
-      'block';
-
-    return;
-
-  }
-
-
-  empty.style.display =
-    'none';
-
-
-  cargasActuales.forEach(
-    function(carga){
-
-      const tr =
-        document.createElement(
-          'tr'
+    return String(numero)
+        .padStart(
+            cantidad,
+            '0'
         );
-
-
-      tr.innerHTML = `
-
-        <td>
-
-          <input
-            type="checkbox"
-            class="select-check folder-check"
-            data-folder-id="${escapeAttr(carga.folderId)}"
-          >
-
-        </td>
-
-
-        <td>
-
-          <strong>
-            ${escapeHtml(carga.titulo)}
-          </strong>
-
-          <div
-            style="
-              color:var(--muted);
-              font-size:11px;
-              margin-top:3px;
-            "
-          >
-            ${escapeHtml(carga.carpeta)}
-          </div>
-
-        </td>
-
-
-        <td>
-          ${escapeHtml(carga.cargador)}
-        </td>
-
-
-        <td>
-          ${escapeHtml(carga.fecha)}
-        </td>
-
-
-        <td>
-
-          <div class="badges">
-
-            <span class="badge badge-photo">
-              📷 ${carga.totalFotos}
-            </span>
-
-            <span class="badge badge-acta">
-              📄 ${carga.totalActas}
-            </span>
-
-            <span class="badge badge-lista">
-              📋 ${carga.totalListas}
-            </span>
-
-          </div>
-
-        </td>
-
-
-        <td>
-
-          <div
-            style="
-              display:flex;
-              gap:5px;
-              flex-wrap:wrap;
-            "
-          >
-
-            <button
-              class="btn btn-primary btn-small"
-              onclick="verContenido('${escapeAttr(carga.folderId)}','${escapeAttr(carga.titulo)}')"
-            >
-              Ver
-            </button>
-
-
-            <button
-              class="btn btn-secondary btn-small"
-              onclick="editarNombre('${escapeAttr(carga.folderId)}','${escapeAttr(carga.titulo)}')"
-            >
-              Editar
-            </button>
-
-
-            <button
-              class="btn btn-secondary btn-small"
-              onclick="abrirDescargaIndividual('${escapeAttr(carga.folderId)}','${escapeAttr(carga.titulo)}')"
-            >
-              ⬇
-            </button>
-
-          </div>
-
-        </td>
-
-      `;
-
-
-      tbody.appendChild(
-        tr
-      );
-
-    }
-  );
-
-
-  document
-    .getElementById(
-      'selectAll'
-    )
-    .checked =
-      false;
-
 }
 
 
 // ============================================================
-// VER CONTENIDO
+// ESCAPE HTML
 // ============================================================
 
-async function verContenido(
-  folderId,
-  titulo
-){
-
-  try{
-
-    const resultado =
-      await apiPost({
-
-        accion:
-          'obtenerContenidoCarpeta',
-
-        token:
-          sessionToken,
-
-        folderId:
-          folderId
-
-      });
-
-
-    contenidoActual =
-      resultado;
-
-
-    document
-      .getElementById(
-        'modalTitle'
-      )
-      .textContent =
-        titulo;
-
-
-    renderGaleria(
-      resultado
-    );
-
-
-    mostrarGaleriaTab(
-      'fotos',
-      document
-        .querySelector(
-          '.gallery-tab'
-        )
-    );
-
-
-    abrirModal(
-      'contentModal'
-    );
-
-
-  }catch(error){
-
-    mostrarToast(
-      error.message,
-      'error'
-    );
-
-  }
-
-}
-
-
-// ============================================================
-// RENDER GALERÍA
-// ============================================================
-
-function renderGaleria(
-  data
-){
-
-  renderGaleriaFotos(
-    data.fotos || []
-  );
-
-
-  renderGaleriaPDF(
-    data.actas || [],
-    'galleryActas',
-    'ACTA'
-  );
-
-
-  renderGaleriaPDF(
-    data.listas || [],
-    'galleryListas',
-    'LISTA'
-  );
-
-}
-
-
-// ============================================================
-// RENDER FOTOS GALERÍA
-// ============================================================
-
-function renderGaleriaFotos(
-  fotos
-){
-
-  const contenedor =
-    document
-      .getElementById(
-        'galleryFotos'
-      );
-
-
-  contenedor.innerHTML =
-    '';
-
-
-  if(
-    fotos.length === 0
-  ){
-
-    contenedor.innerHTML =
-      '<div class="gallery-empty">No hay fotografías.</div>';
-
-    return;
-
-  }
-
-
-  fotos.forEach(
-    function(file,index){
-
-      const item =
-        document.createElement(
-          'div'
-        );
-
-
-      item.className =
-        'gallery-item';
-
-
-      item.innerHTML = `
-
-        <img
-          src="${escapeAttr(file.url)}"
-          alt=""
-          loading="lazy"
-        >
-
-        <div class="gallery-info">
-
-          <div class="gallery-name">
-            ${escapeHtml(file.nombre)}
-          </div>
-
-          <div class="gallery-actions">
-
-            <button
-              class="btn btn-danger btn-small"
-              onclick="eliminarArchivoGestor('${escapeAttr(file.id)}','FOTO')"
-            >
-              Eliminar
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      contenedor.appendChild(
-        item
-      );
-
-    }
-  );
-
-}
-
-
-// ============================================================
-// RENDER PDF
-// ============================================================
-
-function renderGaleriaPDF(
-  archivos,
-  contenedorId,
-  tipo
-){
-
-  const contenedor =
-    document
-      .getElementById(
-        contenedorId
-      );
-
-
-  contenedor.innerHTML =
-    '';
-
-
-  if(
-    archivos.length === 0
-  ){
-
-    contenedor.innerHTML =
-      '<div class="gallery-empty">No hay archivos.</div>';
-
-    return;
-
-  }
-
-
-  archivos.forEach(
-    function(file){
-
-      const item =
-        document.createElement(
-          'div'
-        );
-
-
-      item.className =
-        'pdf-card';
-
-
-      item.innerHTML = `
-
-        <div class="pdf-icon">
-          PDF
-        </div>
-
-        <div>
-
-          <div class="pdf-name">
-            ${escapeHtml(file.nombre)}
-          </div>
-
-          <div class="pdf-size">
-            ${escapeHtml(file.sizeTexto)}
-          </div>
-
-        </div>
-
-        <div class="pdf-actions">
-
-          <button
-            class="btn btn-primary btn-small"
-            onclick="window.open('${escapeAttr(file.url)}','_blank')"
-          >
-            👁 Ver
-          </button>
-
-          <button
-            class="btn btn-secondary btn-small"
-            onclick="window.open('${escapeAttr(file.downloadUrl)}','_blank')"
-          >
-            ⬇ Descargar
-          </button>
-
-          <button
-            class="btn btn-danger btn-small"
-            onclick="eliminarArchivoGestor('${escapeAttr(file.id)}','${tipo}')"
-          >
-            Eliminar
-          </button>
-
-        </div>
-
-      `;
-
-
-      contenedor.appendChild(
-        item
-      );
-
-    }
-  );
-
-}
-
-
-// ============================================================
-// ELIMINAR ARCHIVO DESDE GESTOR
-// ============================================================
-
-async function eliminarArchivoGestor(
-  fileId,
-  tipo
-){
-
-  if(
-    !confirm(
-      '¿Deseas eliminar este archivo?'
-    )
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await apiPost({
-
-      accion:
-        'eliminarArchivo',
-
-      token:
-        sessionToken,
-
-      folderId:
-        contenidoActual.folderId,
-
-      fileId:
-        fileId
-
-    });
-
-
-    mostrarToast(
-      tipo +
-      ' eliminado correctamente.',
-      'success'
-    );
-
-
-    await verContenido(
-      contenidoActual.folderId,
-      document
-        .getElementById(
-          'modalTitle'
-        )
-        .textContent
-    );
-
-
-    await buscarCargas();
-
-
-  }catch(error){
-
-    mostrarToast(
-      error.message,
-      'error'
-    );
-
-  }
-
-}
-
-
-// ============================================================
-// MOSTRAR TAB DE GALERÍA
-// ============================================================
-
-function mostrarGaleriaTab(
-  tipo,
-  boton
-){
-
-  document
-    .querySelectorAll(
-      '.gallery-tab'
-    )
-    .forEach(
-      b =>
-        b.classList.remove(
-          'active'
-        )
-    );
-
-
-  if(boton){
-
-    boton.classList.add(
-      'active'
-    );
-
-  }
-
-
-  document
-    .getElementById(
-      'galleryFotos'
-    )
-    .style.display =
-      tipo === 'fotos'
-        ? 'grid'
-        : 'none';
-
-
-  document
-    .getElementById(
-      'galleryActas'
-    )
-    .style.display =
-      tipo === 'actas'
-        ? 'grid'
-        : 'none';
-
-
-  document
-    .getElementById(
-      'galleryListas'
-    )
-    .style.display =
-      tipo === 'listas'
-        ? 'grid'
-        : 'none';
-
-}
-
-
-// ============================================================
-// EDITAR NOMBRE
-// ============================================================
-
-async function editarNombre(
-  folderId,
-  nombreActual
-){
-
-  const nuevo =
-    prompt(
-      'Nuevo nombre de la carga:',
-      nombreActual
-    );
-
-
-  if(
-    nuevo === null
-  ){
-
-    return;
-
-  }
-
-
-  const nombre =
-    nuevo.trim();
-
-
-  if(!nombre){
-
-    mostrarToast(
-      'El nombre no puede estar vacío.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    await apiPost({
-
-      accion:
-        'editarCarga',
-
-      token:
-        sessionToken,
-
-      carpetaId:
-        folderId,
-
-      nuevoNombre:
-        nombre
-
-    });
-
-
-    mostrarToast(
-      'Carga renombrada correctamente.',
-      'success'
-    );
-
-
-    buscarCargas();
-
-
-  }catch(error){
-
-    mostrarToast(
-      error.message,
-      'error'
-    );
-
-  }
-
-}
-
-
-// ============================================================
-// SELECCIONAR TODOS
-// ============================================================
-
-function seleccionarTodos(){
-
-  toggleTodos(
-    true
-  );
-
-}
-
-
-// ============================================================
-// DESELECCIONAR TODOS
-// ============================================================
-
-function deseleccionarTodos(){
-
-  toggleTodos(
-    false
-  );
-
-}
-
-
-// ============================================================
-// TOGGLE TODOS
-// ============================================================
-
-function toggleTodos(
-  estado
-){
-
-  document
-    .querySelectorAll(
-      '.folder-check'
-    )
-    .forEach(
-      checkbox =>
-        checkbox.checked =
-          estado
-    );
-
-
-  document
-    .getElementById(
-      'selectAll'
-    )
-    .checked =
-      estado;
-
-}
-
-
-// ============================================================
-// DESCARGAR SELECCIONADAS
-// ============================================================
-
-function descargarSeleccionadas(){
-
-  const seleccionadas =
-    Array.from(
-      document
-        .querySelectorAll(
-          '.folder-check:checked'
-        )
-    );
-
-
-  if(
-    seleccionadas.length === 0
-  ){
-
-    mostrarToast(
-      'Selecciona al menos una carpeta.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  const ids =
-    seleccionadas.map(
-      checkbox =>
-        checkbox.dataset.folderId
-    );
-
-
-  const cargas =
-    cargasActuales.filter(
-      carga =>
-        ids.includes(
-          carga.folderId
-        )
-    );
-
-
-  mostrarListaDescargas(
-    cargas
-  );
-
-}
-
-
-// ============================================================
-// DESCARGA INDIVIDUAL
-// ============================================================
-
-function abrirDescargaIndividual(
-  folderId,
-  titulo
-){
-
-  const carga = {
-
-    folderId:
-      folderId,
-
-    titulo:
-      titulo
-
-  };
-
-
-  mostrarListaDescargas(
-    [carga]
-  );
-
-}
-
-
-// ============================================================
-// MOSTRAR LISTA DE DESCARGAS
-// ============================================================
-
-function mostrarListaDescargas(
-  cargas
-){
-
-  const contenedor =
-    document
-      .getElementById(
-        'downloadList'
-      );
-
-
-  contenedor.innerHTML =
-    '';
-
-
-  cargas.forEach(
-    function(carga){
-
-      const row =
-        document.createElement(
-          'div'
-        );
-
-
-      row.className =
-        'download-row';
-
-
-      const url =
-        'https://drive.google.com/drive/folders/' +
-        encodeURIComponent(
-          carga.folderId
-        );
-
-
-      row.innerHTML = `
-
-        <div>
-
-          <strong>
-            ${escapeHtml(carga.titulo)}
-          </strong>
-
-          <span>
-            Abrir carpeta en Google Drive
-          </span>
-
-        </div>
-
-        <button
-          class="btn btn-primary btn-small"
-          onclick="window.open('${escapeAttr(url)}','_blank')"
-        >
-          ⬇ Abrir / Descargar
-        </button>
-
-      `;
-
-
-      contenedor.appendChild(
-        row
-      );
-
-    }
-  );
-
-
-  abrirModal(
-    'downloadModal'
-  );
-
-}
-
-
-// ============================================================
-// MODAL
-// ============================================================
-
-function abrirModal(
-  id
-){
-
-  document
-    .getElementById(
-      id
-    )
-    .classList.add(
-      'show'
-    );
-
-}
-
-
-function cerrarModal(
-  id
-){
-
-  document
-    .getElementById(
-      id
-    )
-    .classList.remove(
-      'show'
-    );
-
-}
-
-
-// ============================================================
-// TOAST
-// ============================================================
-
-function mostrarToast(
-  mensaje,
-  tipo
-){
-
-  const toast =
-    document
-      .getElementById(
-        'toast'
-      );
-
-
-  toast.textContent =
-    mensaje;
-
-
-  toast.className =
-    'toast show ' +
-    (
-      tipo ||
-      ''
-    );
-
-
-  clearTimeout(
-    window.toastTimer
-  );
-
-
-  window.toastTimer =
-    setTimeout(
-      function(){
-
-        toast.classList.remove(
-          'show'
-        );
-
-      },
-      4000
-    );
-
-}
-
-
-// ============================================================
-// UTILIDADES
-// ============================================================
-
-function sleep(
-  ms
-){
-
-  return new Promise(
-    resolve =>
-      setTimeout(
-        resolve,
-        ms
-      )
-  );
-
-}
-
-
-function formatBytes(
-  bytes
-){
-
-  bytes =
-    Number(
-      bytes || 0
-    );
-
-
-  if(
-    bytes === 0
-  ){
-
-    return '0 B';
-
-  }
-
-
-  const units =
-    [
-      'B',
-      'KB',
-      'MB',
-      'GB',
-      'TB'
-    ];
-
-
-  const i =
-    Math.floor(
-      Math.log(bytes) /
-      Math.log(1024)
-    );
-
-
-  return (
-    bytes /
-    Math.pow(
-      1024,
-      i
-    )
-  )
-    .toFixed(
-      i === 0 ? 0 : 2
-    ) +
-    ' ' +
-    units[i];
-
-}
-
-
-function escapeHtml(
-  texto
-){
-
-  return String(
-    texto || ''
-  )
-    .replace(
-      /&/g,
-      '&amp;'
-    )
-    .replace(
-      /</g,
-      '&lt;'
-    )
-    .replace(
-      />/g,
-      '&gt;'
-    )
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-    .replace(
-      /'/g,
-      '&#039;'
-    );
-
-}
-
-
-function escapeAttr(
-  texto
-){
-
-  return escapeHtml(
+function escapeHTML(
     texto
-  );
+){
 
+    return String(
+        texto ?? ''
+    )
+    .replace(
+        /&/g,
+        '&amp;'
+    )
+    .replace(
+        /</g,
+        '&lt;'
+    )
+    .replace(
+        />/g,
+        '&gt;'
+    )
+    .replace(
+        /"/g,
+        '&quot;'
+    )
+    .replace(
+        /'/g,
+        '&#039;'
+    );
 }
 
+
+// ============================================================
+// INICIO
+// ============================================================
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function(){
+
+        actualizarContadores();
+
+        mostrarModulo(
+            'carga'
+        );
+    }
+);
 
 </script>
 
 </body>
 
 </html>
-```
