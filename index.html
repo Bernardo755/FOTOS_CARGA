@@ -1,0 +1,4025 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,
+             initial-scale=1.0,
+             maximum-scale=1.0,
+             user-scalable=no">
+
+  <meta
+    name="robots"
+    content="noindex,nofollow">
+
+  <title>Gestor de Fotografías</title>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+
+      --background: #f4f7fb;
+
+      --surface: #ffffff;
+
+      --text: #172033;
+
+      --muted: #667085;
+
+      --border: #e4e7ec;
+
+      --success: #16a34a;
+
+      --danger: #dc2626;
+
+      --warning: #d97706;
+
+      --radius: 16px;
+
+      --shadow:
+        0 10px 30px
+        rgba(15, 23, 42, .08);
+    }
+
+
+    html,
+    body {
+
+      margin: 0;
+
+      padding: 0;
+
+      min-height: 100%;
+
+    }
+
+
+    body {
+
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        var(--background);
+
+      color:
+        var(--text);
+
+    }
+
+
+    button,
+    input {
+
+      font-family: inherit;
+
+    }
+
+
+    button {
+
+      cursor: pointer;
+
+    }
+
+
+    .app {
+
+      width: 100%;
+
+      max-width: 1250px;
+
+      margin: auto;
+
+      padding: 18px;
+
+    }
+
+
+    /* ==================================================
+       HEADER
+       ================================================== */
+
+    .header {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1d4ed8,
+          #2563eb
+        );
+
+      color: white;
+
+      border-radius:
+        var(--radius);
+
+      padding: 22px;
+
+      box-shadow:
+        var(--shadow);
+
+      margin-bottom: 16px;
+
+    }
+
+
+    .header h1 {
+
+      margin: 0;
+
+      font-size: 25px;
+
+      font-weight: 800;
+
+    }
+
+
+    .header p {
+
+      margin: 6px 0 0;
+
+      opacity: .86;
+
+      font-size: 14px;
+
+    }
+
+
+    /* ==================================================
+       CONEXIÓN
+       ================================================== */
+
+    .connection-card {
+
+      background: white;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        var(--radius);
+
+      padding: 18px;
+
+      margin-bottom: 16px;
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .connection-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 14px;
+
+    }
+
+
+    .connection-title {
+
+      font-size: 16px;
+
+      font-weight: 800;
+
+    }
+
+
+    .connection-status {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      background: #f1f5f9;
+
+      color: #64748b;
+
+    }
+
+
+    .connection-status.connected {
+
+      background: #ecfdf3;
+
+      color: #15803d;
+
+    }
+
+
+    .connection-dot {
+
+      width: 8px;
+
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: currentColor;
+
+    }
+
+
+    .url-row {
+
+      display: flex;
+
+      gap: 9px;
+
+    }
+
+
+    .url-row input {
+
+      flex: 1;
+
+    }
+
+
+    .help-text {
+
+      color:
+        var(--muted);
+
+      font-size: 12px;
+
+      margin-top: 8px;
+
+      line-height: 1.5;
+
+    }
+
+
+    /* ==================================================
+       TABS
+       ================================================== */
+
+    .tabs {
+
+      display: flex;
+
+      gap: 8px;
+
+      margin-bottom: 16px;
+
+      background: white;
+
+      padding: 7px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        14px;
+
+      box-shadow:
+        var(--shadow);
+
+    }
+
+
+    .tab {
+
+      flex: 1;
+
+      border: 0;
+
+      background:
+        transparent;
+
+      color:
+        var(--muted);
+
+      padding: 12px;
+
+      border-radius:
+        10px;
+
+      font-weight: 700;
+
+      transition: .2s;
+
+    }
+
+
+    .tab:hover {
+
+      background:
+        #f1f5f9;
+
+    }
+
+
+    .tab.active {
+
+      color: white;
+
+      background:
+        var(--primary);
+
+    }
+
+
+    /* ==================================================
+       CARDS
+       ================================================== */
+
+    .card {
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        var(--radius);
+
+      padding: 20px;
+
+      box-shadow:
+        var(--shadow);
+
+      margin-bottom: 16px;
+
+    }
+
+
+    .card-title {
+
+      margin: 0 0 6px;
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+    }
+
+
+    .card-subtitle {
+
+      color:
+        var(--muted);
+
+      font-size: 13px;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    /* ==================================================
+       FORMULARIOS
+       ================================================== */
+
+    .form-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 14px;
+
+    }
+
+
+    .field {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 6px;
+
+    }
+
+
+    label {
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color:
+        #344054;
+
+    }
+
+
+    input[type="text"],
+    input[type="password"],
+    input[type="date"],
+    input[type="url"] {
+
+      width: 100%;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        11px;
+
+      padding:
+        12px 13px;
+
+      font-size: 15px;
+
+      outline: none;
+
+      transition: .2s;
+
+      background: white;
+
+    }
+
+
+    input:focus {
+
+      border-color:
+        var(--primary);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(37,99,235,.10);
+
+    }
+
+
+    /* ==================================================
+       DROPZONE
+       ================================================== */
+
+    .dropzone {
+
+      border:
+        2px dashed #b8c2d1;
+
+      border-radius:
+        15px;
+
+      padding: 28px 18px;
+
+      text-align: center;
+
+      background:
+        #f8fafc;
+
+      transition: .2s;
+
+    }
+
+
+    .dropzone.drag {
+
+      border-color:
+        var(--primary);
+
+      background:
+        #eff6ff;
+
+    }
+
+
+    .dropzone-icon {
+
+      font-size: 42px;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .dropzone strong {
+
+      display: block;
+
+      font-size: 16px;
+
+    }
+
+
+    .dropzone span {
+
+      display: block;
+
+      margin-top: 5px;
+
+      color:
+        var(--muted);
+
+      font-size: 13px;
+
+    }
+
+
+    .file-button {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      margin-top: 15px;
+
+      padding:
+        11px 18px;
+
+      background:
+        var(--primary);
+
+      color: white;
+
+      border-radius:
+        10px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+    }
+
+
+    #photoInput {
+
+      display: none;
+
+    }
+
+
+    /* ==================================================
+       FOTOS
+       ================================================== */
+
+    .photo-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .photo-count {
+
+      font-size: 13px;
+
+      color:
+        var(--muted);
+
+    }
+
+
+    .photo-list {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fill, minmax(150px, 1fr));
+
+      gap: 12px;
+
+    }
+
+
+    .photo-card {
+
+      position: relative;
+
+      background: white;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        13px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 4px 12px
+        rgba(15,23,42,.06);
+
+    }
+
+
+    .photo-image {
+
+      width: 100%;
+
+      height: 145px;
+
+      object-fit: cover;
+
+      display: block;
+
+      background:
+        #eef2f7;
+
+    }
+
+
+    .photo-info {
+
+      padding: 9px;
+
+    }
+
+
+    .photo-number {
+
+      font-weight: 800;
+
+      font-size: 12px;
+
+      color:
+        var(--primary);
+
+      margin-bottom: 3px;
+
+    }
+
+
+    .photo-name {
+
+      font-size: 12px;
+
+      color:
+        var(--muted);
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      white-space: nowrap;
+
+    }
+
+
+    .photo-actions {
+
+      display: flex;
+
+      gap: 5px;
+
+      padding: 8px;
+
+      border-top:
+        1px solid var(--border);
+
+    }
+
+
+    .small-btn {
+
+      flex: 1;
+
+      border: 0;
+
+      padding: 8px;
+
+      border-radius: 8px;
+
+      background:
+        #f1f5f9;
+
+      color:
+        #344054;
+
+      font-weight: 700;
+
+      font-size: 12px;
+
+    }
+
+
+    .small-btn.delete {
+
+      color:
+        var(--danger);
+
+      background:
+        #fef2f2;
+
+    }
+
+
+    /* ==================================================
+       BOTONES
+       ================================================== */
+
+    .actions {
+
+      display: flex;
+
+      gap: 10px;
+
+      flex-wrap: wrap;
+
+      margin-top: 18px;
+
+    }
+
+
+    .btn {
+
+      border: 0;
+
+      border-radius:
+        11px;
+
+      padding:
+        12px 18px;
+
+      font-weight: 800;
+
+      font-size: 14px;
+
+    }
+
+
+    .btn-primary {
+
+      background:
+        var(--primary);
+
+      color: white;
+
+    }
+
+
+    .btn-primary:hover {
+
+      background:
+        var(--primary-dark);
+
+    }
+
+
+    .btn-secondary {
+
+      background:
+        #eef2f7;
+
+      color:
+        #344054;
+
+    }
+
+
+    .btn-success {
+
+      background:
+        var(--success);
+
+      color: white;
+
+    }
+
+
+    .btn-danger {
+
+      background:
+        #fef2f2;
+
+      color:
+        var(--danger);
+
+    }
+
+
+    .btn:disabled {
+
+      opacity: .5;
+
+      cursor: not-allowed;
+
+    }
+
+
+    /* ==================================================
+       GESTOR
+       ================================================== */
+
+    .manager-panel {
+
+      display: none;
+
+    }
+
+
+    .filters {
+
+      display: grid;
+
+      grid-template-columns:
+        1.5fr 1fr 1.3fr auto;
+
+      gap: 10px;
+
+      align-items: end;
+
+    }
+
+
+    .results {
+
+      display: grid;
+
+      gap: 10px;
+
+      margin-top: 16px;
+
+    }
+
+
+    .result-item {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr auto;
+
+      gap: 10px;
+
+      align-items: center;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        12px;
+
+      padding: 13px;
+
+      background:
+        white;
+
+    }
+
+
+    .result-name {
+
+      font-weight: 800;
+
+      margin-bottom: 5px;
+
+    }
+
+
+    .result-meta {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      color:
+        var(--muted);
+
+      font-size: 12px;
+
+    }
+
+
+    .badge {
+
+      padding:
+        4px 8px;
+
+      border-radius:
+        999px;
+
+      background:
+        #f1f5f9;
+
+    }
+
+
+    /* ==================================================
+       LOGIN
+       ================================================== */
+
+    .login-box {
+
+      max-width: 430px;
+
+      margin:
+        40px auto;
+
+    }
+
+
+    .lock-icon {
+
+      width: 60px;
+
+      height: 60px;
+
+      border-radius: 16px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      margin-bottom: 15px;
+
+      background:
+        #eff6ff;
+
+      font-size: 28px;
+
+    }
+
+
+    /* ==================================================
+       MENSAJES
+       ================================================== */
+
+    .message {
+
+      padding:
+        12px 14px;
+
+      border-radius:
+        10px;
+
+      font-size: 13px;
+
+      margin-top: 12px;
+
+      display: none;
+
+    }
+
+
+    .message.success {
+
+      display: block;
+
+      background:
+        #ecfdf3;
+
+      color:
+        #166534;
+
+    }
+
+
+    .message.error {
+
+      display: block;
+
+      background:
+        #fef2f2;
+
+      color:
+        #991b1b;
+
+    }
+
+
+    .message.info {
+
+      display: block;
+
+      background:
+        #eff6ff;
+
+      color:
+        #1e40af;
+
+    }
+
+
+    /* ==================================================
+       MODAL
+       ================================================== */
+
+    .modal {
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(15,23,42,.55);
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 15px;
+
+      z-index: 1000;
+
+    }
+
+
+    .modal-box {
+
+      width: 100%;
+
+      max-width: 650px;
+
+      max-height: 90vh;
+
+      overflow: auto;
+
+      background: white;
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.25);
+
+    }
+
+
+    .modal-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 15px;
+
+    }
+
+
+    .modal-header h3 {
+
+      margin: 0;
+
+    }
+
+
+    .close {
+
+      border: 0;
+
+      background:
+        #f1f5f9;
+
+      width: 36px;
+
+      height: 36px;
+
+      border-radius: 50%;
+
+      font-size: 18px;
+
+    }
+
+
+    .gallery {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 8px;
+
+    }
+
+
+    .gallery img {
+
+      width: 100%;
+
+      aspect-ratio: 1;
+
+      object-fit: cover;
+
+      border-radius: 8px;
+
+    }
+
+
+    /* ==================================================
+       LOADING
+       ================================================== */
+
+    .loading {
+
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(255,255,255,.72);
+
+      z-index: 2000;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+
+    .loading-box {
+
+      background: white;
+
+      padding: 22px;
+
+      border-radius: 15px;
+
+      box-shadow:
+        var(--shadow);
+
+      text-align: center;
+
+      font-weight: 800;
+
+    }
+
+
+    .spinner {
+
+      width: 35px;
+
+      height: 35px;
+
+      border:
+        4px solid #e5e7eb;
+
+      border-top-color:
+        var(--primary);
+
+      border-radius: 50%;
+
+      animation:
+        spin .8s linear infinite;
+
+      margin:
+        0 auto 12px;
+
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform: rotate(360deg);
+      }
+
+    }
+
+
+    /* ==================================================
+       RESPONSIVE
+       ================================================== */
+
+    @media(max-width: 800px) {
+
+      .form-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .filters {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .result-item {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .url-row {
+
+        flex-direction: column;
+
+      }
+
+    }
+
+
+    @media(max-width: 500px) {
+
+      .app {
+
+        padding: 10px;
+
+      }
+
+
+      .header {
+
+        padding: 18px;
+
+      }
+
+
+      .header h1 {
+
+        font-size: 21px;
+
+      }
+
+
+      .photo-list {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+
+      .photo-image {
+
+        height: 125px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+  <!-- ==================================================
+       ENCABEZADO
+       ================================================== -->
+
+  <header class="header">
+
+    <h1>
+      📷 Gestor de Fotografías
+    </h1>
+
+    <p>
+      Carga, organiza y consulta fotografías.
+    </p>
+
+  </header>
+
+
+  <!-- ==================================================
+       CONEXIÓN AL SCRIPT
+       ================================================== -->
+
+  <section class="connection-card">
+
+
+    <div class="connection-header">
+
+      <div class="connection-title">
+        🔗 Conexión con el gestor
+      </div>
+
+
+      <div
+        id="connectionStatus"
+        class="connection-status">
+
+        <span class="connection-dot"></span>
+
+        Sin conexión
+
+      </div>
+
+    </div>
+
+
+    <div class="url-row">
+
+
+      <input
+        type="url"
+        id="scriptUrl"
+        placeholder="https://script.google.com/macros/s/XXXXXXXX/exec"
+        autocomplete="off">
+
+
+      <button
+        class="btn btn-primary"
+        id="connectButton"
+        onclick="conectarScript()">
+
+        Conectar
+
+      </button>
+
+
+    </div>
+
+
+    <div class="help-text">
+
+      Introduce aquí la URL de implementación como
+      <strong>Aplicación web</strong> de tu Google Apps Script.
+
+      La dirección se guardará únicamente en este navegador
+      para que no tengas que escribirla nuevamente.
+
+    </div>
+
+
+    <div
+      id="connectionMessage"
+      class="message">
+    </div>
+
+  </section>
+
+
+  <!-- ==================================================
+       TABS
+       ================================================== -->
+
+  <div class="tabs">
+
+
+    <button
+      class="tab active"
+      id="tabCarga"
+      onclick="mostrarCarga()">
+
+      📤 Cargar fotografías
+
+    </button>
+
+
+    <button
+      class="tab"
+      id="tabGestor"
+      onclick="mostrarGestor()">
+
+      🔐 Gestor
+
+    </button>
+
+
+  </div>
+
+
+  <!-- ==================================================
+       CARGA
+       ================================================== -->
+
+  <section id="panelCarga">
+
+
+    <div class="card">
+
+      <h2 class="card-title">
+        Nueva carga
+      </h2>
+
+
+      <div class="card-subtitle">
+
+        Selecciona una o varias fotografías.
+        Puedes cambiar el orden antes de guardarlas.
+
+      </div>
+
+
+      <div class="form-grid">
+
+
+        <div class="field">
+
+          <label>
+            Título principal
+          </label>
+
+          <input
+            type="text"
+            id="titulo"
+            maxlength="120"
+            placeholder="Ej. ENTREGA TARJETAS SEPTIEMBRE">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Quién realiza la carga
+          </label>
+
+          <input
+            type="text"
+            id="cargador"
+            maxlength="150"
+            placeholder="Nombre de la persona">
+
+        </div>
+
+
+      </div>
+
+
+      <div style="height:18px"></div>
+
+
+      <div
+        class="dropzone"
+        id="dropzone">
+
+
+        <div class="dropzone-icon">
+          📸
+        </div>
+
+
+        <strong>
+          Selecciona tus fotografías
+        </strong>
+
+
+        <span>
+          También puedes seleccionar varias
+          fotografías desde el teléfono.
+        </span>
+
+
+        <label
+          class="file-button"
+          for="photoInput">
+
+          Seleccionar fotografías
+
+        </label>
+
+
+        <input
+          id="photoInput"
+          type="file"
+          accept="image/*"
+          multiple>
+
+
+      </div>
+
+
+      <div
+        id="uploadMessage"
+        class="message">
+      </div>
+
+
+    </div>
+
+
+    <!-- ==================================================
+         LISTA DE FOTOS
+         ================================================== -->
+
+    <div
+      class="card"
+      id="photosCard"
+      style="display:none;">
+
+
+      <div class="photo-header">
+
+
+        <div>
+
+          <h2 class="card-title">
+            Fotografías seleccionadas
+          </h2>
+
+
+          <div
+            class="photo-count"
+            id="photoCount">
+          </div>
+
+        </div>
+
+
+        <button
+          class="btn btn-secondary"
+          onclick="limpiarFotos()">
+
+          Limpiar
+
+        </button>
+
+
+      </div>
+
+
+      <div
+        id="photoList"
+        class="photo-list">
+      </div>
+
+
+      <div class="actions">
+
+
+        <button
+          class="btn btn-success"
+          id="saveButton"
+          onclick="guardarCarga()">
+
+          💾 Guardar en Drive
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ==================================================
+       GESTOR
+       ================================================== -->
+
+  <section
+    id="panelGestor"
+    style="display:none;">
+
+
+    <!-- LOGIN -->
+
+    <div
+      class="card login-box"
+      id="loginPanel">
+
+
+      <div class="lock-icon">
+        🔐
+      </div>
+
+
+      <h2 class="card-title">
+        Acceso al gestor
+      </h2>
+
+
+      <div class="card-subtitle">
+
+        Esta sección está protegida.
+        La primera pestaña continúa disponible
+        sin contraseña.
+
+      </div>
+
+
+      <div class="field">
+
+
+        <label>
+          Contraseña del gestor
+        </label>
+
+
+        <input
+          type="password"
+          id="managerPassword"
+          placeholder="Introduce la contraseña"
+          onkeydown="
+            if(event.key === 'Enter'){
+              iniciarSesion();
+            }
+          ">
+
+
+      </div>
+
+
+      <div class="actions">
+
+
+        <button
+          class="btn btn-primary"
+          onclick="iniciarSesion()">
+
+          Entrar al gestor
+
+        </button>
+
+
+      </div>
+
+
+      <div
+        id="loginMessage"
+        class="message">
+      </div>
+
+
+    </div>
+
+
+    <!-- PANEL AUTENTICADO -->
+
+    <div
+      class="manager-panel"
+      id="managerPanel">
+
+
+      <div class="card">
+
+
+        <div class="photo-header">
+
+
+          <div>
+
+            <h2 class="card-title">
+              Gestor de cargas
+            </h2>
+
+
+            <div class="card-subtitle">
+
+              Consulta las fotografías cargadas.
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="btn btn-secondary"
+            onclick="cerrarSesion()">
+
+            Cerrar sesión
+
+          </button>
+
+
+        </div>
+
+
+        <div class="filters">
+
+
+          <div class="field">
+
+            <label>
+              Carpeta / título
+            </label>
+
+            <input
+              type="text"
+              id="filterName"
+              placeholder="Buscar...">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Fecha
+            </label>
+
+            <input
+              type="date"
+              id="filterDate">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Persona que cargó
+            </label>
+
+            <input
+              type="text"
+              id="filterUser"
+              placeholder="Buscar persona...">
+
+          </div>
+
+
+          <button
+            class="btn btn-primary"
+            onclick="consultar()">
+
+            🔎 Buscar
+
+          </button>
+
+
+        </div>
+
+
+        <div class="actions">
+
+
+          <button
+            class="btn btn-secondary"
+            onclick="limpiarFiltros()">
+
+            Limpiar filtros
+
+          </button>
+
+
+        </div>
+
+
+        <div
+          id="managerMessage"
+          class="message">
+        </div>
+
+
+        <div
+          id="results"
+          class="results">
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+</div>
+
+
+<!-- ==================================================
+     GALERÍA
+     ================================================== -->
+
+<div
+  class="modal"
+  id="galleryModal">
+
+
+  <div class="modal-box">
+
+
+    <div class="modal-header">
+
+
+      <h3 id="galleryTitle">
+        Fotografías
+      </h3>
+
+
+      <button
+        class="close"
+        onclick="cerrarGaleria()">
+
+        ×
+
+      </button>
+
+
+    </div>
+
+
+    <div
+      id="gallery"
+      class="gallery">
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+<!-- ==================================================
+     LOADING
+     ================================================== -->
+
+<div
+  class="loading"
+  id="loading">
+
+
+  <div class="loading-box">
+
+
+    <div class="spinner"></div>
+
+
+    <div id="loadingText">
+      Procesando...
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   VARIABLES
+   ===================================================== */
+
+let scriptUrl =
+  localStorage.getItem(
+    'https://script.google.com/macros/s/AKfycbyx0pVYNErBEX4TApNoLdbGsChPnelU02Ukfw6rPJCufs2ZZkHi_B7QqXjVZ90xjrZF/exec'
+  ) || '';
+
+
+let fotos = [];
+
+let managerToken = null;
+
+
+/* =====================================================
+   INICIALIZACIÓN
+   ===================================================== */
+
+document.addEventListener(
+  'DOMContentLoaded',
+  function() {
+
+    document
+      .getElementById('scriptUrl')
+      .value = scriptUrl;
+
+
+    if (scriptUrl) {
+
+      mostrarEstadoConexion(
+        false,
+        'URL configurada'
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   CONEXIÓN
+   ===================================================== */
+
+async function conectarScript() {
+
+  const input =
+    document
+      .getElementById('scriptUrl');
+
+
+  const message =
+    document
+      .getElementById(
+        'connectionMessage'
+      );
+
+
+  const url =
+    input.value.trim();
+
+
+  ocultarMensaje(message);
+
+
+  if (!url) {
+
+    mostrarMensaje(
+      message,
+      'Introduce la URL de tu Web App de Apps Script.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  if (
+    !url.startsWith(
+      'https://script.google.com/'
+    )
+  ) {
+
+    mostrarMensaje(
+      message,
+      'La URL debe corresponder a una Web App de Google Apps Script.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  scriptUrl = url;
+
+
+  localStorage.setItem(
+    'GESTOR_SCRIPT_URL',
+    scriptUrl
+  );
+
+
+  mostrarLoading(
+    true,
+    'Comprobando conexión...'
+  );
+
+
+  try {
+
+    /*
+     * Esta llamada requiere que Code.gs tenga
+     * implementado el endpoint correspondiente.
+     */
+
+    const respuesta =
+      await apiGet({
+        accion: 'ping'
+      });
+
+
+    mostrarLoading(false);
+
+
+    if (
+      respuesta &&
+      respuesta.ok
+    ) {
+
+      mostrarEstadoConexion(
+        true,
+        'Conectado'
+      );
+
+
+      mostrarMensaje(
+        message,
+        'Conexión establecida correctamente.',
+        'success'
+      );
+
+    } else {
+
+      mostrarEstadoConexion(
+        false,
+        'Sin conexión'
+      );
+
+
+      mostrarMensaje(
+        message,
+        respuesta.mensaje ||
+        'El script respondió, pero no confirmó la conexión.',
+        'error'
+      );
+
+    }
+
+
+  } catch(error) {
+
+    mostrarLoading(false);
+
+
+    mostrarEstadoConexion(
+      false,
+      'Error'
+    );
+
+
+    mostrarMensaje(
+      message,
+      'No fue posible conectar con el Web App. ' +
+      'Verifica la URL y la implementación del Apps Script.',
+      'error'
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   API GET
+   ===================================================== */
+
+async function apiGet(parametros) {
+
+  if (!scriptUrl) {
+
+    throw new Error(
+      'No hay una URL de Apps Script configurada.'
+    );
+
+  }
+
+
+  const query =
+    new URLSearchParams(
+      parametros
+    );
+
+
+  const url =
+    scriptUrl +
+    '?' +
+    query.toString();
+
+
+  const respuesta =
+    await fetch(
+      url,
+      {
+        method: 'GET',
+        redirect: 'follow'
+      }
+    );
+
+
+  if (!respuesta.ok) {
+
+    throw new Error(
+      'HTTP ' +
+      respuesta.status
+    );
+
+  }
+
+
+  return await respuesta.json();
+
+}
+
+
+/* =====================================================
+   API POST
+   ===================================================== */
+
+async function apiPost(datos) {
+
+  if (!scriptUrl) {
+
+    throw new Error(
+      'No hay una URL de Apps Script configurada.'
+    );
+
+  }
+
+
+  const respuesta =
+    await fetch(
+      scriptUrl,
+      {
+        method: 'POST',
+
+        headers: {
+          'Content-Type':
+            'application/json'
+        },
+
+        body:
+          JSON.stringify(datos),
+
+        redirect:
+          'follow'
+      }
+    );
+
+
+  if (!respuesta.ok) {
+
+    throw new Error(
+      'HTTP ' +
+      respuesta.status
+    );
+
+  }
+
+
+  return await respuesta.json();
+
+}
+
+
+/* =====================================================
+   ESTADO DE CONEXIÓN
+   ===================================================== */
+
+function mostrarEstadoConexion(
+  conectado,
+  texto
+) {
+
+  const status =
+    document
+      .getElementById(
+        'connectionStatus'
+      );
+
+
+  status.className =
+    'connection-status' +
+    (
+      conectado
+        ? ' connected'
+        : ''
+    );
+
+
+  status.innerHTML =
+    '<span class="connection-dot"></span>' +
+    escapeHtml(texto);
+
+}
+
+
+/* =====================================================
+   TABS
+   ===================================================== */
+
+function mostrarCarga() {
+
+  document
+    .getElementById('panelCarga')
+    .style.display =
+      'block';
+
+
+  document
+    .getElementById('panelGestor')
+    .style.display =
+      'none';
+
+
+  document
+    .getElementById('tabCarga')
+    .classList.add('active');
+
+
+  document
+    .getElementById('tabGestor')
+    .classList.remove('active');
+
+}
+
+
+function mostrarGestor() {
+
+  document
+    .getElementById('panelCarga')
+    .style.display =
+      'none';
+
+
+  document
+    .getElementById('panelGestor')
+    .style.display =
+      'block';
+
+
+  document
+    .getElementById('tabCarga')
+    .classList.remove('active');
+
+
+  document
+    .getElementById('tabGestor')
+    .classList.add('active');
+
+
+  if (managerToken) {
+
+    mostrarPanelGestor();
+
+  } else {
+
+    document
+      .getElementById('loginPanel')
+      .style.display =
+        'block';
+
+
+    document
+      .getElementById('managerPanel')
+      .style.display =
+        'none';
+
+  }
+
+}
+
+
+/* =====================================================
+   SELECCIÓN DE FOTOS
+   ===================================================== */
+
+document
+  .getElementById('photoInput')
+  .addEventListener(
+    'change',
+    function(event) {
+
+      agregarArchivos(
+        Array.from(
+          event.target.files
+        )
+      );
+
+
+      event.target.value = '';
+
+    }
+  );
+
+
+const dropzone =
+  document.getElementById(
+    'dropzone'
+  );
+
+
+dropzone.addEventListener(
+  'dragover',
+  function(event) {
+
+    event.preventDefault();
+
+    dropzone.classList.add(
+      'drag'
+    );
+
+  }
+);
+
+
+dropzone.addEventListener(
+  'dragleave',
+  function() {
+
+    dropzone.classList.remove(
+      'drag'
+    );
+
+  }
+);
+
+
+dropzone.addEventListener(
+  'drop',
+  function(event) {
+
+    event.preventDefault();
+
+    dropzone.classList.remove(
+      'drag'
+    );
+
+
+    agregarArchivos(
+      Array.from(
+        event.dataTransfer.files
+      )
+    );
+
+  }
+);
+
+
+/* =====================================================
+   AGREGAR ARCHIVOS
+   ===================================================== */
+
+function agregarArchivos(
+  archivos
+) {
+
+  const imagenes =
+    archivos.filter(
+      function(file) {
+
+        return (
+          file.type &&
+          file.type.startsWith(
+            'image/'
+          )
+        );
+
+      }
+    );
+
+
+  imagenes.forEach(
+    function(file) {
+
+      fotos.push({
+
+        id:
+          (
+            crypto.randomUUID
+              ? crypto.randomUUID()
+              : Date.now() +
+                '_' +
+                Math.random()
+          ),
+
+        file:
+          file,
+
+        nombre:
+          file.name,
+
+        url:
+          URL.createObjectURL(
+            file
+          )
+
+      });
+
+    }
+  );
+
+
+  renderFotos();
+
+}
+
+
+/* =====================================================
+   RENDER FOTOS
+   ===================================================== */
+
+function renderFotos() {
+
+  const card =
+    document.getElementById(
+      'photosCard'
+    );
+
+
+  const list =
+    document.getElementById(
+      'photoList'
+    );
+
+
+  const count =
+    document.getElementById(
+      'photoCount'
+    );
+
+
+  if (!fotos.length) {
+
+    card.style.display =
+      'none';
+
+    list.innerHTML =
+      '';
+
+    return;
+
+  }
+
+
+  card.style.display =
+    'block';
+
+
+  count.textContent =
+    fotos.length +
+    (
+      fotos.length === 1
+        ? ' fotografía'
+        : ' fotografías'
+    );
+
+
+  list.innerHTML =
+    '';
+
+
+  fotos.forEach(
+    function(foto, index) {
+
+
+      const item =
+        document.createElement(
+          'div'
+        );
+
+
+      item.className =
+        'photo-card';
+
+
+      const img =
+        document.createElement(
+          'img'
+        );
+
+
+      img.className =
+        'photo-image';
+
+
+      img.src =
+        foto.url;
+
+
+      const info =
+        document.createElement(
+          'div'
+        );
+
+
+      info.className =
+        'photo-info';
+
+
+      const number =
+        document.createElement(
+          'div'
+        );
+
+
+      number.className =
+        'photo-number';
+
+
+      number.textContent =
+        'ORDEN ' +
+        String(index + 1)
+          .padStart(
+            3,
+            '0'
+          );
+
+
+      const name =
+        document.createElement(
+          'div'
+        );
+
+
+      name.className =
+        'photo-name';
+
+
+      name.textContent =
+        foto.nombre;
+
+
+      info.appendChild(
+        number
+      );
+
+
+      info.appendChild(
+        name
+      );
+
+
+      const actions =
+        document.createElement(
+          'div'
+        );
+
+
+      actions.className =
+        'photo-actions';
+
+
+      const up =
+        document.createElement(
+          'button'
+        );
+
+
+      up.className =
+        'small-btn';
+
+
+      up.textContent =
+        '↑';
+
+
+      up.onclick =
+        function() {
+
+          moverFoto(
+            index,
+            -1
+          );
+
+        };
+
+
+      const down =
+        document.createElement(
+          'button'
+        );
+
+
+      down.className =
+        'small-btn';
+
+
+      down.textContent =
+        '↓';
+
+
+      down.onclick =
+        function() {
+
+          moverFoto(
+            index,
+            1
+          );
+
+        };
+
+
+      const del =
+        document.createElement(
+          'button'
+        );
+
+
+      del.className =
+        'small-btn delete';
+
+
+      del.textContent =
+        'Eliminar';
+
+
+      del.onclick =
+        function() {
+
+          eliminarFotoLista(
+            index
+          );
+
+        };
+
+
+      actions.appendChild(
+        up
+      );
+
+
+      actions.appendChild(
+        down
+      );
+
+
+      actions.appendChild(
+        del
+      );
+
+
+      item.appendChild(
+        img
+      );
+
+
+      item.appendChild(
+        info
+      );
+
+
+      item.appendChild(
+        actions
+      );
+
+
+      list.appendChild(
+        item
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   MOVER FOTO
+   ===================================================== */
+
+function moverFoto(
+  index,
+  direccion
+) {
+
+  const nuevo =
+    index + direccion;
+
+
+  if (
+    nuevo < 0 ||
+    nuevo >= fotos.length
+  ) {
+
+    return;
+
+  }
+
+
+  const temporal =
+    fotos[index];
+
+
+  fotos[index] =
+    fotos[nuevo];
+
+
+  fotos[nuevo] =
+    temporal;
+
+
+  renderFotos();
+
+}
+
+
+/* =====================================================
+   ELIMINAR FOTO
+   ===================================================== */
+
+function eliminarFotoLista(
+  index
+) {
+
+  if (
+    !confirm(
+      '¿Eliminar esta fotografía de la carga?'
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  URL.revokeObjectURL(
+    fotos[index].url
+  );
+
+
+  fotos.splice(
+    index,
+    1
+  );
+
+
+  renderFotos();
+
+}
+
+
+/* =====================================================
+   LIMPIAR FOTOS
+   ===================================================== */
+
+function limpiarFotos() {
+
+  if (!fotos.length) {
+
+    return;
+
+  }
+
+
+  if (
+    !confirm(
+      '¿Quieres quitar todas las fotografías seleccionadas?'
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  fotos.forEach(
+    function(foto) {
+
+      URL.revokeObjectURL(
+        foto.url
+      );
+
+    }
+  );
+
+
+  fotos = [];
+
+
+  renderFotos();
+
+}
+
+
+/* =====================================================
+   GUARDAR CARGA
+   ===================================================== */
+
+async function guardarCarga() {
+
+  const message =
+    document.getElementById(
+      'uploadMessage'
+    );
+
+
+  ocultarMensaje(
+    message
+  );
+
+
+  if (!scriptUrl) {
+
+    mostrarMensaje(
+      message,
+      'Primero debes conectar la aplicación con el Web App de Apps Script.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  const titulo =
+    document
+      .getElementById(
+        'titulo'
+      )
+      .value
+      .trim();
+
+
+  const cargador =
+    document
+      .getElementById(
+        'cargador'
+      )
+      .value
+      .trim();
+
+
+  if (!titulo) {
+
+    mostrarMensaje(
+      message,
+      'Debes indicar el título principal.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  if (!cargador) {
+
+    mostrarMensaje(
+      message,
+      'Debes indicar quién realiza la carga.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  if (!fotos.length) {
+
+    mostrarMensaje(
+      message,
+      'Debes seleccionar al menos una fotografía.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    mostrarLoading(
+      true,
+      'Preparando fotografías...'
+    );
+
+
+    const fotosBase64 = [];
+
+
+    for (
+      let i = 0;
+      i < fotos.length;
+      i++
+    ) {
+
+      mostrarLoading(
+        true,
+        'Preparando fotografía ' +
+        (i + 1) +
+        ' de ' +
+        fotos.length
+      );
+
+
+      const base64 =
+        await leerArchivoBase64(
+          fotos[i].file
+        );
+
+
+      fotosBase64.push({
+
+        nombre:
+          fotos[i].nombre,
+
+        mimeType:
+          fotos[i].file.type,
+
+        base64:
+          base64
+
+      });
+
+    }
+
+
+    mostrarLoading(
+      true,
+      'Enviando fotografías a Drive...'
+    );
+
+
+    const respuesta =
+      await apiPost({
+
+        accion:
+          'guardarCarga',
+
+        titulo:
+          titulo,
+
+        cargador:
+          cargador,
+
+        fotos:
+          fotosBase64
+
+      });
+
+
+    mostrarLoading(false);
+
+
+    if (
+      !respuesta ||
+      !respuesta.ok
+    ) {
+
+      throw new Error(
+        respuesta.mensaje ||
+        'El servidor no pudo completar la carga.'
+      );
+
+    }
+
+
+    mostrarMensaje(
+      message,
+
+      'Carga completada correctamente. ' +
+      'Se guardaron ' +
+      respuesta.cantidad +
+      ' fotografías.',
+
+      'success'
+    );
+
+
+    document
+      .getElementById(
+        'titulo'
+      )
+      .value =
+        '';
+
+
+    document
+      .getElementById(
+        'cargador'
+      )
+      .value =
+        '';
+
+
+    fotos.forEach(
+      function(foto) {
+
+        URL.revokeObjectURL(
+          foto.url
+        );
+
+      }
+    );
+
+
+    fotos = [];
+
+
+    renderFotos();
+
+
+  } catch(error) {
+
+    mostrarLoading(false);
+
+
+    mostrarMensaje(
+      message,
+
+      error.message ||
+      'No fue posible guardar las fotografías.',
+
+      'error'
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   BASE64
+   ===================================================== */
+
+function leerArchivoBase64(
+  file
+) {
+
+  return new Promise(
+    function(resolve, reject) {
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        function() {
+
+          const resultado =
+            reader.result;
+
+
+          const posicion =
+            resultado.indexOf(
+              'base64,'
+            );
+
+
+          if (
+            posicion === -1
+          ) {
+
+            reject(
+              new Error(
+                'No fue posible leer la fotografía.'
+              )
+            );
+
+            return;
+
+          }
+
+
+          resolve(
+            resultado.substring(
+              posicion + 7
+            )
+          );
+
+        };
+
+
+      reader.onerror =
+        function() {
+
+          reject(
+            new Error(
+              'Error leyendo la fotografía.'
+            )
+          );
+
+        };
+
+
+      reader.readAsDataURL(
+        file
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   LOGIN GESTOR
+   ===================================================== */
+
+async function iniciarSesion() {
+
+  const password =
+    document
+      .getElementById(
+        'managerPassword'
+      )
+      .value;
+
+
+  const message =
+    document
+      .getElementById(
+        'loginMessage'
+      );
+
+
+  ocultarMensaje(
+    message
+  );
+
+
+  if (!scriptUrl) {
+
+    mostrarMensaje(
+      message,
+      'Primero debes conectar la aplicación.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  if (!password) {
+
+    mostrarMensaje(
+      message,
+      'Introduce la contraseña.',
+      'error'
+    );
+
+    return;
+
+  }
+
+
+  mostrarLoading(
+    true,
+    'Validando acceso...'
+  );
+
+
+  try {
+
+    const respuesta =
+      await apiPost({
+
+        accion:
+          'login',
+
+        password:
+          password
+
+      });
+
+
+    mostrarLoading(false);
+
+
+    if (
+      !respuesta ||
+      !respuesta.ok
+    ) {
+
+      mostrarMensaje(
+        message,
+
+        respuesta.mensaje ||
+        'Contraseña incorrecta.',
+
+        'error'
+      );
+
+      return;
+
+    }
+
+
+    managerToken =
+      respuesta.token;
+
+
+    document
+      .getElementById(
+        'managerPassword'
+      )
+      .value =
+        '';
+
+
+    mostrarPanelGestor();
+
+
+    consultar();
+
+
+  } catch(error) {
+
+    mostrarLoading(false);
+
+
+    mostrarMensaje(
+      message,
+
+      error.message ||
+      'No fue posible iniciar sesión.',
+
+      'error'
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   MOSTRAR PANEL GESTOR
+   ===================================================== */
+
+function mostrarPanelGestor() {
+
+  document
+    .getElementById(
+      'loginPanel'
+    )
+    .style.display =
+      'none';
+
+
+  document
+    .getElementById(
+      'managerPanel'
+    )
+    .style.display =
+      'block';
+
+}
+
+
+/* =====================================================
+   CERRAR SESIÓN
+   ===================================================== */
+
+async function cerrarSesion() {
+
+  try {
+
+    await apiPost({
+
+      accion:
+        'logout',
+
+      token:
+        managerToken
+
+    });
+
+  } catch(error) {
+
+    console.warn(error);
+
+  }
+
+
+  managerToken =
+    null;
+
+
+  document
+    .getElementById(
+      'managerPanel'
+    )
+    .style.display =
+      'none';
+
+
+  document
+    .getElementById(
+      'loginPanel'
+    )
+    .style.display =
+      'block';
+
+
+  document
+    .getElementById(
+      'results'
+    )
+    .innerHTML =
+      '';
+
+
+  mostrarCarga();
+
+}
+
+
+/* =====================================================
+   CONSULTAR
+   ===================================================== */
+
+async function consultar() {
+
+  if (!managerToken) {
+
+    return;
+
+  }
+
+
+  const filtros = {
+
+    nombre:
+      document
+        .getElementById(
+          'filterName'
+        )
+        .value
+        .trim(),
+
+    fecha:
+      convertirFechaServidor(
+        document
+          .getElementById(
+            'filterDate'
+          )
+          .value
+      ),
+
+    cargador:
+      document
+        .getElementById(
+          'filterUser'
+        )
+        .value
+        .trim()
+
+  };
+
+
+  const message =
+    document
+      .getElementById(
+        'managerMessage'
+      );
+
+
+  ocultarMensaje(
+    message
+  );
+
+
+  mostrarLoading(
+    true,
+    'Consultando cargas...'
+  );
+
+
+  try {
+
+    const respuesta =
+      await apiPost({
+
+        accion:
+          'consultarCargas',
+
+        token:
+          managerToken,
+
+        filtros:
+          filtros
+
+      });
+
+
+    mostrarLoading(false);
+
+
+    if (
+      !respuesta ||
+      !respuesta.ok
+    ) {
+
+      throw new Error(
+        respuesta.mensaje ||
+        'No fue posible consultar.'
+      );
+
+    }
+
+
+    renderResultados(
+      respuesta.datos || []
+    );
+
+
+  } catch(error) {
+
+    mostrarLoading(false);
+
+
+    mostrarMensaje(
+      message,
+
+      error.message ||
+      'No fue posible consultar.',
+
+      'error'
+    );
+
+
+    if (
+      error.message &&
+      error.message
+        .toLowerCase()
+        .includes(
+          'sesión'
+        )
+    ) {
+
+      managerToken =
+        null;
+
+
+      document
+        .getElementById(
+          'managerPanel'
+        )
+        .style.display =
+          'none';
+
+
+      document
+        .getElementById(
+          'loginPanel'
+        )
+        .style.display =
+          'block';
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   RESULTADOS
+   ===================================================== */
+
+function renderResultados(
+  datos
+) {
+
+  const results =
+    document.getElementById(
+      'results'
+    );
+
+
+  results.innerHTML =
+    '';
+
+
+  if (
+    !datos.length
+  ) {
+
+    results.innerHTML = `
+
+      <div
+        class="message info"
+        style="display:block">
+
+        No se encontraron cargas.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  datos.forEach(
+    function(item) {
+
+
+      const div =
+        document.createElement(
+          'div'
+        );
+
+
+      div.className =
+        'result-item';
+
+
+      const info =
+        document.createElement(
+          'div'
+        );
+
+
+      const name =
+        document.createElement(
+          'div'
+        );
+
+
+      name.className =
+        'result-name';
+
+
+      name.textContent =
+        item.nombre;
+
+
+      const meta =
+        document.createElement(
+          'div'
+        );
+
+
+      meta.className =
+        'result-meta';
+
+
+      meta.innerHTML = `
+
+        <span class="badge">
+          📅 ${escapeHtml(item.fecha)}
+        </span>
+
+        <span class="badge">
+          🕐 ${escapeHtml(item.hora)}
+        </span>
+
+        <span class="badge">
+          👤 ${escapeHtml(item.cargadoPor)}
+        </span>
+
+        <span class="badge">
+          📷 ${item.cantidad}
+        </span>
+
+      `;
+
+
+      info.appendChild(
+        name
+      );
+
+
+      info.appendChild(
+        meta
+      );
+
+
+      const actions =
+        document.createElement(
+          'div'
+        );
+
+
+      actions.style.display =
+        'flex';
+
+
+      actions.style.gap =
+        '6px';
+
+
+      actions.style.flexWrap =
+        'wrap';
+
+
+      const view =
+        document.createElement(
+          'button'
+        );
+
+
+      view.className =
+        'btn btn-primary';
+
+
+      view.textContent =
+        'Ver';
+
+
+      view.onclick =
+        function() {
+
+          abrirGaleria(
+            item.id,
+            item.nombre
+          );
+
+        };
+
+
+      const drive =
+        document.createElement(
+          'a'
+        );
+
+
+      drive.className =
+        'btn btn-secondary';
+
+
+      drive.textContent =
+        'Drive';
+
+
+      drive.href =
+        item.url;
+
+
+      drive.target =
+        '_blank';
+
+
+      drive.rel =
+        'noopener';
+
+
+      actions.appendChild(
+        view
+      );
+
+
+      actions.appendChild(
+        drive
+      );
+
+
+      div.appendChild(
+        info
+      );
+
+
+      div.appendChild(
+        actions
+      );
+
+
+      results.appendChild(
+        div
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   GALERÍA
+   ===================================================== */
+
+async function abrirGaleria(
+  folderId,
+  nombre
+) {
+
+  if (!managerToken) {
+
+    return;
+
+  }
+
+
+  mostrarLoading(
+    true,
+    'Cargando fotografías...'
+  );
+
+
+  try {
+
+    const respuesta =
+      await apiPost({
+
+        accion:
+          'obtenerFotosCarpeta',
+
+        token:
+          managerToken,
+
+        folderId:
+          folderId
+
+      });
+
+
+    mostrarLoading(false);
+
+
+    if (
+      !respuesta ||
+      !respuesta.ok
+    ) {
+
+      throw new Error(
+        respuesta.mensaje ||
+        'No fue posible abrir la carpeta.'
+      );
+
+    }
+
+
+    document
+      .getElementById(
+        'galleryTitle'
+      )
+      .textContent =
+        nombre;
+
+
+    const gallery =
+      document.getElementById(
+        'gallery'
+      );
+
+
+    gallery.innerHTML =
+      '';
+
+
+    respuesta.fotos.forEach(
+      function(foto) {
+
+
+        const img =
+          document.createElement(
+            'img'
+          );
+
+
+        img.src =
+          foto.thumbnail;
+
+
+        img.title =
+          foto.nombre;
+
+
+        gallery.appendChild(
+          img
+        );
+
+      }
+    );
+
+
+    document
+      .getElementById(
+        'galleryModal'
+      )
+      .style.display =
+        'flex';
+
+
+  } catch(error) {
+
+    mostrarLoading(false);
+
+
+    alert(
+      error.message ||
+      'No fue posible abrir la galería.'
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   CERRAR GALERÍA
+   ===================================================== */
+
+function cerrarGaleria() {
+
+  document
+    .getElementById(
+      'galleryModal'
+    )
+    .style.display =
+      'none';
+
+}
+
+
+/* =====================================================
+   FILTROS
+   ===================================================== */
+
+function limpiarFiltros() {
+
+  document
+    .getElementById(
+      'filterName'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'filterDate'
+    )
+    .value =
+      '';
+
+
+  document
+    .getElementById(
+      'filterUser'
+    )
+    .value =
+      '';
+
+
+  consultar();
+
+}
+
+
+/* =====================================================
+   FECHA
+   ===================================================== */
+
+function convertirFechaServidor(
+  fecha
+) {
+
+  if (!fecha) {
+
+    return '';
+
+  }
+
+
+  const partes =
+    fecha.split('-');
+
+
+  if (
+    partes.length !== 3
+  ) {
+
+    return '';
+
+  }
+
+
+  return (
+    partes[2] +
+    '/' +
+    partes[1] +
+    '/' +
+    partes[0]
+  );
+
+}
+
+
+/* =====================================================
+   MENSAJES
+   ===================================================== */
+
+function mostrarMensaje(
+  elemento,
+  texto,
+  tipo
+) {
+
+  elemento.textContent =
+    texto;
+
+
+  elemento.className =
+    'message ' +
+    tipo;
+
+}
+
+
+function ocultarMensaje(
+  elemento
+) {
+
+  elemento.textContent =
+    '';
+
+
+  elemento.className =
+    'message';
+
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+function mostrarLoading(
+  visible,
+  texto
+) {
+
+  const loading =
+    document.getElementById(
+      'loading'
+    );
+
+
+  const loadingText =
+    document.getElementById(
+      'loadingText'
+    );
+
+
+  loadingText.textContent =
+    texto ||
+    'Procesando...';
+
+
+  loading.style.display =
+    visible
+      ? 'flex'
+      : 'none';
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+   ===================================================== */
+
+function escapeHtml(
+  texto
+) {
+
+  const div =
+    document.createElement(
+      'div'
+    );
+
+
+  div.textContent =
+    String(
+      texto || ''
+    );
+
+
+  return div.innerHTML;
+
+}
+
+
+/* =====================================================
+   CERRAR MODAL
+   ===================================================== */
+
+document
+  .getElementById(
+    'galleryModal'
+  )
+  .addEventListener(
+    'click',
+    function(event) {
+
+      if (
+        event.target === this
+      ) {
+
+        cerrarGaleria();
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+
+</html>
