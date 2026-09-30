@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -430,6 +431,16 @@ button{
 
   transition:.2s;
 
+  /* NUEVO:
+     centra correctamente todo el contenido */
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
 }
 
 
@@ -494,6 +505,10 @@ button{
   font-weight:700;
 
   margin-top:13px;
+
+  /* NUEVO:
+     evita que el botón se pegue a un lado */
+  align-self:center;
 
 }
 
@@ -784,6 +799,23 @@ button{
   gap:10px;
 
   margin-top:22px;
+
+  /* CORRECCIÓN:
+     centra los botones horizontalmente */
+  justify-content:center;
+
+  align-items:center;
+
+  width:100%;
+
+}
+
+
+.actions .btn{
+
+  margin-left:0 !important;
+
+  margin-right:0 !important;
 
 }
 
@@ -1684,6 +1716,31 @@ tr:hover td{
 
   }
 
+  /* CORRECCIÓN RESPONSIVE */
+  .actions{
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+
+  }
+
+  .actions .btn{
+
+    margin-left:0 !important;
+
+    margin-right:0 !important;
+
+  }
+
+  .upload-btn{
+
+    align-self:center;
+
+  }
+
 }
 
 
@@ -1790,7 +1847,7 @@ tr:hover td{
 
       <p>
         Registra fotografías y, si es necesario,
-        actas y listas.
+        actas y listas en la misma carpeta.
       </p>
 
     </div>
@@ -1919,6 +1976,7 @@ tr:hover td{
 
       <span>
         Este apartado es opcional.
+  
       </span>
 
 
@@ -1977,6 +2035,7 @@ tr:hover td{
 
       <span>
         Este apartado es opcional.
+
       </span>
 
 
@@ -2463,12 +2522,6 @@ tr:hover td{
 // ============================================================
 // CONFIGURACIÓN
 // ============================================================
-
-// IMPORTANTE:
-// Coloca aquí la URL de implementación de tu Web App.
-//
-// Ejemplo:
-// https://script.google.com/macros/s/XXXXXXXX/exec
 
 const SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbyB3l8n0vROx62QeRUgsfk9GHNMMtF36Yo-zI1Sly4VNSpBmv8MxVYH2nmbkyabS5Q5/exec';
@@ -3466,10 +3519,6 @@ async function guardarCarga(){
       });
 
 
-    // ========================================================
-    // FOTOS
-    // ========================================================
-
     for(
       let i=0;
       i<fotosSeleccionadas.length;
@@ -3532,10 +3581,6 @@ async function guardarCarga(){
     }
 
 
-    // ========================================================
-    // ACTAS
-    // ========================================================
-
     for(
       let i=0;
       i<actasSeleccionadas.length;
@@ -3567,10 +3612,6 @@ async function guardarCarga(){
     }
 
 
-    // ========================================================
-    // LISTAS
-    // ========================================================
-
     for(
       let i=0;
       i<listasSeleccionadas.length;
@@ -3601,10 +3642,6 @@ async function guardarCarga(){
 
     }
 
-
-    // ========================================================
-    // FINALIZAR
-    // ========================================================
 
     mostrarProgreso(
       true,
@@ -3725,10 +3762,6 @@ async function subirPdfPorBloques(
 
 
   let start =
-    0;
-
-
-  let intentos =
     0;
 
 
@@ -5300,3 +5333,4 @@ function escapeAttr(
 </body>
 
 </html>
+```
