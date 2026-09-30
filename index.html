@@ -6,1408 +6,467 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Gestor de Fotografías</title>
 
 <style>
 
-:root {
-
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary: #14b8a6;
-
-    --success: #16a34a;
-    --danger: #dc2626;
-    --warning: #d97706;
-
-    --background: #f4f7fb;
-    --surface: #ffffff;
-    --surface-soft: #f8fafc;
-
-    --text: #172033;
-    --muted: #64748b;
-
-    --border: #e2e8f0;
-
-    --shadow:
-        0 10px 30px rgba(15,23,42,.08);
-
-    --radius: 16px;
-}
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
+  margin: 0;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
-    margin: 0;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background:
-        var(--background);
-
-    color:
-        var(--text);
+  background: #f4f7fb;
+  color: #172033;
 }
 
-
-/* =========================================================
-   HEADER
-   ========================================================= */
+button,
+input {
+  font: inherit;
+}
 
 .header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5eaf1;
+  padding: 18px 24px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #1e40af,
-            #2563eb
-        );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    color: white;
-
-    padding:
-        22px 25px;
-
-    box-shadow:
-        0 4px 18px
-        rgba(15,23,42,.12);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
-.header-content {
-
-    max-width:
-        1250px;
-
-    margin:
-        auto;
+.logo {
+  font-size: 21px;
+  font-weight: 800;
 }
 
-.header h1 {
-
-    margin:
-        0;
-
-    font-size:
-        25px;
+.logo span {
+  color: #2563eb;
 }
 
-.header p {
-
-    margin:
-        6px 0 0;
-
-    font-size:
-        14px;
-
-    opacity:
-        .9;
+.connection {
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #eef2f7;
+  color: #64748b;
 }
 
-
-/* =========================================================
-   CONTENEDOR
-   ========================================================= */
-
-.container {
-
-    width:
-        min(
-            1250px,
-            calc(100% - 30px)
-        );
-
-    margin:
-        22px auto 40px;
+.connection.ok {
+  background: #dcfce7;
+  color: #166534;
 }
 
-
-/* =========================================================
-   TABS
-   ========================================================= */
+.connection.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
 
 .tabs {
-
-    display:
-        flex;
-
-    gap:
-        8px;
-
-    padding:
-        7px;
-
-    background:
-        white;
-
-    border-radius:
-        14px;
-
-    box-shadow:
-        var(--shadow);
-
-    margin-bottom:
-        18px;
+  background: white;
+  display: flex;
+  gap: 4px;
+  padding: 10px 24px;
+  border-bottom: 1px solid #e5eaf1;
 }
 
 .tab {
-
-    flex:
-        1;
-
-    border:
-        none;
-
-    background:
-        transparent;
-
-    padding:
-        13px;
-
-    border-radius:
-        10px;
-
-    color:
-        var(--muted);
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-
-    transition:
-        .2s;
+  border: 0;
+  background: transparent;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #64748b;
+  font-weight: 700;
 }
 
 .tab:hover {
-
-    background:
-        #f1f5f9;
+  background: #f1f5f9;
 }
 
 .tab.active {
-
-    background:
-        var(--primary);
-
-    color:
-        white;
+  background: #2563eb;
+  color: white;
 }
 
-
-/* =========================================================
-   PANELES
-   ========================================================= */
+.container {
+  max-width: 1250px;
+  margin: auto;
+  padding: 25px;
+}
 
 .panel {
-
-    display:
-        none;
+  background: white;
+  border: 1px solid #e5eaf1;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, .05);
+  margin-bottom: 20px;
 }
 
-.panel.active {
-
-    display:
-        block;
+.panel h2 {
+  margin-top: 0;
+  margin-bottom: 7px;
 }
 
-
-/* =========================================================
-   CARD
-   ========================================================= */
-
-.card {
-
-    background:
-        white;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        var(--radius);
-
-    padding:
-        22px;
-
-    box-shadow:
-        var(--shadow);
-
-    margin-bottom:
-        18px;
+.subtitle {
+  color: #64748b;
+  margin-top: 0;
 }
 
-.card-title {
-
-    margin-bottom:
-        18px;
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-.card-title h2 {
-
-    margin:
-        0;
-
-    font-size:
-        18px;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-.card-title p {
-
-    margin:
-        5px 0 0;
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
+.field label {
+  font-weight: 700;
+  font-size: 14px;
 }
 
-
-/* =========================================================
-   FORM
-   ========================================================= */
-
-.form-grid {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0,1fr)
-        );
-
-    gap:
-        15px;
+.field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  outline: none;
 }
 
-.form-group {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        7px;
+.field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.10);
 }
 
-label {
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
+.dropzone {
+  margin-top: 20px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 35px;
+  text-align: center;
+  cursor: pointer;
+  transition: .2s;
 }
 
-input {
-
-    width:
-        100%;
-
-    padding:
-        12px 13px;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        10px;
-
-    outline:
-        none;
-
-    font-size:
-        14px;
+.dropzone:hover {
+  border-color: #2563eb;
+  background: #f8fbff;
 }
 
-input:focus {
-
-    border-color:
-        var(--primary);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(37,99,235,.10);
+.dropzone.drag {
+  border-color: #14b8a6;
+  background: #ecfeff;
 }
 
+.dropzone strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 7px;
+}
 
-/* =========================================================
-   BOTONES
-   ========================================================= */
+.dropzone small {
+  color: #64748b;
+}
+
+#fileInput {
+  display: none;
+}
 
 .actions {
-
-    display:
-        flex;
-
-    flex-wrap:
-        wrap;
-
-    gap:
-        9px;
-
-    margin-top:
-        18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .btn {
-
-    border:
-        none;
-
-    border-radius:
-        10px;
-
-    padding:
-        11px 15px;
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-
-    transition:
-        .2s;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 800;
+  transition: .2s;
 }
 
 .btn:hover {
-
-    transform:
-        translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .btn-primary {
-
-    background:
-        var(--primary);
-
-    color:
-        white;
+  background: #2563eb;
+  color: white;
 }
 
 .btn-primary:hover {
-
-    background:
-        var(--primary-dark);
+  background: #1d4ed8;
 }
 
 .btn-secondary {
-
-    background:
-        #e2e8f0;
-
-    color:
-        #334155;
+  background: #eaf0f7;
+  color: #334155;
 }
 
 .btn-success {
-
-    background:
-        var(--success);
-
-    color:
-        white;
+  background: #16a34a;
+  color: white;
 }
 
 .btn-danger {
-
-    background:
-        var(--danger);
-
-    color:
-        white;
+  background: #ef4444;
+  color: white;
 }
 
 .btn-small {
-
-    padding:
-        8px 11px;
-
-    font-size:
-        12px;
+  padding: 7px 10px;
+  font-size: 12px;
 }
 
+.photos-header {
+  margin-top: 25px;
 
-/* =========================================================
-   DROPZONE
-   ========================================================= */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-.dropzone {
-
-    border:
-        2px dashed #cbd5e1;
-
-    border-radius:
-        15px;
-
-    padding:
-        35px 20px;
-
-    text-align:
-        center;
-
-    background:
-        var(--surface-soft);
-
-    transition:
-        .2s;
+  gap: 15px;
 }
 
-.dropzone.dragover {
-
-    border-color:
-        var(--primary);
-
-    background:
-        #eff6ff;
+.counter {
+  font-weight: 800;
+  color: #334155;
 }
-
-.drop-icon {
-
-    font-size:
-        42px;
-
-    margin-bottom:
-        10px;
-}
-
-.dropzone h3 {
-
-    margin:
-        0 0 7px;
-
-    font-size:
-        16px;
-}
-
-.dropzone p {
-
-    margin:
-        0 0 15px;
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
-}
-
-#inputFotos {
-
-    display:
-        none;
-}
-
-
-/* =========================================================
-   RESUMEN
-   ========================================================= */
-
-.photo-summary {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        10px;
-
-    padding:
-        12px 14px;
-
-    margin-top:
-        18px;
-
-    border-radius:
-        11px;
-
-    background:
-        var(--surface-soft);
-
-    border:
-        1px solid var(--border);
-}
-
-.photo-count {
-
-    font-size:
-        13px;
-
-    font-weight:
-        700;
-}
-
-
-/* =========================================================
-   GRID FOTOS
-   ========================================================= */
 
 .photo-grid {
+  display: grid;
 
-    display:
-        grid;
+  grid-template-columns:
+    repeat(auto-fill, minmax(190px, 1fr));
 
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(165px,1fr)
-        );
+  gap: 15px;
 
-    gap:
-        14px;
-
-    margin-top:
-        15px;
+  margin-top: 15px;
 }
 
-.photo-item {
-
-    position:
-        relative;
-
-    background:
-        white;
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        13px;
-
-    overflow:
-        hidden;
+.photo-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
 }
 
 .photo-image {
-
-    width:
-        100%;
-
-    height:
-        145px;
-
-    object-fit:
-        cover;
-
-    display:
-        block;
-
-    background:
-        #e2e8f0;
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  background: #f1f5f9;
 }
 
 .photo-info {
-
-    padding:
-        9px;
+  padding: 10px;
 }
 
 .photo-name {
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-
-    white-space:
-        nowrap;
-
-    overflow:
-        hidden;
-
-    text-overflow:
-        ellipsis;
-}
-
-.photo-actions {
-
-    display:
-        flex;
-
-    gap:
-        5px;
-
-    margin-top:
-        8px;
-}
-
-.photo-actions button {
-
-    flex:
-        1;
-
-    border:
-        none;
-
-    border-radius:
-        7px;
-
-    padding:
-        7px 5px;
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-
-    cursor:
-        pointer;
-}
-
-.move-btn {
-
-    background:
-        #e0f2fe;
-
-    color:
-        #0369a1;
-}
-
-.delete-btn {
-
-    background:
-        #fee2e2;
-
-    color:
-        #b91c1c;
+  font-size: 12px;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .photo-number {
-
-    position:
-        absolute;
-
-    top:
-        8px;
-
-    left:
-        8px;
-
-    width:
-        27px;
-
-    height:
-        27px;
-
-    border-radius:
-        50%;
-
-    background:
-        rgba(15,23,42,.80);
-
-    color:
-        white;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        12px;
-
-    font-weight:
-        700;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
 }
 
-
-/* =========================================================
-   LOGIN
-   ========================================================= */
-
-.login-container {
-
-    max-width:
-        440px;
-
-    margin:
-        35px auto;
+.photo-buttons {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
 }
-
-.login-icon {
-
-    width:
-        65px;
-
-    height:
-        65px;
-
-    margin:
-        0 auto 15px;
-
-    border-radius:
-        18px;
-
-    background:
-        #dbeafe;
-
-    color:
-        var(--primary);
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size:
-        30px;
-}
-
-.login-container h2 {
-
-    text-align:
-        center;
-
-    margin:
-        0 0 7px;
-}
-
-.login-description {
-
-    text-align:
-        center;
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
-
-    margin-bottom:
-        22px;
-}
-
-
-/* =========================================================
-   GESTOR
-   ========================================================= */
-
-#gestorPanel {
-
-    display:
-        none;
-}
-
-.filters {
-
-    display:
-        grid;
-
-    grid-template-columns:
-        2fr 1fr 1.5fr auto;
-
-    gap:
-        10px;
-
-    align-items:
-        end;
-}
-
-
-/* =========================================================
-   RESULTADOS
-   ========================================================= */
-
-.results-header {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        10px;
-
-    margin-bottom:
-        15px;
-}
-
-.results-header h3 {
-
-    margin:
-        0;
-
-    font-size:
-        17px;
-}
-
-.results-count {
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
-}
-
-.result-list {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
-
-    gap:
-        10px;
-}
-
-.result-item {
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        12px;
-
-    padding:
-        14px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        15px;
-
-    background:
-        white;
-}
-
-.result-main {
-
-    min-width:
-        0;
-
-    flex:
-        1;
-}
-
-.result-title {
-
-    font-size:
-        14px;
-
-    font-weight:
-        700;
-
-    margin-bottom:
-        7px;
-}
-
-.result-meta {
-
-    display:
-        flex;
-
-    flex-wrap:
-        wrap;
-
-    gap:
-        7px;
-}
-
-.badge {
-
-    display:
-        inline-flex;
-
-    padding:
-        5px 8px;
-
-    border-radius:
-        7px;
-
-    background:
-        #f1f5f9;
-
-    color:
-        #475569;
-
-    font-size:
-        11px;
-
-    font-weight:
-        700;
-}
-
-.badge.success {
-
-    background:
-        #dcfce7;
-
-    color:
-        #166534;
-}
-
-.result-actions {
-
-    display:
-        flex;
-
-    gap:
-        7px;
-
-    flex-shrink:
-        0;
-}
-
-
-/* =========================================================
-   EMPTY
-   ========================================================= */
 
 .empty {
-
-    padding:
-        45px 20px;
-
-    text-align:
-        center;
-
-    color:
-        var(--muted);
-
-    font-size:
-        13px;
+  text-align: center;
+  padding: 35px;
+  color: #94a3b8;
 }
 
-
-/* =========================================================
-   MENSAJES
-   ========================================================= */
+.hidden {
+  display: none !important;
+}
 
 .message {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
 
-    display:
-        none;
+  max-width: 400px;
 
-    padding:
-        12px 14px;
+  background: #172033;
+  color: white;
 
-    border-radius:
-        10px;
+  padding: 14px 18px;
 
-    margin-bottom:
-        15px;
+  border-radius: 12px;
 
-    font-size:
-        13px;
+  box-shadow: 0 10px 35px rgba(0,0,0,.2);
 
-    font-weight:
-        600;
-}
-
-.message.show {
-
-    display:
-        block;
-}
-
-.message.success {
-
-    background:
-        #dcfce7;
-
-    color:
-        #166534;
-
-    border:
-        1px solid #bbf7d0;
+  z-index: 100;
 }
 
 .message.error {
-
-    background:
-        #fee2e2;
-
-    color:
-        #991b1b;
-
-    border:
-        1px solid #fecaca;
+  background: #b91c1c;
 }
 
-.message.info {
-
-    background:
-        #dbeafe;
-
-    color:
-        #1e40af;
-
-    border:
-        1px solid #bfdbfe;
+.message.success {
+  background: #15803d;
 }
-
-
-/* =========================================================
-   LOADING
-   ========================================================= */
 
 .loading {
+  position: fixed;
+  inset: 0;
 
-    position:
-        fixed;
+  background: rgba(255,255,255,.72);
 
-    inset:
-        0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    background:
-        rgba(15,23,42,.45);
+  z-index: 200;
 
-    display:
-        none;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    z-index:
-        9999;
-}
-
-.loading.show {
-
-    display:
-        flex;
+  backdrop-filter: blur(4px);
 }
 
 .loading-box {
-
-    background:
-        white;
-
-    padding:
-        25px;
-
-    border-radius:
-        16px;
-
-    text-align:
-        center;
-
-    min-width:
-        240px;
-
-    box-shadow:
-        0 20px 50px
-        rgba(0,0,0,.2);
+  background: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 15px 50px rgba(0,0,0,.15);
+  text-align: center;
+  font-weight: 800;
 }
 
 .spinner {
+  width: 35px;
+  height: 35px;
 
-    width:
-        38px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #2563eb;
 
-    height:
-        38px;
+  border-radius: 50%;
 
-    border:
-        4px solid #e2e8f0;
+  animation: spin .8s linear infinite;
 
-    border-top-color:
-        var(--primary);
-
-    border-radius:
-        50%;
-
-    animation:
-        spin .8s linear infinite;
-
-    margin:
-        0 auto 14px;
+  margin: 0 auto 15px;
 }
 
 @keyframes spin {
-
-    to {
-        transform:
-            rotate(360deg);
-    }
-
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-.modal {
-
-    position:
-        fixed;
-
-    inset:
-        0;
-
-    background:
-        rgba(2,6,23,.88);
-
-    display:
-        none;
-
-    z-index:
-        10000;
-
-    padding:
-        20px;
+.login-box {
+  max-width: 450px;
+  margin: 40px auto;
 }
 
-.modal.show {
-
-    display:
-        flex;
-
-    flex-direction:
-        column;
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-.modal-header {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    color:
-        white;
-
-    margin-bottom:
-        15px;
+.result-table th,
+.result-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e5eaf1;
+  text-align: left;
 }
 
-.modal-header h3 {
-
-    margin:
-        0;
-
-    font-size:
-        17px;
+.result-table th {
+  background: #f8fafc;
+  font-size: 13px;
 }
 
-.modal-close {
-
-    width:
-        38px;
-
-    height:
-        38px;
-
-    border:
-        none;
-
-    border-radius:
-        50%;
-
-    background:
-        rgba(255,255,255,.15);
-
-    color:
-        white;
-
-    font-size:
-        22px;
-
-    cursor:
-        pointer;
+.result-table td {
+  font-size: 14px;
 }
 
-.modal-gallery {
-
-    flex:
-        1;
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(180px,1fr)
-        );
-
-    gap:
-        15px;
-
-    overflow-y:
-        auto;
+.link {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.modal-gallery img {
+.gallery {
+  display: grid;
 
-    width:
-        100%;
+  grid-template-columns:
+    repeat(auto-fill, minmax(180px, 1fr));
 
-    height:
-        180px;
+  gap: 15px;
 
-    object-fit:
-        contain;
-
-    background:
-        rgba(255,255,255,.08);
-
-    border-radius:
-        10px;
+  margin-top: 20px;
 }
 
+.gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media(max-width:850px) {
-
-    .form-grid {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .filters {
-
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .result-item {
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-    }
-
-    .result-actions {
-
-        justify-content:
-            flex-end;
-    }
-
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
 }
 
+@media(max-width: 700px) {
 
-@media(max-width:600px) {
+  .header {
+    padding: 15px;
+  }
 
-    .container {
+  .tabs {
+    padding: 8px 10px;
+  }
 
-        width:
-            calc(100% - 18px);
+  .container {
+    padding: 12px;
+  }
 
-        margin-top:
-            12px;
-    }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-    .header {
+  .panel {
+    padding: 18px;
+  }
 
-        padding:
-            18px;
-    }
-
-    .header h1 {
-
-        font-size:
-            21px;
-    }
-
-    .tabs {
-
-        position:
-            sticky;
-
-        top:
-            0;
-
-        z-index:
-            100;
-    }
-
-    .tab {
-
-        font-size:
-            12px;
-
-        padding:
-            11px 8px;
-    }
-
-    .card {
-
-        padding:
-            16px;
-    }
-
-    .filters {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .photo-grid {
-
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(0,1fr)
-            );
-    }
-
-    .photo-image {
-
-        height:
-            130px;
-    }
+  .result-table {
+    display: block;
+    overflow-x: auto;
+  }
 
 }
 
@@ -1415,2416 +474,1630 @@ input:focus {
 
 </head>
 
-
 <body>
-
 
 <header class="header">
 
-    <div class="header-content">
+  <div class="logo">
+    📷 Gestor de <span>Fotografías</span>
+  </div>
 
-        <h1>
-            📷 Gestor de Fotografías
-        </h1>
-
-        <p>
-            Carga, organiza y consulta fotografías
-            almacenadas
-        </p>
-
-    </div>
+  <div
+    id="connection"
+    class="connection"
+  >
+    Comprobando conexión...
+  </div>
 
 </header>
 
 
-<div class="container">
+<nav class="tabs">
+
+  <button
+    class="tab active"
+    id="tabCarga"
+    onclick="mostrarTab('carga')"
+  >
+    📤 Cargar fotografías
+  </button>
+
+  <button
+    class="tab"
+    id="tabGestor"
+    onclick="abrirGestor()"
+  >
+    🔐 Gestor
+  </button>
+
+</nav>
 
 
-<!-- =======================================================
-     TABS
-     ======================================================= -->
-
-<div class="tabs">
-
-    <button
-        id="tabCarga"
-        class="tab active"
-        onclick="mostrarTabCarga()">
-
-        📤 Cargar fotografías
-
-    </button>
+<main class="container">
 
 
-    <button
-        id="tabGestor"
-        class="tab"
-        onclick="abrirGestor()">
+<!-- ======================================================
+     CARGA
+======================================================= -->
 
-        🔐 Gestor
+<section id="vistaCarga">
 
-    </button>
+  <div class="panel">
 
-</div>
+    <h2>Cargar fotografías</h2>
 
-
-<!-- =======================================================
-     MENSAJE
-     ======================================================= -->
-
-<div
-    id="mensaje"
-    class="message">
-</div>
+    <p class="subtitle">
+      Selecciona una o varias fotografías y registra la información de la carga.
+    </p>
 
 
-<!-- =======================================================
-     PANEL CARGA
-     ======================================================= -->
+    <div class="grid">
 
-<section
-    id="panelCarga"
-    class="panel active">
+      <div class="field">
 
+        <label>
+          Título principal
+        </label>
 
-    <div class="card">
+        <input
+          id="titulo"
+          type="text"
+          placeholder="Ej. Evidencias Tolcayuca"
+        >
 
-        <div class="card-title">
-
-            <h2>
-                📸 Nueva carga
-            </h2>
-
-            <p>
-                Registra una nueva serie de fotografías.
-            </p>
-
-        </div>
+      </div>
 
 
-        <div class="form-grid">
+      <div class="field">
 
+        <label>
+          Quién realiza la carga
+        </label>
 
-            <div class="form-group">
+        <input
+          id="cargador"
+          type="text"
+          placeholder="Nombre de la persona"
+        >
 
-                <label>
-                    Título principal
-                </label>
-
-                <input
-                    id="titulo"
-                    type="text"
-                    maxlength="150"
-                    placeholder="Ejemplo: Visita 30 Septiembre">
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Nombre de quien carga
-                </label>
-
-                <input
-                    id="cargador"
-                    type="text"
-                    maxlength="100"
-                    placeholder="Nombre del usuario">
-
-            </div>
-
-
-        </div>
+      </div>
 
     </div>
 
 
-    <!-- ===================================================
-         FOTOS
-         =================================================== -->
+    <div
+      id="dropzone"
+      class="dropzone"
+      onclick="document.getElementById('fileInput').click()"
+    >
 
-    <div class="card">
+      <strong>
+        📸 Seleccionar fotografías
+      </strong>
 
+      <small>
+        Puedes seleccionar varias fotografías al mismo tiempo
+      </small>
 
-        <div class="card-title">
-
-            <h2>
-                🖼️ Fotografías
-            </h2>
-
-            <p>
-                Puedes seleccionar varias fotografías.
-                Se conservará el archivo original.
-            </p>
-
-        </div>
-
-
-        <div
-            id="dropzone"
-            class="dropzone">
-
-
-            <div class="drop-icon">
-                📷
-            </div>
-
-
-            <h3>
-                Selecciona o arrastra fotografías
-            </h3>
-
-
-            <p>
-                No se redimensionarán ni comprimirán.
-            </p>
-
-
-            <button
-                class="btn btn-primary"
-                onclick="
-                    document
-                    .getElementById('inputFotos')
-                    .click()
-                ">
-
-                📁 Seleccionar fotografías
-
-            </button>
-
-
-            <input
-                id="inputFotos"
-                type="file"
-                accept="image/*"
-                multiple>
-
-        </div>
-
-
-        <div
-            id="photoSummary"
-            class="photo-summary"
-            style="display:none;">
-
-
-            <span
-                id="photoCount"
-                class="photo-count">
-
-                0 fotografías
-
-            </span>
-
-
-            <button
-                class="btn btn-danger btn-small"
-                onclick="limpiarFotos()">
-
-                🗑️ Limpiar
-
-            </button>
-
-
-        </div>
-
-
-        <div
-            id="photoGrid"
-            class="photo-grid">
-        </div>
-
-
-        <div
-            id="accionesCarga"
-            class="actions"
-            style="display:none;">
-
-
-            <button
-                class="btn btn-secondary"
-                onclick="limpiarFotos()">
-
-                ↺ Cancelar
-
-            </button>
-
-
-            <button
-                class="btn btn-success"
-                onclick="guardarCarga()">
-
-                ☁️ Guardar fotografías
-
-            </button>
-
-
-        </div>
-
+      <input
+        id="fileInput"
+        type="file"
+        accept="image/*"
+        multiple
+      >
 
     </div>
+
+
+    <div class="photos-header">
+
+      <div
+        id="photoCounter"
+        class="counter"
+      >
+        0 fotografías
+      </div>
+
+      <button
+        class="btn btn-secondary btn-small"
+        onclick="limpiarFotos()"
+      >
+        Limpiar
+      </button>
+
+    </div>
+
+
+    <div
+      id="photoGrid"
+      class="photo-grid"
+    >
+
+      <div class="empty">
+        No hay fotografías seleccionadas.
+      </div>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="guardarCarga()"
+      >
+        💾 Guardar carga
+      </button>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- =======================================================
-     PANEL GESTOR
-     ======================================================= -->
+<!-- ======================================================
+     GESTOR
+======================================================= -->
 
 <section
-    id="panelGestor"
-    class="panel">
+  id="vistaGestor"
+  class="hidden"
+>
 
 
-    <!-- LOGIN -->
+  <!-- LOGIN -->
 
-    <div
-        id="loginPanel"
-        class="login-container">
+  <div
+    id="loginPanel"
+    class="panel login-box"
+  >
 
+    <h2>🔐 Acceso al Gestor</h2>
 
-        <div class="card">
-
-
-            <div class="login-icon">
-                🔐
-            </div>
-
-
-            <h2>
-                Acceso al Gestor
-            </h2>
+    <p class="subtitle">
+      La contraseña únicamente se solicita al entrar a esta pestaña.
+    </p>
 
 
-            <p class="login-description">
+    <div class="field">
 
-                Esta sección está protegida.
-                La contraseña solo se solicita
-                al entrar al Gestor.
+      <label>
+        Contraseña
+      </label>
 
-            </p>
-
-
-            <div class="form-group">
-
-                <label>
-                    Contraseña
-                </label>
-
-                <input
-                    id="password"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="Introduce la contraseña"
-                    onkeydown="
-                        if(event.key === 'Enter')
-                            iniciarSesion()
-                    ">
-
-            </div>
-
-
-            <div class="actions">
-
-                <button
-                    class="btn btn-primary"
-                    style="width:100%;"
-                    onclick="iniciarSesion()">
-
-                    🔓 Entrar al gestor
-
-                </button>
-
-            </div>
-
-
-        </div>
+      <input
+        id="password"
+        type="password"
+        placeholder="Contraseña"
+        onkeydown="if(event.key==='Enter') iniciarSesion()"
+      >
 
     </div>
 
 
-    <!-- PANEL PROTEGIDO -->
-
-    <div
-        id="gestorPanel">
-
-
-        <div class="card">
-
-
-            <div class="card-title">
-
-                <div>
-
-                    <h2>
-                        🔎 Consultar fotografías
-                    </h2>
-
-                    <p>
-                        Busca las cargas realizadas anteriormente.
-                    </p>
-
-                </div>
-
-
-                <button
-                    class="btn btn-danger btn-small"
-                    onclick="cerrarSesion()">
-
-                    🔒 Cerrar sesión
-
-                </button>
-
-            </div>
-
-
-            <div class="filters">
-
-
-                <div class="form-group">
-
-                    <label>
-                        Carpeta / título
-                    </label>
-
-                    <input
-                        id="filtroNombre"
-                        type="text"
-                        placeholder="Buscar por nombre">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Fecha
-                    </label>
-
-                    <input
-                        id="filtroFecha"
-                        type="date">
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Cargador
-                    </label>
-
-                    <input
-                        id="filtroCargador"
-                        type="text"
-                        placeholder="Nombre">
-
-                </div>
-
-
-                <div>
-
-                    <button
-                        class="btn btn-primary"
-                        onclick="consultar()">
-
-                        🔎 Buscar
-
-                    </button>
-
-
-                    <button
-                        class="btn btn-secondary"
-                        onclick="limpiarFiltros()">
-
-                        Limpiar
-
-                    </button>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-        <div class="card">
-
-
-            <div class="results-header">
-
-                <h3>
-                    📁 Cargas encontradas
-                </h3>
-
-
-                <span
-                    id="resultsCount"
-                    class="results-count">
-
-                    0 registros
-
-                </span>
-
-            </div>
-
-
-            <div
-                id="resultList"
-                class="result-list">
-
-
-                <div class="empty">
-
-                    Realiza una búsqueda para consultar
-                    las fotografías cargadas.
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
+    <div class="actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="iniciarSesion()"
+      >
+        Entrar
+      </button>
 
     </div>
 
-
-</section>
-
-
-</div>
+  </div>
 
 
-<!-- =======================================================
-     MODAL GALERÍA
-     ======================================================= -->
+  <!-- GESTOR -->
 
-<div
-    id="modalGaleria"
-    class="modal">
+  <div
+    id="managerPanel"
+    class="hidden"
+  >
 
+    <div class="panel">
 
-    <div class="modal-header">
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          gap:15px;
+          flex-wrap:wrap;
+        "
+      >
 
-        <h3
-            id="modalTitulo">
+        <div>
 
-            Fotografías
+          <h2>
+            📂 Cargas registradas
+          </h2>
 
-        </h3>
+          <p class="subtitle">
+            Consulta las fotografías que ya fueron cargadas.
+          </p>
 
+        </div>
 
         <button
-            class="modal-close"
-            onclick="cerrarGaleria()">
-
-            ×
-
+          class="btn btn-danger btn-small"
+          onclick="cerrarSesion()"
+        >
+          Cerrar sesión
         </button>
 
-    </div>
+      </div>
 
 
-    <div
-        id="modalGallery"
-        class="modal-gallery">
-    </div>
+      <div
+        class="grid"
+        style="margin-top:20px"
+      >
 
+        <div class="field">
 
-</div>
+          <label>
+            Título
+          </label>
 
+          <input
+            id="filtroTitulo"
+            type="text"
+            placeholder="Buscar por título"
+          >
 
-<!-- =======================================================
-     LOADING
-     ======================================================= -->
-
-<div
-    id="loading"
-    class="loading">
-
-
-    <div class="loading-box">
-
-
-        <div class="spinner">
         </div>
 
+
+        <div class="field">
+
+          <label>
+            Cargador
+          </label>
+
+          <input
+            id="filtroCargador"
+            type="text"
+            placeholder="Buscar por persona"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Fecha
+          </label>
+
+          <input
+            id="filtroFecha"
+            type="date"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="consultar()"
+        >
+          🔎 Consultar
+        </button>
+
+      </div>
+
+
+      <div id="resultados"></div>
+
+
+      <div
+        id="galleryContainer"
+        class="hidden"
+      >
+
+        <h3>
+          Fotografías
+        </h3>
 
         <div
-            id="loadingText">
+          id="gallery"
+          class="gallery"
+        ></div>
 
-            Procesando...
-
-        </div>
-
+      </div>
 
     </div>
 
+  </div>
+
+</section>
+
+</main>
+
+
+<div
+  id="message"
+  class="message hidden"
+></div>
+
+
+<div
+  id="loading"
+  class="loading hidden"
+>
+
+  <div class="loading-box">
+
+    <div class="spinner"></div>
+
+    <div id="loadingText">
+      Procesando...
+    </div>
+
+  </div>
 
 </div>
 
 
 <script>
 
-
-// ============================================================
-// CONFIGURACIÓN
-// ============================================================
-//
-// COLOCA AQUÍ LA URL DEL WEB APP DE APPS SCRIPT.
-//
-// EL USUARIO FINAL NO LA VERÁ.
-//
-// ============================================================
+/************************************************************
+ * CONFIGURACIÓN
+ *
+ * AQUÍ SÍ VA LA URL DEL WEB APP.
+ *
+ * NO SE PIDE AL USUARIO.
+ ************************************************************/
 
 const SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbw-tDeBR2KpZIFoacaGwUy8_JBKb6PiWEPN6OjJ-ryDmN2AYhEdSGdHPSu6F1M7z4JA/exec';
+  'https://script.google.com/macros/s/AKfycbwzF5zRO-r5fDC88sXkiemKgvguj5-nqYNRhLLz6Z6J1Th-csP-Gmsf45EwKDVABi4o/exec';
 
 
-// ============================================================
-// VARIABLES
-// ============================================================
+/************************************************************
+ * VARIABLES
+ ************************************************************/
 
-let fotosSeleccionadas = [];
+let fotos = [];
 
-let tokenSesion = null;
+let sessionToken =
+  sessionStorage.getItem('gestorToken') || '';
 
-let resultadosActuales = [];
+let cargando = false;
 
 
-// ============================================================
-// INICIO
-// ============================================================
+/************************************************************
+ * INICIO
+ ************************************************************/
 
 document.addEventListener(
-    'DOMContentLoaded',
-    function() {
+  'DOMContentLoaded',
+  function() {
 
-        configurarSelectorFotos();
+    conectarScript();
 
-        configurarDragDrop();
+    const fileInput =
+      document.getElementById('fileInput');
 
-    }
+    fileInput.addEventListener(
+      'change',
+      function(e) {
+
+        agregarFotos(
+          Array.from(e.target.files)
+        );
+
+        e.target.value = '';
+      }
+    );
+
+    configurarDragDrop();
+  }
 );
 
 
-// ============================================================
-// PESTAÑA CARGA
-// ============================================================
+/************************************************************
+ * CONEXIÓN
+ ************************************************************/
 
-function mostrarTabCarga() {
+async function conectarScript() {
 
-    document
-        .getElementById('tabCarga')
-        .classList.add('active');
+  const indicador =
+    document.getElementById('connection');
 
+  try {
 
-    document
-        .getElementById('tabGestor')
-        .classList.remove('active');
+    const respuesta =
+      await fetch(
+        SCRIPT_URL + '?accion=ping',
+        {
+          method: 'GET',
+          cache: 'no-store'
+        }
+      );
 
+    const datos =
+      await respuesta.json();
 
-    document
-        .getElementById('panelCarga')
-        .classList.add('active');
-
-
-    document
-        .getElementById('panelGestor')
-        .classList.remove('active');
-
-}
-
-
-// ============================================================
-// ABRIR GESTOR
-// ============================================================
-
-function abrirGestor() {
-
-    document
-        .getElementById('tabCarga')
-        .classList.remove('active');
-
-
-    document
-        .getElementById('tabGestor')
-        .classList.add('active');
-
-
-    document
-        .getElementById('panelCarga')
-        .classList.remove('active');
-
-
-    document
-        .getElementById('panelGestor')
-        .classList.add('active');
-
-
-    if (tokenSesion) {
-
-        mostrarPanelGestor();
-
-    } else {
-
-        document
-            .getElementById('loginPanel')
-            .style.display = 'block';
-
-
-        document
-            .getElementById('gestorPanel')
-            .style.display = 'none';
-
+    if (!datos.ok) {
+      throw new Error(
+        datos.error || 'Error de conexión.'
+      );
     }
 
-}
+    indicador.textContent =
+      '● Conectado';
 
+    indicador.classList.add('ok');
 
-// ============================================================
-// SELECTOR FOTOS
-// ============================================================
+  } catch (error) {
 
-function configurarSelectorFotos() {
+    indicador.textContent =
+      '● Sin conexión';
 
-    const input =
-        document.getElementById(
-            'inputFotos'
-        );
+    indicador.classList.add('error');
 
-
-    input.addEventListener(
-        'change',
-        function(event) {
-
-            agregarArchivos(
-                Array.from(
-                    event.target.files
-                )
-            );
-
-
-            input.value = '';
-
-        }
+    mostrarMensaje(
+      'No se pudo conectar con Apps Script: ' +
+      error.message,
+      'error'
     );
-
+  }
 }
 
 
-// ============================================================
-// DRAG DROP
-// ============================================================
+/************************************************************
+ * DRAG & DROP
+ ************************************************************/
 
 function configurarDragDrop() {
 
-    const dropzone =
-        document.getElementById(
-            'dropzone'
-        );
+  const zona =
+    document.getElementById('dropzone');
 
+  zona.addEventListener(
+    'dragover',
+    function(e) {
 
-    dropzone.addEventListener(
-        'dragover',
-        function(event) {
+      e.preventDefault();
 
-            event.preventDefault();
-
-            dropzone.classList.add(
-                'dragover'
-            );
-
-        }
-    );
-
-
-    dropzone.addEventListener(
-        'dragleave',
-        function() {
-
-            dropzone.classList.remove(
-                'dragover'
-            );
-
-        }
-    );
-
-
-    dropzone.addEventListener(
-        'drop',
-        function(event) {
-
-            event.preventDefault();
-
-            dropzone.classList.remove(
-                'dragover'
-            );
-
-
-            agregarArchivos(
-                Array.from(
-                    event.dataTransfer.files
-                )
-            );
-
-        }
-    );
-
-}
-
-
-// ============================================================
-// AGREGAR ARCHIVOS
-// ============================================================
-
-function agregarArchivos(archivos) {
-
-    const imagenes =
-        archivos.filter(
-            function(file) {
-
-                return file.type
-                    .startsWith(
-                        'image/'
-                    );
-
-            }
-        );
-
-
-    if (!imagenes.length) {
-
-        mostrarMensaje(
-            'No se encontraron imágenes válidas.',
-            'error'
-        );
-
-        return;
-
+      zona.classList.add('drag');
     }
+  );
 
+  zona.addEventListener(
+    'dragleave',
+    function() {
 
-    imagenes.forEach(
-        function(file) {
+      zona.classList.remove('drag');
+    }
+  );
 
-            fotosSeleccionadas.push({
+  zona.addEventListener(
+    'drop',
+    function(e) {
 
-                file:
-                    file,
+      e.preventDefault();
 
-                nombreOriginal:
-                    file.name,
+      zona.classList.remove('drag');
 
-                preview:
-                    URL.createObjectURL(
-                        file
-                    )
-
-            });
-
-        }
-    );
-
-
-    renderFotos();
-
+      agregarFotos(
+        Array.from(e.dataTransfer.files)
+      );
+    }
+  );
 }
 
 
-// ============================================================
-// RENDER FOTOS
-// ============================================================
+/************************************************************
+ * AGREGAR FOTOS
+ ************************************************************/
+
+function agregarFotos(lista) {
+
+  const imagenes =
+    lista.filter(function(file) {
+
+      return file.type.startsWith('image/');
+    });
+
+  if (!imagenes.length) {
+
+    mostrarMensaje(
+      'No se encontraron archivos de imagen.',
+      'error'
+    );
+
+    return;
+  }
+
+  imagenes.forEach(function(file) {
+
+    fotos.push(file);
+  });
+
+  renderFotos();
+}
+
+
+/************************************************************
+ * RENDER
+ ************************************************************/
 
 function renderFotos() {
 
-    const grid =
-        document.getElementById(
-            'photoGrid'
-        );
+  const grid =
+    document.getElementById('photoGrid');
 
+  const contador =
+    document.getElementById('photoCounter');
 
-    const summary =
-        document.getElementById(
-            'photoSummary'
-        );
+  contador.textContent =
+    fotos.length +
+    (fotos.length === 1
+      ? ' fotografía'
+      : ' fotografías');
 
+  if (!fotos.length) {
 
-    const actions =
-        document.getElementById(
-            'accionesCarga'
-        );
+    grid.innerHTML =
+      '<div class="empty">No hay fotografías seleccionadas.</div>';
 
+    return;
+  }
 
-    const count =
-        document.getElementById(
-            'photoCount'
-        );
+  grid.innerHTML = '';
 
+  fotos.forEach(function(file, index) {
 
-    grid.innerHTML = '';
+    const card =
+      document.createElement('div');
 
+    card.className =
+      'photo-card';
 
-    if (!fotosSeleccionadas.length) {
+    const imagen =
+      document.createElement('img');
 
-        summary.style.display =
-            'none';
+    imagen.className =
+      'photo-image';
 
-        actions.style.display =
-            'none';
+    imagen.alt =
+      file.name;
 
-        return;
+    const reader =
+      new FileReader();
 
-    }
+    reader.onload =
+      function(e) {
 
+        imagen.src =
+          e.target.result;
+      };
 
-    summary.style.display =
-        'flex';
+    reader.readAsDataURL(file);
 
 
-    actions.style.display =
-        'flex';
+    const info =
+      document.createElement('div');
 
+    info.className =
+      'photo-info';
 
-    count.textContent =
-        fotosSeleccionadas.length +
-        (
-            fotosSeleccionadas.length === 1
-                ? ' fotografía'
-                : ' fotografías'
-        );
+    info.innerHTML = `
 
+      <div class="photo-number">
+        FOTO ${index + 1}
+      </div>
 
-    fotosSeleccionadas.forEach(
-        function(foto, index) {
+      <div class="photo-name"
+           title="${escapeHtml(file.name)}">
+        ${escapeHtml(file.name)}
+      </div>
 
+      <div class="photo-buttons">
 
-            const item =
-                document.createElement(
-                    'div'
-                );
+        <button
+          class="btn btn-secondary btn-small"
+          onclick="moverFoto(${index}, -1)"
+          ${index === 0 ? 'disabled' : ''}
+        >
+          ←
+        </button>
 
-            item.className =
-                'photo-item';
+        <button
+          class="btn btn-secondary btn-small"
+          onclick="moverFoto(${index}, 1)"
+          ${index === fotos.length - 1 ? 'disabled' : ''}
+        >
+          →
+        </button>
 
+        <button
+          class="btn btn-danger btn-small"
+          onclick="eliminarFoto(${index})"
+        >
+          ✕
+        </button>
 
-            const numero =
-                document.createElement(
-                    'div'
-                );
+      </div>
+    `;
 
-            numero.className =
-                'photo-number';
+    card.appendChild(imagen);
 
-            numero.textContent =
-                index + 1;
+    card.appendChild(info);
 
-
-            const img =
-                document.createElement(
-                    'img'
-                );
-
-            img.className =
-                'photo-image';
-
-            img.src =
-                foto.preview;
-
-
-            const info =
-                document.createElement(
-                    'div'
-                );
-
-            info.className =
-                'photo-info';
-
-
-            const name =
-                document.createElement(
-                    'div'
-                );
-
-            name.className =
-                'photo-name';
-
-            name.title =
-                foto.nombreOriginal;
-
-            name.textContent =
-                foto.nombreOriginal;
-
-
-            const buttons =
-                document.createElement(
-                    'div'
-                );
-
-            buttons.className =
-                'photo-actions';
-
-
-            const up =
-                document.createElement(
-                    'button'
-                );
-
-            up.className =
-                'move-btn';
-
-            up.textContent =
-                '↑';
-
-            up.onclick =
-                function() {
-
-                    moverFoto(
-                        index,
-                        -1
-                    );
-
-                };
-
-
-            const down =
-                document.createElement(
-                    'button'
-                );
-
-            down.className =
-                'move-btn';
-
-            down.textContent =
-                '↓';
-
-            down.onclick =
-                function() {
-
-                    moverFoto(
-                        index,
-                        1
-                    );
-
-                };
-
-
-            const del =
-                document.createElement(
-                    'button'
-                );
-
-            del.className =
-                'delete-btn';
-
-            del.textContent =
-                '✕';
-
-            del.onclick =
-                function() {
-
-                    eliminarFotoLista(
-                        index
-                    );
-
-                };
-
-
-            buttons.appendChild(up);
-
-            buttons.appendChild(down);
-
-            buttons.appendChild(del);
-
-
-            info.appendChild(name);
-
-            info.appendChild(buttons);
-
-
-            item.appendChild(numero);
-
-            item.appendChild(img);
-
-            item.appendChild(info);
-
-
-            grid.appendChild(item);
-
-        }
-    );
-
+    grid.appendChild(card);
+  });
 }
 
 
-// ============================================================
-// MOVER FOTO
-// ============================================================
+/************************************************************
+ * MOVER FOTO
+ ************************************************************/
 
-function moverFoto(
-    index,
-    direccion
-) {
+function moverFoto(index, direccion) {
 
-    const nuevoIndex =
-        index + direccion;
+  const nuevo =
+    index + direccion;
 
+  if (
+    nuevo < 0 ||
+    nuevo >= fotos.length
+  ) {
+    return;
+  }
 
-    if (
-        nuevoIndex < 0 ||
-        nuevoIndex >=
-            fotosSeleccionadas.length
-    ) {
+  const temporal =
+    fotos[index];
 
-        return;
+  fotos[index] =
+    fotos[nuevo];
 
-    }
+  fotos[nuevo] =
+    temporal;
 
-
-    const temporal =
-        fotosSeleccionadas[index];
-
-
-    fotosSeleccionadas[index] =
-        fotosSeleccionadas[nuevoIndex];
-
-
-    fotosSeleccionadas[nuevoIndex] =
-        temporal;
-
-
-    renderFotos();
-
+  renderFotos();
 }
 
 
-// ============================================================
-// ELIMINAR
-// ============================================================
+/************************************************************
+ * ELIMINAR
+ ************************************************************/
 
-function eliminarFotoLista(index) {
+function eliminarFoto(index) {
 
-    const foto =
-        fotosSeleccionadas[index];
+  fotos.splice(index, 1);
 
-
-    if (
-        foto &&
-        foto.preview
-    ) {
-
-        URL.revokeObjectURL(
-            foto.preview
-        );
-
-    }
-
-
-    fotosSeleccionadas.splice(
-        index,
-        1
-    );
-
-
-    renderFotos();
-
+  renderFotos();
 }
 
 
-// ============================================================
-// LIMPIAR
-// ============================================================
+/************************************************************
+ * LIMPIAR
+ ************************************************************/
 
 function limpiarFotos() {
 
-    fotosSeleccionadas.forEach(
-        function(foto) {
+  fotos = [];
 
-            if (foto.preview) {
-
-                URL.revokeObjectURL(
-                    foto.preview
-                );
-
-            }
-
-        }
-    );
-
-
-    fotosSeleccionadas = [];
-
-    renderFotos();
-
+  renderFotos();
 }
 
 
-// ============================================================
-// GUARDAR
-// ============================================================
+/************************************************************
+ * GUARDAR CARGA
+ ************************************************************/
 
 async function guardarCarga() {
 
-    const titulo =
-        document
-            .getElementById('titulo')
-            .value
-            .trim();
-
-
-    const cargador =
-        document
-            .getElementById('cargador')
-            .value
-            .trim();
-
-
-    if (!titulo) {
-
-        mostrarMensaje(
-            'Escribe el título principal.',
-            'error'
-        );
-
-        return;
-
-    }
-
-
-    if (!cargador) {
-
-        mostrarMensaje(
-            'Escribe el nombre de quien carga las fotografías.',
-            'error'
-        );
-
-        return;
-
-    }
-
-
-    if (!fotosSeleccionadas.length) {
-
-        mostrarMensaje(
-            'Selecciona al menos una fotografía.',
-            'error'
-        );
-
-        return;
-
-    }
-
-
-    mostrarLoading(
-        'Preparando fotografías...'
-    );
-
-
-    try {
-
-        const fotos = [];
-
-
-        for (
-            let i = 0;
-            i < fotosSeleccionadas.length;
-            i++
-        ) {
-
-            const foto =
-                fotosSeleccionadas[i];
-
-
-            const base64 =
-                await archivoABase64(
-                    foto.file
-                );
-
-
-            fotos.push({
-
-                nombreOriginal:
-                    foto.nombreOriginal,
-
-                mimeType:
-                    foto.file.type,
-
-                base64:
-                    base64
-
-            });
-
-        }
-
-
-        mostrarLoading(
-            'Guardando fotografías en Google Drive...'
-        );
-
-
-        const respuesta =
-            await apiPost({
-
-                accion:
-                    'guardarCarga',
-
-                titulo:
-                    titulo,
-
-                cargador:
-                    cargador,
-
-                fotos:
-                    fotos
-
-            });
-
-
-        ocultarLoading();
-
-
-        if (
-            !respuesta ||
-            !respuesta.ok
-        ) {
-
-            throw new Error(
-                respuesta &&
-                respuesta.mensaje
-                    ? respuesta.mensaje
-                    : 'No fue posible guardar la carga.'
-            );
-
-        }
-
-
-        mostrarMensaje(
-            respuesta.mensaje ||
-            'Fotografías guardadas correctamente.',
-            'success'
-        );
-
-
-        limpiarFotos();
-
-
-        document
-            .getElementById('titulo')
-            .value = '';
-
-
-        document
-            .getElementById('cargador')
-            .value = '';
-
-
-    } catch (error) {
-
-        ocultarLoading();
-
-        console.error(error);
-
-
-        mostrarMensaje(
-            error.message ||
-            'Ocurrió un error al guardar.',
-            'error'
-        );
-
-    }
-
-}
-
-
-// ============================================================
-// FILE -> BASE64
-// ============================================================
-
-function archivoABase64(file) {
-
-    return new Promise(
-        function(resolve, reject) {
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                function() {
-
-                    const resultado =
-                        reader.result;
-
-
-                    const base64 =
-                        resultado
-                            .split(',')[1];
-
-
-                    resolve(base64);
-
-                };
-
-
-            reader.onerror =
-                function() {
-
-                    reject(
-                        new Error(
-                            'No fue posible leer la fotografía.'
-                        )
-                    );
-
-                };
-
-
-            reader.readAsDataURL(
-                file
-            );
-
-        }
-    );
-
-}
-
-
-// ============================================================
-// LOGIN
-// ============================================================
-
-async function iniciarSesion() {
-
-    const password =
-        document
-            .getElementById('password')
-            .value;
-
-
-    if (!password) {
-
-        mostrarMensaje(
-            'Introduce la contraseña.',
-            'error'
-        );
-
-        return;
-
-    }
-
-
-    mostrarLoading(
-        'Validando acceso...'
-    );
-
-
-    try {
-
-        const respuesta =
-            await apiPost({
-
-                accion:
-                    'login',
-
-                password:
-                    password
-
-            });
-
-
-        ocultarLoading();
-
-
-        if (
-            !respuesta ||
-            !respuesta.ok
-        ) {
-
-            throw new Error(
-                respuesta &&
-                respuesta.mensaje
-                    ? respuesta.mensaje
-                    : 'Contraseña incorrecta.'
-            );
-
-        }
-
-
-        tokenSesion =
-            respuesta.token;
-
-
-        document
-            .getElementById('password')
-            .value = '';
-
-
-        mostrarPanelGestor();
-
-        consultar();
-
-
-    } catch (error) {
-
-        ocultarLoading();
-
-        tokenSesion = null;
-
-
-        mostrarMensaje(
-            error.message ||
-            'No fue posible iniciar sesión.',
-            'error'
-        );
-
-    }
-
-}
-
-
-// ============================================================
-// PANEL GESTOR
-// ============================================================
-
-function mostrarPanelGestor() {
-
+  if (cargando) {
+    return;
+  }
+
+  const titulo =
     document
-        .getElementById('loginPanel')
-        .style.display =
-            'none';
+      .getElementById('titulo')
+      .value
+      .trim();
 
-
+  const cargador =
     document
-        .getElementById('gestorPanel')
-        .style.display =
-            'block';
-
-}
+      .getElementById('cargador')
+      .value
+      .trim();
 
 
-// ============================================================
-// LOGOUT
-// ============================================================
-
-async function cerrarSesion() {
-
-    try {
-
-        if (tokenSesion) {
-
-            await apiPost({
-
-                accion:
-                    'logout',
-
-                token:
-                    tokenSesion
-
-            });
-
-        }
-
-    } catch (error) {
-
-        console.warn(error);
-
-    }
-
-
-    tokenSesion = null;
-
-
-    document
-        .getElementById('gestorPanel')
-        .style.display =
-            'none';
-
-
-    document
-        .getElementById('loginPanel')
-        .style.display =
-            'block';
-
-
-    document
-        .getElementById('password')
-        .value = '';
-
+  if (!titulo) {
 
     mostrarMensaje(
-        'Sesión cerrada correctamente.',
-        'info'
+      'Escribe el título principal.',
+      'error'
     );
 
-}
+    return;
+  }
 
 
-// ============================================================
-// CONSULTAR
-// ============================================================
+  if (!cargador) {
 
-async function consultar() {
-
-    if (!tokenSesion) {
-
-        abrirGestor();
-
-        return;
-
-    }
-
-
-    mostrarLoading(
-        'Consultando cargas...'
+    mostrarMensaje(
+      'Escribe quién realiza la carga.',
+      'error'
     );
 
+    return;
+  }
 
-    try {
 
-        const filtros = {
+  if (!fotos.length) {
 
-            nombre:
-                document
-                    .getElementById(
-                        'filtroNombre'
-                    )
-                    .value
-                    .trim(),
-
-            fecha:
-                convertirFechaServidor(
-                    document
-                        .getElementById(
-                            'filtroFecha'
-                        )
-                        .value
-                ),
-
-            cargador:
-                document
-                    .getElementById(
-                        'filtroCargador'
-                    )
-                    .value
-                    .trim()
-
-        };
-
-
-        const respuesta =
-            await apiPost({
-
-                accion:
-                    'consultarCargas',
-
-                token:
-                    tokenSesion,
-
-                filtros:
-                    filtros
-
-            });
-
-
-        ocultarLoading();
-
-
-        if (
-            !respuesta ||
-            !respuesta.ok
-        ) {
-
-            if (
-                respuesta &&
-                respuesta.sesionExpirada
-            ) {
-
-                tokenSesion = null;
-
-                abrirGestor();
-
-
-                mostrarMensaje(
-                    'La sesión expiró. Ingresa nuevamente.',
-                    'error'
-                );
-
-
-                return;
-
-            }
-
-
-            throw new Error(
-                respuesta &&
-                respuesta.mensaje
-                    ? respuesta.mensaje
-                    : 'No fue posible consultar.'
-            );
-
-        }
-
-
-        resultadosActuales =
-            respuesta.resultados ||
-            [];
-
-
-        renderResultados(
-            resultadosActuales
-        );
-
-
-    } catch (error) {
-
-        ocultarLoading();
-
-
-        mostrarMensaje(
-            error.message ||
-            'Ocurrió un error al consultar.',
-            'error'
-        );
-
-    }
-
-}
-
-
-// ============================================================
-// RESULTADOS
-// ============================================================
-
-function renderResultados(
-    resultados
-) {
-
-    const lista =
-        document.getElementById(
-            'resultList'
-        );
-
-
-    const count =
-        document.getElementById(
-            'resultsCount'
-        );
-
-
-    lista.innerHTML = '';
-
-
-    count.textContent =
-        resultados.length +
-        (
-            resultados.length === 1
-                ? ' registro'
-                : ' registros'
-        );
-
-
-    if (!resultados.length) {
-
-        lista.innerHTML = `
-            <div class="empty">
-                No se encontraron cargas con
-                los filtros indicados.
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    resultados.forEach(
-        function(item) {
-
-
-            const elemento =
-                document.createElement(
-                    'div'
-                );
-
-            elemento.className =
-                'result-item';
-
-
-            const main =
-                document.createElement(
-                    'div'
-                );
-
-            main.className =
-                'result-main';
-
-
-            const title =
-                document.createElement(
-                    'div'
-                );
-
-            title.className =
-                'result-title';
-
-
-            title.textContent =
-                item.titulo ||
-                item.nombre ||
-                'Sin título';
-
-
-            const meta =
-                document.createElement(
-                    'div'
-                );
-
-            meta.className =
-                'result-meta';
-
-
-            agregarBadge(
-                meta,
-                '📅 ' +
-                (
-                    item.fechaHora ||
-                    item.fecha ||
-                    ''
-                )
-            );
-
-
-            agregarBadge(
-                meta,
-                '👤 ' +
-                (
-                    item.cargador ||
-                    'Sin especificar'
-                )
-            );
-
-
-            agregarBadge(
-                meta,
-                '📷 ' +
-                (
-                    item.totalFotos ||
-                    0
-                ) +
-                ' fotos'
-            );
-
-
-            if (item.estado) {
-
-                const badge =
-                    document.createElement(
-                        'span'
-                    );
-
-                badge.className =
-                    'badge success';
-
-                badge.textContent =
-                    '✓ ' +
-                    item.estado;
-
-                meta.appendChild(
-                    badge
-                );
-
-            }
-
-
-            main.appendChild(
-                title
-            );
-
-            main.appendChild(
-                meta
-            );
-
-
-            const actions =
-                document.createElement(
-                    'div'
-                );
-
-            actions.className =
-                'result-actions';
-
-
-            const ver =
-                document.createElement(
-                    'button'
-                );
-
-            ver.className =
-                'btn btn-primary btn-small';
-
-            ver.textContent =
-                '👁 Ver';
-
-
-            ver.onclick =
-                function() {
-
-                    abrirGaleria(
-                        item
-                    );
-
-                };
-
-
-            actions.appendChild(
-                ver
-            );
-
-
-            if (item.folderUrl) {
-
-                const drive =
-                    document.createElement(
-                        'button'
-                    );
-
-                drive.className =
-                    'btn btn-secondary btn-small';
-
-                drive.textContent =
-                    '📁 Drive';
-
-
-                drive.onclick =
-                    function() {
-
-                        window.open(
-                            item.folderUrl,
-                            '_blank'
-                        );
-
-                    };
-
-
-                actions.appendChild(
-                    drive
-                );
-
-            }
-
-
-            elemento.appendChild(
-                main
-            );
-
-            elemento.appendChild(
-                actions
-            );
-
-
-            lista.appendChild(
-                elemento
-            );
-
-        }
+    mostrarMensaje(
+      'Selecciona al menos una fotografía.',
+      'error'
     );
 
-}
+    return;
+  }
 
 
-// ============================================================
-// BADGE
-// ============================================================
+  cargando = true;
 
-function agregarBadge(
-    contenedor,
-    texto
-) {
+  mostrarLoading(
+    'Creando carpeta...'
+  );
 
-    const badge =
-        document.createElement(
-            'span'
-        );
 
+  try {
 
-    badge.className =
-        'badge';
-
-
-    badge.textContent =
-        texto;
-
-
-    contenedor.appendChild(
-        badge
-    );
-
-}
-
-
-// ============================================================
-// GALERÍA
-// ============================================================
-
-async function abrirGaleria(
-    item
-) {
-
-    if (!tokenSesion) {
-
-        return;
-
-    }
-
-
-    mostrarLoading(
-        'Cargando fotografías...'
-    );
-
-
-    try {
-
-        const respuesta =
-            await apiPost({
-
-                accion:
-                    'obtenerFotosCarpeta',
-
-                token:
-                    tokenSesion,
-
-                folderId:
-                    item.folderId
-
-            });
-
-
-        ocultarLoading();
-
-
-        if (
-            !respuesta ||
-            !respuesta.ok
-        ) {
-
-            throw new Error(
-                respuesta &&
-                respuesta.mensaje
-                    ? respuesta.mensaje
-                    : 'No fue posible cargar las fotografías.'
-            );
-
-        }
-
-
-        const fotos =
-            respuesta.fotos ||
-            [];
-
-
-        document
-            .getElementById(
-                'modalTitulo'
-            )
-            .textContent =
-                item.titulo ||
-                item.nombre ||
-                'Fotografías';
-
-
-        const gallery =
-            document.getElementById(
-                'modalGallery'
-            );
-
-
-        gallery.innerHTML = '';
-
-
-        if (!fotos.length) {
-
-            gallery.innerHTML = `
-                <div style="
-                    color:white;
-                    text-align:center;
-                    width:100%;
-                    padding:40px;">
-                    No hay fotografías disponibles.
-                </div>
-            `;
-
-        } else {
-
-            fotos.forEach(
-                function(foto) {
-
-                    const img =
-                        document.createElement(
-                            'img'
-                        );
-
-
-                    img.src =
-                        foto.thumbnailUrl ||
-                        foto.url;
-
-
-                    img.alt =
-                        foto.nombre ||
-                        'Fotografía';
-
-
-                    img.loading =
-                        'lazy';
-
-
-                    gallery.appendChild(
-                        img
-                    );
-
-                }
-            );
-
-        }
-
-
-        document
-            .getElementById(
-                'modalGaleria'
-            )
-            .classList.add(
-                'show'
-            );
-
-
-    } catch (error) {
-
-        ocultarLoading();
-
-
-        mostrarMensaje(
-            error.message ||
-            'No fue posible mostrar las fotografías.',
-            'error'
-        );
-
-    }
-
-}
-
-
-// ============================================================
-// CERRAR GALERÍA
-// ============================================================
-
-function cerrarGaleria() {
-
-    document
-        .getElementById(
-            'modalGaleria'
-        )
-        .classList.remove(
-            'show'
-        );
-
-}
-
-
-// ============================================================
-// FILTROS
-// ============================================================
-
-function limpiarFiltros() {
-
-    document
-        .getElementById(
-            'filtroNombre'
-        )
-        .value = '';
-
-
-    document
-        .getElementById(
-            'filtroFecha'
-        )
-        .value = '';
-
-
-    document
-        .getElementById(
-            'filtroCargador'
-        )
-        .value = '';
-
-
-    if (tokenSesion) {
-
-        consultar();
-
-    }
-
-}
-
-
-// ============================================================
-// FECHA
-// ============================================================
-
-function convertirFechaServidor(
-    fecha
-) {
-
-    if (!fecha) {
-
-        return '';
-
-    }
-
-
-    const partes =
-        fecha.split('-');
-
-
-    if (
-        partes.length !== 3
-    ) {
-
-        return fecha;
-
-    }
-
-
-    return (
-        partes[2] +
-        '/' +
-        partes[1] +
-        '/' +
-        partes[0]
-    );
-
-}
-
-
-// ============================================================
-// API POST
-// ============================================================
-
-async function apiPost(
-    datos
-) {
-
-    if (
-        !SCRIPT_URL ||
-        SCRIPT_URL.indexOf(
-            'PEGAR_AQUI'
-        ) !== -1
-    ) {
-
-        throw new Error(
-            'Debes configurar SCRIPT_URL dentro del código HTML.'
-        );
-
-    }
-
+    // ------------------------------------------------------
+    // 1. CREAR CARGA
+    // ------------------------------------------------------
 
     const respuesta =
-        await fetch(
-            SCRIPT_URL,
-            {
+      await enviarPost({
 
-                method:
-                    'POST',
+        accion: 'crearCarga',
 
-                headers: {
+        titulo: titulo,
 
-                    'Content-Type':
-                        'text/plain;charset=utf-8'
-
-                },
-
-                body:
-                    JSON.stringify(
-                        datos
-                    ),
-
-                redirect:
-                    'follow'
-
-            }
-        );
+        cargador: cargador
+      });
 
 
     if (!respuesta.ok) {
 
-        throw new Error(
-            'Error HTTP ' +
-            respuesta.status
-        );
-
+      throw new Error(
+        respuesta.error ||
+        'No se pudo crear la carga.'
+      );
     }
 
 
-    const texto =
-        await respuesta.text();
+    const cargaId =
+      respuesta.cargaId;
 
 
-    try {
+    // ------------------------------------------------------
+    // 2. SUBIR FOTOS UNA POR UNA
+    // ------------------------------------------------------
 
-        return JSON.parse(
-            texto
+    for (
+      let i = 0;
+      i < fotos.length;
+      i++
+    ) {
+
+      mostrarLoading(
+        'Subiendo fotografía ' +
+        (i + 1) +
+        ' de ' +
+        fotos.length +
+        '...'
+      );
+
+
+      const foto =
+        fotos[i];
+
+
+      const base64 =
+        await fileToBase64(
+          foto
         );
 
-    } catch (error) {
 
-        console.error(
-            'Respuesta del servidor:',
-            texto
-        );
+      const resultado =
+        await enviarPost({
 
+          accion: 'subirFoto',
+
+          cargaId: cargaId,
+
+          nombre: foto.name,
+
+          mimeType: foto.type,
+
+          base64: base64
+        });
+
+
+      if (!resultado.ok) {
 
         throw new Error(
-            'El servidor no devolvió JSON válido.'
+          'Error en ' +
+          foto.name +
+          ': ' +
+          resultado.error
         );
-
+      }
     }
 
-}
 
+    // ------------------------------------------------------
+    // 3. FINALIZAR
+    // ------------------------------------------------------
 
-// ============================================================
-// MENSAJE
-// ============================================================
-
-function mostrarMensaje(
-    texto,
-    tipo
-) {
-
-    const mensaje =
-        document.getElementById(
-            'mensaje'
-        );
-
-
-    mensaje.textContent =
-        texto;
-
-
-    mensaje.className =
-        'message show ' +
-        (
-            tipo ||
-            'info'
-        );
-
-
-    clearTimeout(
-        window.timerMensaje
+    mostrarLoading(
+      'Finalizando carga...'
     );
 
 
-    window.timerMensaje =
-        setTimeout(
-            function() {
+    const final =
+      await enviarPost({
 
-                mensaje.classList.remove(
-                    'show'
-                );
+        accion: 'finalizarCarga',
 
-            },
-            5000
-        );
+        cargaId: cargaId
+      });
+
+
+    if (!final.ok) {
+
+      throw new Error(
+        final.error ||
+        'No se pudo finalizar la carga.'
+      );
+    }
+
+
+    ocultarLoading();
+
+
+    mostrarMensaje(
+      'Carga realizada correctamente. ' +
+      'Se guardaron ' +
+      final.total +
+      ' fotografías.',
+      'success'
+    );
+
+
+    // ------------------------------------------------------
+    // LIMPIAR FORMULARIO
+    // ------------------------------------------------------
+
+    document
+      .getElementById('titulo')
+      .value = '';
+
+    document
+      .getElementById('cargador')
+      .value = '';
+
+    fotos = [];
+
+    renderFotos();
+
+
+  } catch (error) {
+
+    ocultarLoading();
+
+    mostrarMensaje(
+      error.message,
+      'error'
+    );
+
+    console.error(error);
+
+  } finally {
+
+    cargando = false;
+  }
+}
+
+
+/************************************************************
+ * CONVERTIR ARCHIVO A BASE64
+ ************************************************************/
+
+function fileToBase64(file) {
+
+  return new Promise(
+    function(resolve, reject) {
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        function() {
+
+          const resultado =
+            reader.result;
+
+          const base64 =
+            resultado.split(',')[1];
+
+          resolve(base64);
+        };
+
+      reader.onerror =
+        reject;
+
+      reader.readAsDataURL(file);
+    }
+  );
+}
+
+
+/************************************************************
+ * POST
+ ************************************************************/
+
+async function enviarPost(datos) {
+
+  const respuesta =
+    await fetch(
+      SCRIPT_URL,
+      {
+        method: 'POST',
+
+        headers: {
+          'Content-Type':
+            'text/plain;charset=utf-8'
+        },
+
+        body:
+          JSON.stringify(datos)
+      }
+    );
+
+
+  const texto =
+    await respuesta.text();
+
+
+  try {
+
+    return JSON.parse(texto);
+
+  } catch (error) {
+
+    console.error(
+      'Respuesta del servidor:',
+      texto
+    );
+
+    throw new Error(
+      'El servidor no devolvió una respuesta válida.'
+    );
+  }
+}
+
+
+/************************************************************
+ * ABRIR GESTOR
+ ************************************************************/
+
+function abrirGestor() {
+
+  mostrarTab('gestor');
+
+  // --------------------------------------------------------
+  // SI YA EXISTE TOKEN
+  // --------------------------------------------------------
+
+  if (sessionToken) {
+
+    document
+      .getElementById('loginPanel')
+      .classList.add('hidden');
+
+    document
+      .getElementById('managerPanel')
+      .classList.remove('hidden');
+
+    consultar();
+
+    return;
+  }
+
+  document
+    .getElementById('password')
+    .focus();
+}
+
+
+/************************************************************
+ * MOSTRAR TAB
+ ************************************************************/
+
+function mostrarTab(tab) {
+
+  const carga =
+    document.getElementById('vistaCarga');
+
+  const gestor =
+    document.getElementById('vistaGestor');
+
+  const tabCarga =
+    document.getElementById('tabCarga');
+
+  const tabGestor =
+    document.getElementById('tabGestor');
+
+
+  if (tab === 'carga') {
+
+    carga.classList.remove('hidden');
+
+    gestor.classList.add('hidden');
+
+    tabCarga.classList.add('active');
+
+    tabGestor.classList.remove('active');
+
+  } else {
+
+    carga.classList.add('hidden');
+
+    gestor.classList.remove('hidden');
+
+    tabCarga.classList.remove('active');
+
+    tabGestor.classList.add('active');
+  }
+}
+
+
+/************************************************************
+ * LOGIN
+ ************************************************************/
+
+async function iniciarSesion() {
+
+  const password =
+    document
+      .getElementById('password')
+      .value;
+
+
+  if (!password) {
+
+    mostrarMensaje(
+      'Escribe la contraseña.',
+      'error'
+    );
+
+    return;
+  }
+
+
+  mostrarLoading(
+    'Verificando acceso...'
+  );
+
+
+  try {
+
+    const respuesta =
+      await enviarPost({
+
+        accion: 'login',
+
+        password: password
+      });
+
+
+    ocultarLoading();
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        respuesta.error ||
+        'No se pudo iniciar sesión.'
+      );
+    }
+
+
+    sessionToken =
+      respuesta.token;
+
+
+    sessionStorage.setItem(
+      'gestorToken',
+      sessionToken
+    );
+
+
+    document
+      .getElementById('password')
+      .value = '';
+
+
+    document
+      .getElementById('loginPanel')
+      .classList.add('hidden');
+
+
+    document
+      .getElementById('managerPanel')
+      .classList.remove('hidden');
+
+
+    consultar();
+
+
+  } catch (error) {
+
+    ocultarLoading();
+
+    mostrarMensaje(
+      error.message,
+      'error'
+    );
+  }
+}
+
+
+/************************************************************
+ * LOGOUT
+ ************************************************************/
+
+async function cerrarSesion() {
+
+  try {
+
+    await enviarPost({
+
+      accion: 'logout',
+
+      token: sessionToken
+    });
+
+  } catch (error) {
+
+    console.error(error);
+  }
+
+
+  sessionToken = '';
+
+  sessionStorage.removeItem(
+    'gestorToken'
+  );
+
+
+  document
+    .getElementById('managerPanel')
+    .classList.add('hidden');
+
+
+  document
+    .getElementById('loginPanel')
+    .classList.remove('hidden');
+
+
+  document
+    .getElementById('password')
+    .value = '';
 
 }
 
 
-// ============================================================
-// LOADING
-// ============================================================
+/************************************************************
+ * CONSULTAR
+ ************************************************************/
 
-function mostrarLoading(
-    texto
+async function consultar() {
+
+  if (!sessionToken) {
+    return;
+  }
+
+
+  const titulo =
+    document
+      .getElementById('filtroTitulo')
+      .value
+      .trim();
+
+
+  const cargador =
+    document
+      .getElementById('filtroCargador')
+      .value
+      .trim();
+
+
+  const fechaInput =
+    document
+      .getElementById('filtroFecha')
+      .value;
+
+
+  let fecha = '';
+
+  if (fechaInput) {
+
+    const partes =
+      fechaInput.split('-');
+
+    fecha =
+      partes[2] +
+      '/' +
+      partes[1] +
+      '/' +
+      partes[0];
+  }
+
+
+  mostrarLoading(
+    'Consultando cargas...'
+  );
+
+
+  try {
+
+    const respuesta =
+      await enviarPost({
+
+        accion: 'consultarCargas',
+
+        token: sessionToken,
+
+        filtros: {
+
+          titulo: titulo,
+
+          cargador: cargador,
+
+          fecha: fecha
+        }
+      });
+
+
+    ocultarLoading();
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        respuesta.error
+      );
+    }
+
+
+    renderResultados(
+      respuesta.resultados
+    );
+
+
+  } catch (error) {
+
+    ocultarLoading();
+
+    mostrarMensaje(
+      error.message,
+      'error'
+    );
+  }
+}
+
+
+/************************************************************
+ * RESULTADOS
+ ************************************************************/
+
+function renderResultados(lista) {
+
+  const contenedor =
+    document.getElementById('resultados');
+
+
+  if (!lista.length) {
+
+    contenedor.innerHTML = `
+      <div class="empty">
+        No se encontraron cargas.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  let html = `
+
+    <table class="result-table">
+
+      <thead>
+
+        <tr>
+
+          <th>Título</th>
+
+          <th>Cargador</th>
+
+          <th>Fecha</th>
+
+          <th>Fotos</th>
+
+          <th>Carpeta</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+  `;
+
+
+  lista.forEach(function(item) {
+
+    html += `
+
+      <tr>
+
+        <td>
+          <strong>
+            ${escapeHtml(item.titulo)}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHtml(item.cargador)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.fecha)}
+        </td>
+
+        <td>
+          ${item.total}
+        </td>
+
+        <td>
+
+          <a
+            href="${item.url}"
+            target="_blank"
+            class="link"
+          >
+            📂 Abrir
+          </a>
+
+          <button
+            class="btn btn-secondary btn-small"
+            onclick="verFotos('${item.carpetaId}')"
+          >
+            🖼 Ver
+          </button>
+
+        </td>
+
+      </tr>
+    `;
+  });
+
+
+  html += `
+
+      </tbody>
+
+    </table>
+  `;
+
+
+  contenedor.innerHTML =
+    html;
+}
+
+
+/************************************************************
+ * VER FOTOS
+ ************************************************************/
+
+async function verFotos(folderId) {
+
+  mostrarLoading(
+    'Cargando fotografías...'
+  );
+
+
+  try {
+
+    const respuesta =
+      await enviarPost({
+
+        accion:
+          'obtenerFotosCarpeta',
+
+        token:
+          sessionToken,
+
+        folderId:
+          folderId
+      });
+
+
+    ocultarLoading();
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        respuesta.error
+      );
+    }
+
+
+    const contenedor =
+      document.getElementById(
+        'galleryContainer'
+      );
+
+    const gallery =
+      document.getElementById(
+        'gallery'
+      );
+
+
+    contenedor.classList.remove(
+      'hidden'
+    );
+
+
+    if (!respuesta.fotos.length) {
+
+      gallery.innerHTML =
+        '<div class="empty">No hay fotografías.</div>';
+
+      return;
+    }
+
+
+    gallery.innerHTML =
+      respuesta.fotos
+        .map(function(foto) {
+
+          return `
+
+            <a
+              href="${foto.url}"
+              target="_blank"
+            >
+
+              <img
+                src="${foto.thumbnail}"
+                alt="${escapeHtml(foto.nombre)}"
+                title="${escapeHtml(foto.nombre)}"
+              >
+
+            </a>
+          `;
+
+        })
+        .join('');
+
+
+  } catch (error) {
+
+    ocultarLoading();
+
+    mostrarMensaje(
+      error.message,
+      'error'
+    );
+  }
+}
+
+
+/************************************************************
+ * MENSAJE
+ ************************************************************/
+
+function mostrarMensaje(
+  texto,
+  tipo
 ) {
 
-    document
-        .getElementById(
-            'loadingText'
-        )
-        .textContent =
-            texto ||
-            'Procesando...';
+  const elemento =
+    document.getElementById(
+      'message'
+    );
 
 
-    document
-        .getElementById(
-            'loading'
-        )
-        .classList.add(
-            'show'
-        );
+  elemento.textContent =
+    texto;
 
+
+  elemento.className =
+    'message';
+
+
+  if (tipo) {
+
+    elemento.classList.add(
+      tipo
+    );
+  }
+
+
+  setTimeout(
+    function() {
+
+      elemento.classList.add(
+        'hidden'
+      );
+
+    },
+    5000
+  );
+}
+
+
+/************************************************************
+ * LOADING
+ ************************************************************/
+
+function mostrarLoading(texto) {
+
+  document
+    .getElementById('loadingText')
+    .textContent =
+      texto;
+
+
+  document
+    .getElementById('loading')
+    .classList.remove(
+      'hidden'
+    );
 }
 
 
 function ocultarLoading() {
 
-    document
-        .getElementById(
-            'loading'
-        )
-        .classList.remove(
-            'show'
-        );
-
+  document
+    .getElementById('loading')
+    .classList.add(
+      'hidden'
+    );
 }
 
 
-// ============================================================
-// CERRAR MODAL AL HACER CLICK FUERA
-// ============================================================
+/************************************************************
+ * ESCAPAR HTML
+ ************************************************************/
 
-document
-    .getElementById(
-        'modalGaleria'
-    )
-    .addEventListener(
-        'click',
-        function(event) {
+function escapeHtml(texto) {
 
-            if (
-                event.target === this
-            ) {
-
-                cerrarGaleria();
-
-            }
-
-        }
-    );
-
-
-// ============================================================
-// ESC
-// ============================================================
-
-document.addEventListener(
-    'keydown',
-    function(event) {
-
-        if (
-            event.key === 'Escape'
-        ) {
-
-            cerrarGaleria();
-
-        }
-
-    }
-);
+  return String(texto || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 </script>
 
