@@ -38,7 +38,7 @@ input {
 }
 
 .header {
-  background: #ffffff;
+  background: white;
   border-bottom: 1px solid #e5eaf1;
   padding: 18px 24px;
 
@@ -116,7 +116,9 @@ input {
   border: 1px solid #e5eaf1;
   border-radius: 18px;
   padding: 25px;
-  box-shadow: 0 8px 30px rgba(15, 23, 42, .05);
+  box-shadow:
+    0 8px 30px rgba(15, 23, 42, .05);
+
   margin-bottom: 20px;
 }
 
@@ -150,23 +152,35 @@ input {
 .field input {
   width: 100%;
   padding: 13px 14px;
+
   border: 1px solid #dbe2ea;
+
   border-radius: 10px;
+
   outline: none;
 }
 
 .field input:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37,99,235,.10);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(37,99,235,.10);
 }
 
 .dropzone {
   margin-top: 20px;
+
   border: 2px dashed #cbd5e1;
+
   border-radius: 16px;
+
   padding: 35px;
+
   text-align: center;
+
   cursor: pointer;
+
   transition: .2s;
 }
 
@@ -204,9 +218,13 @@ input {
 .btn {
   border: 0;
   border-radius: 10px;
+
   padding: 12px 18px;
+
   cursor: pointer;
+
   font-weight: 800;
+
   transition: .2s;
 }
 
@@ -247,7 +265,9 @@ input {
   margin-top: 25px;
 
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
 
   gap: 15px;
@@ -262,7 +282,10 @@ input {
   display: grid;
 
   grid-template-columns:
-    repeat(auto-fill, minmax(190px, 1fr));
+    repeat(
+      auto-fill,
+      minmax(190px, 1fr)
+    );
 
   gap: 15px;
 
@@ -271,39 +294,88 @@ input {
 
 .photo-card {
   border: 1px solid #e2e8f0;
+
   border-radius: 14px;
+
   overflow: hidden;
+
   background: white;
+
+  cursor: grab;
+
+  transition:
+    transform .15s,
+    opacity .15s,
+    border-color .15s,
+    box-shadow .15s;
+}
+
+.photo-card:active {
+  cursor: grabbing;
+}
+
+.photo-card.dragging {
+  opacity: .45;
+
+  border-color: #2563eb;
+
+  box-shadow:
+    0 10px 25px
+    rgba(37,99,235,.18);
+}
+
+.photo-card.drag-over {
+  border-color: #14b8a6;
+
+  transform: scale(1.02);
 }
 
 .photo-image {
   width: 100%;
   height: 170px;
+
   object-fit: cover;
+
   background: #f1f5f9;
+
+  pointer-events: none;
 }
 
 .photo-info {
   padding: 10px;
 }
 
-.photo-name {
-  font-size: 12px;
-  font-weight: 700;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .photo-number {
   color: #2563eb;
+
   font-size: 12px;
+
   font-weight: 800;
 }
 
+.photo-name {
+  font-size: 12px;
+
+  font-weight: 700;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.drag-hint {
+  margin-top: 7px;
+
+  font-size: 11px;
+
+  color: #94a3b8;
+
+  user-select: none;
+}
+
 .photo-buttons {
-  display: flex;
-  gap: 5px;
   margin-top: 8px;
 }
 
@@ -319,19 +391,24 @@ input {
 
 .message {
   position: fixed;
+
   right: 20px;
+
   bottom: 20px;
 
   max-width: 400px;
 
   background: #172033;
+
   color: white;
 
   padding: 14px 18px;
 
   border-radius: 12px;
 
-  box-shadow: 0 10px 35px rgba(0,0,0,.2);
+  box-shadow:
+    0 10px 35px
+    rgba(0,0,0,.2);
 
   z-index: 100;
 }
@@ -346,12 +423,16 @@ input {
 
 .loading {
   position: fixed;
+
   inset: 0;
 
-  background: rgba(255,255,255,.72);
+  background:
+    rgba(255,255,255,.72);
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   z-index: 200;
@@ -361,10 +442,17 @@ input {
 
 .loading-box {
   background: white;
+
   padding: 25px 30px;
+
   border-radius: 15px;
-  box-shadow: 0 15px 50px rgba(0,0,0,.15);
+
+  box-shadow:
+    0 15px 50px
+    rgba(0,0,0,.15);
+
   text-align: center;
+
   font-weight: 800;
 }
 
@@ -373,41 +461,52 @@ input {
   height: 35px;
 
   border: 4px solid #e2e8f0;
+
   border-top-color: #2563eb;
 
   border-radius: 50%;
 
-  animation: spin .8s linear infinite;
+  animation:
+    spin .8s linear infinite;
 
   margin: 0 auto 15px;
 }
 
 @keyframes spin {
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
 .login-box {
   max-width: 450px;
+
   margin: 40px auto;
 }
 
 .result-table {
   width: 100%;
+
   border-collapse: collapse;
+
   margin-top: 20px;
 }
 
 .result-table th,
 .result-table td {
   padding: 12px;
-  border-bottom: 1px solid #e5eaf1;
+
+  border-bottom:
+    1px solid #e5eaf1;
+
   text-align: left;
 }
 
 .result-table th {
   background: #f8fafc;
+
   font-size: 13px;
 }
 
@@ -417,7 +516,9 @@ input {
 
 .link {
   color: #2563eb;
+
   font-weight: 700;
+
   text-decoration: none;
 }
 
@@ -425,7 +526,10 @@ input {
   display: grid;
 
   grid-template-columns:
-    repeat(auto-fill, minmax(180px, 1fr));
+    repeat(
+      auto-fill,
+      minmax(180px, 1fr)
+    );
 
   gap: 15px;
 
@@ -434,14 +538,70 @@ input {
 
 .gallery img {
   width: 100%;
+
   height: 180px;
+
   object-fit: cover;
 
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+
+  border:
+    1px solid #e2e8f0;
 }
 
-@media(max-width: 700px) {
+/* ========================================================
+   EDITAR CARGA
+======================================================== */
+
+.edit-box {
+  margin-top: 20px;
+
+  padding: 18px;
+
+  background: #f8fafc;
+
+  border:
+    1px solid #e2e8f0;
+
+  border-radius: 14px;
+}
+
+.edit-title {
+  font-size: 13px;
+
+  font-weight: 800;
+
+  color: #475569;
+
+  margin-bottom: 8px;
+}
+
+.edit-input {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  border:
+    1px solid #cbd5e1;
+
+  border-radius: 9px;
+
+  outline: none;
+}
+
+.edit-input:focus {
+  border-color: #2563eb;
+}
+
+.edit-actions {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 10px;
+}
+
+@media(max-width:700px) {
 
   .header {
     padding: 15px;
@@ -465,6 +625,7 @@ input {
 
   .result-table {
     display: block;
+
     overflow-x: auto;
   }
 
@@ -474,12 +635,17 @@ input {
 
 </head>
 
+
 <body>
+
 
 <header class="header">
 
   <div class="logo">
-    📷 Gestor de <span>Fotografías</span>
+
+    📷 Gestor de
+    <span>Fotografías</span>
+
   </div>
 
   <div
@@ -517,17 +683,19 @@ input {
 
 
 <!-- ======================================================
-     CARGA
+     TAB CARGA
 ======================================================= -->
 
 <section id="vistaCarga">
 
   <div class="panel">
 
-    <h2>Cargar fotografías</h2>
+    <h2>
+      Cargar fotografías
+    </h2>
 
     <p class="subtitle">
-      Selecciona una o varias fotografías y registra la información de la carga.
+      Selecciona las fotografías y arrástralas para establecer el orden.
     </p>
 
 
@@ -568,7 +736,6 @@ input {
     <div
       id="dropzone"
       class="dropzone"
-      onclick="document.getElementById('fileInput').click()"
     >
 
       <strong>
@@ -576,7 +743,7 @@ input {
       </strong>
 
       <small>
-        Puedes seleccionar varias fotografías al mismo tiempo
+        También puedes arrastrar archivos aquí
       </small>
 
       <input
@@ -637,7 +804,7 @@ input {
 
 
 <!-- ======================================================
-     GESTOR
+     TAB GESTOR
 ======================================================= -->
 
 <section
@@ -646,176 +813,175 @@ input {
 >
 
 
-  <!-- LOGIN -->
+<div
+  id="loginPanel"
+  class="panel login-box"
+>
+
+  <h2>
+    🔐 Acceso al Gestor
+  </h2>
+
+  <p class="subtitle">
+    Ingresa la contraseña para consultar y editar las cargas.
+  </p>
+
+  <div class="field">
+
+    <label>
+      Contraseña
+    </label>
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Contraseña"
+      onkeydown="
+        if(event.key==='Enter')
+        iniciarSesion()
+      "
+    >
+
+  </div>
+
+  <div class="actions">
+
+    <button
+      class="btn btn-primary"
+      onclick="iniciarSesion()"
+    >
+      Entrar
+    </button>
+
+  </div>
+
+</div>
+
+
+<div
+  id="managerPanel"
+  class="hidden"
+>
+
+<div class="panel">
 
   <div
-    id="loginPanel"
-    class="panel login-box"
+    style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
+      flex-wrap:wrap;
+    "
   >
 
-    <h2>🔐 Acceso al Gestor</h2>
+    <div>
 
-    <p class="subtitle">
-      La contraseña únicamente se solicita al entrar a esta pestaña.
-    </p>
+      <h2>
+        📂 Cargas registradas
+      </h2>
+
+      <p class="subtitle">
+        Consulta y administra las fotografías cargadas.
+      </p>
+
+    </div>
+
+    <button
+      class="btn btn-danger btn-small"
+      onclick="cerrarSesion()"
+    >
+      Cerrar sesión
+    </button>
+
+  </div>
+
+
+  <div
+    class="grid"
+    style="margin-top:20px"
+  >
+
+    <div class="field">
+
+      <label>
+        Título
+      </label>
+
+      <input
+        id="filtroTitulo"
+        type="text"
+        placeholder="Buscar por título"
+      >
+
+    </div>
 
 
     <div class="field">
 
       <label>
-        Contraseña
+        Cargador
       </label>
 
       <input
-        id="password"
-        type="password"
-        placeholder="Contraseña"
-        onkeydown="if(event.key==='Enter') iniciarSesion()"
+        id="filtroCargador"
+        type="text"
+        placeholder="Buscar por persona"
       >
 
     </div>
 
 
-    <div class="actions">
+    <div class="field">
 
-      <button
-        class="btn btn-primary"
-        onclick="iniciarSesion()"
+      <label>
+        Fecha
+      </label>
+
+      <input
+        id="filtroFecha"
+        type="date"
       >
-        Entrar
-      </button>
 
     </div>
 
   </div>
 
 
-  <!-- GESTOR -->
+  <div class="actions">
+
+    <button
+      class="btn btn-primary"
+      onclick="consultar()"
+    >
+      🔎 Consultar
+    </button>
+
+  </div>
+
+
+  <div id="resultados"></div>
+
 
   <div
-    id="managerPanel"
+    id="galleryContainer"
     class="hidden"
   >
 
-    <div class="panel">
+    <h3>
+      Fotografías
+    </h3>
 
-      <div
-        style="
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          gap:15px;
-          flex-wrap:wrap;
-        "
-      >
-
-        <div>
-
-          <h2>
-            📂 Cargas registradas
-          </h2>
-
-          <p class="subtitle">
-            Consulta las fotografías que ya fueron cargadas.
-          </p>
-
-        </div>
-
-        <button
-          class="btn btn-danger btn-small"
-          onclick="cerrarSesion()"
-        >
-          Cerrar sesión
-        </button>
-
-      </div>
-
-
-      <div
-        class="grid"
-        style="margin-top:20px"
-      >
-
-        <div class="field">
-
-          <label>
-            Título
-          </label>
-
-          <input
-            id="filtroTitulo"
-            type="text"
-            placeholder="Buscar por título"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Cargador
-          </label>
-
-          <input
-            id="filtroCargador"
-            type="text"
-            placeholder="Buscar por persona"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Fecha
-          </label>
-
-          <input
-            id="filtroFecha"
-            type="date"
-          >
-
-        </div>
-
-      </div>
-
-
-      <div class="actions">
-
-        <button
-          class="btn btn-primary"
-          onclick="consultar()"
-        >
-          🔎 Consultar
-        </button>
-
-      </div>
-
-
-      <div id="resultados"></div>
-
-
-      <div
-        id="galleryContainer"
-        class="hidden"
-      >
-
-        <h3>
-          Fotografías
-        </h3>
-
-        <div
-          id="gallery"
-          class="gallery"
-        ></div>
-
-      </div>
-
-    </div>
+    <div
+      id="gallery"
+      class="gallery"
+    ></div>
 
   </div>
+
+</div>
+
+</div>
 
 </section>
 
@@ -849,15 +1015,13 @@ input {
 <script>
 
 /************************************************************
- * CONFIGURACIÓN
+ * URL DEL WEB APP
  *
- * AQUÍ SÍ VA LA URL DEL WEB APP.
- *
- * NO SE PIDE AL USUARIO.
+ * NO SE PIDE AL USUARIO
  ************************************************************/
 
 const SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbwlgQgC0Hg3yZ0WaindqQwIANuEcCtd2RtH-YHqm-9tCsScYdQ0veF9DS3rQi8Idk9X/exec';
+  'https://script.google.com/macros/s/AKfycbz7C8v4RpEzAKbTWkIQW3r1nBtW8amW1Fra8jNA8meIhckhEkrGjVXFDLNql1fXe8Ys/exec';
 
 
 /************************************************************
@@ -867,9 +1031,13 @@ const SCRIPT_URL =
 let fotos = [];
 
 let sessionToken =
-  sessionStorage.getItem('gestorToken') || '';
+  sessionStorage.getItem(
+    'gestorToken'
+  ) || '';
 
 let cargando = false;
+
+let fotoArrastrada = null;
 
 
 /************************************************************
@@ -883,23 +1051,92 @@ document.addEventListener(
     conectarScript();
 
     const fileInput =
-      document.getElementById('fileInput');
+      document.getElementById(
+        'fileInput'
+      );
 
     fileInput.addEventListener(
       'change',
       function(e) {
 
         agregarFotos(
-          Array.from(e.target.files)
+          Array.from(
+            e.target.files
+          )
         );
 
         e.target.value = '';
       }
     );
 
-    configurarDragDrop();
+    configurarDropzone();
   }
 );
+
+
+/************************************************************
+ * DROPZONE DE ARCHIVOS
+ ************************************************************/
+
+function configurarDropzone() {
+
+  const zona =
+    document.getElementById(
+      'dropzone'
+    );
+
+  zona.addEventListener(
+    'click',
+    function() {
+
+      document
+        .getElementById(
+          'fileInput'
+        )
+        .click();
+    }
+  );
+
+  zona.addEventListener(
+    'dragover',
+    function(e) {
+
+      e.preventDefault();
+
+      zona.classList.add(
+        'drag'
+      );
+    }
+  );
+
+  zona.addEventListener(
+    'dragleave',
+    function() {
+
+      zona.classList.remove(
+        'drag'
+      );
+    }
+  );
+
+  zona.addEventListener(
+    'drop',
+    function(e) {
+
+      e.preventDefault();
+
+      zona.classList.remove(
+        'drag'
+      );
+
+      agregarFotos(
+        Array.from(
+          e.dataTransfer.files
+        )
+      );
+    }
+  );
+}
 
 
 /************************************************************
@@ -909,13 +1146,16 @@ document.addEventListener(
 async function conectarScript() {
 
   const indicador =
-    document.getElementById('connection');
+    document.getElementById(
+      'connection'
+    );
 
   try {
 
     const respuesta =
       await fetch(
-        SCRIPT_URL + '?accion=ping',
+        SCRIPT_URL +
+        '?accion=ping',
         {
           method: 'GET',
           cache: 'no-store'
@@ -926,72 +1166,35 @@ async function conectarScript() {
       await respuesta.json();
 
     if (!datos.ok) {
+
       throw new Error(
-        datos.error || 'Error de conexión.'
+        datos.error ||
+        'Error de conexión.'
       );
     }
 
     indicador.textContent =
       '● Conectado';
 
-    indicador.classList.add('ok');
+    indicador.classList.add(
+      'ok'
+    );
 
   } catch (error) {
 
     indicador.textContent =
       '● Sin conexión';
 
-    indicador.classList.add('error');
+    indicador.classList.add(
+      'error'
+    );
 
     mostrarMensaje(
-      'No se pudo conectar con Apps Script: ' +
+      'No se pudo conectar: ' +
       error.message,
       'error'
     );
   }
-}
-
-
-/************************************************************
- * DRAG & DROP
- ************************************************************/
-
-function configurarDragDrop() {
-
-  const zona =
-    document.getElementById('dropzone');
-
-  zona.addEventListener(
-    'dragover',
-    function(e) {
-
-      e.preventDefault();
-
-      zona.classList.add('drag');
-    }
-  );
-
-  zona.addEventListener(
-    'dragleave',
-    function() {
-
-      zona.classList.remove('drag');
-    }
-  );
-
-  zona.addEventListener(
-    'drop',
-    function(e) {
-
-      e.preventDefault();
-
-      zona.classList.remove('drag');
-
-      agregarFotos(
-        Array.from(e.dataTransfer.files)
-      );
-    }
-  );
 }
 
 
@@ -1002,178 +1205,335 @@ function configurarDragDrop() {
 function agregarFotos(lista) {
 
   const imagenes =
-    lista.filter(function(file) {
+    lista.filter(
+      function(file) {
 
-      return file.type.startsWith('image/');
-    });
+        return file.type
+          .startsWith(
+            'image/'
+          );
+      }
+    );
 
   if (!imagenes.length) {
 
     mostrarMensaje(
-      'No se encontraron archivos de imagen.',
+      'No se encontraron imágenes.',
       'error'
     );
 
     return;
   }
 
-  imagenes.forEach(function(file) {
+  imagenes.forEach(
+    function(file) {
 
-    fotos.push(file);
-  });
+      fotos.push(file);
+    }
+  );
 
   renderFotos();
 }
 
 
 /************************************************************
- * RENDER
+ * RENDER FOTOS
  ************************************************************/
 
 function renderFotos() {
 
   const grid =
-    document.getElementById('photoGrid');
+    document.getElementById(
+      'photoGrid'
+    );
 
   const contador =
-    document.getElementById('photoCounter');
+    document.getElementById(
+      'photoCounter'
+    );
 
   contador.textContent =
     fotos.length +
-    (fotos.length === 1
-      ? ' fotografía'
-      : ' fotografías');
+    (
+      fotos.length === 1
+        ? ' fotografía'
+        : ' fotografías'
+    );
 
   if (!fotos.length) {
 
     grid.innerHTML =
-      '<div class="empty">No hay fotografías seleccionadas.</div>';
+      `
+      <div class="empty">
+        No hay fotografías seleccionadas.
+      </div>
+      `;
 
     return;
   }
 
   grid.innerHTML = '';
 
-  fotos.forEach(function(file, index) {
+  fotos.forEach(
+    function(file, index) {
 
-    const card =
-      document.createElement('div');
+      const card =
+        document.createElement(
+          'div'
+        );
 
-    card.className =
-      'photo-card';
+      card.className =
+        'photo-card';
 
-    const imagen =
-      document.createElement('img');
+      card.draggable = true;
 
-    imagen.className =
-      'photo-image';
-
-    imagen.alt =
-      file.name;
-
-    const reader =
-      new FileReader();
-
-    reader.onload =
-      function(e) {
-
-        imagen.src =
-          e.target.result;
-      };
-
-    reader.readAsDataURL(file);
+      card.dataset.index =
+        index;
 
 
-    const info =
-      document.createElement('div');
+      // ----------------------------------------------------
+      // DRAG START
+      // ----------------------------------------------------
 
-    info.className =
-      'photo-info';
+      card.addEventListener(
+        'dragstart',
+        function(e) {
 
-    info.innerHTML = `
+          fotoArrastrada =
+            index;
 
-      <div class="photo-number">
-        FOTO ${index + 1}
-      </div>
+          card.classList.add(
+            'dragging'
+          );
 
-      <div class="photo-name"
-           title="${escapeHtml(file.name)}">
-        ${escapeHtml(file.name)}
-      </div>
+          e.dataTransfer.effectAllowed =
+            'move';
+        }
+      );
 
-      <div class="photo-buttons">
 
-        <button
-          class="btn btn-secondary btn-small"
-          onclick="moverFoto(${index}, -1)"
-          ${index === 0 ? 'disabled' : ''}
+      // ----------------------------------------------------
+      // DRAG END
+      // ----------------------------------------------------
+
+      card.addEventListener(
+        'dragend',
+        function() {
+
+          fotoArrastrada =
+            null;
+
+          card.classList.remove(
+            'dragging'
+          );
+
+          document
+            .querySelectorAll(
+              '.photo-card'
+            )
+            .forEach(
+              function(elemento) {
+
+                elemento.classList.remove(
+                  'drag-over'
+                );
+              }
+            );
+        }
+      );
+
+
+      // ----------------------------------------------------
+      // DRAG OVER
+      // ----------------------------------------------------
+
+      card.addEventListener(
+        'dragover',
+        function(e) {
+
+          e.preventDefault();
+
+          if (
+            fotoArrastrada === null ||
+            fotoArrastrada === index
+          ) {
+            return;
+          }
+
+          card.classList.add(
+            'drag-over'
+          );
+
+          e.dataTransfer.dropEffect =
+            'move';
+        }
+      );
+
+
+      // ----------------------------------------------------
+      // DRAG LEAVE
+      // ----------------------------------------------------
+
+      card.addEventListener(
+        'dragleave',
+        function() {
+
+          card.classList.remove(
+            'drag-over'
+          );
+        }
+      );
+
+
+      // ----------------------------------------------------
+      // DROP
+      // ----------------------------------------------------
+
+      card.addEventListener(
+        'drop',
+        function(e) {
+
+          e.preventDefault();
+
+          card.classList.remove(
+            'drag-over'
+          );
+
+          if (
+            fotoArrastrada === null ||
+            fotoArrastrada === index
+          ) {
+            return;
+          }
+
+          const elemento =
+            fotos.splice(
+              fotoArrastrada,
+              1
+            )[0];
+
+          let destino =
+            index;
+
+          if (
+            fotoArrastrada < index
+          ) {
+            destino--;
+          }
+
+          fotos.splice(
+            destino,
+            0,
+            elemento
+          );
+
+          fotoArrastrada =
+            null;
+
+          renderFotos();
+        }
+      );
+
+
+      // ----------------------------------------------------
+      // IMAGEN
+      // ----------------------------------------------------
+
+      const imagen =
+        document.createElement(
+          'img'
+        );
+
+      imagen.className =
+        'photo-image';
+
+      imagen.alt =
+        file.name;
+
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        function(e) {
+
+          imagen.src =
+            e.target.result;
+        };
+
+      reader.readAsDataURL(
+        file
+      );
+
+
+      // ----------------------------------------------------
+      // INFORMACIÓN
+      // ----------------------------------------------------
+
+      const info =
+        document.createElement(
+          'div'
+        );
+
+      info.className =
+        'photo-info';
+
+      info.innerHTML = `
+
+        <div class="photo-number">
+          FOTO ${index + 1}
+        </div>
+
+        <div
+          class="photo-name"
+          title="${escapeHtml(file.name)}"
         >
-          ←
-        </button>
+          ${escapeHtml(file.name)}
+        </div>
 
-        <button
-          class="btn btn-secondary btn-small"
-          onclick="moverFoto(${index}, 1)"
-          ${index === fotos.length - 1 ? 'disabled' : ''}
-        >
-          →
-        </button>
+        <div class="drag-hint">
+          ☷ Arrastra para ordenar
+        </div>
 
-        <button
-          class="btn btn-danger btn-small"
-          onclick="eliminarFoto(${index})"
-        >
-          ✕
-        </button>
+        <div class="photo-buttons">
 
-      </div>
-    `;
+          <button
+            class="btn btn-danger btn-small"
+            onclick="eliminarFoto(${index})"
+          >
+            ✕ Eliminar
+          </button>
 
-    card.appendChild(imagen);
+        </div>
+      `;
 
-    card.appendChild(info);
 
-    grid.appendChild(card);
-  });
+      card.appendChild(
+        imagen
+      );
+
+      card.appendChild(
+        info
+      );
+
+      grid.appendChild(
+        card
+      );
+    }
+  );
 }
 
 
 /************************************************************
- * MOVER FOTO
- ************************************************************/
-
-function moverFoto(index, direccion) {
-
-  const nuevo =
-    index + direccion;
-
-  if (
-    nuevo < 0 ||
-    nuevo >= fotos.length
-  ) {
-    return;
-  }
-
-  const temporal =
-    fotos[index];
-
-  fotos[index] =
-    fotos[nuevo];
-
-  fotos[nuevo] =
-    temporal;
-
-  renderFotos();
-}
-
-
-/************************************************************
- * ELIMINAR
+ * ELIMINAR FOTO
  ************************************************************/
 
 function eliminarFoto(index) {
 
-  fotos.splice(index, 1);
+  fotos.splice(
+    index,
+    1
+  );
 
   renderFotos();
 }
@@ -1192,7 +1552,7 @@ function limpiarFotos() {
 
 
 /************************************************************
- * GUARDAR CARGA
+ * GUARDAR
  ************************************************************/
 
 async function guardarCarga() {
@@ -1203,13 +1563,17 @@ async function guardarCarga() {
 
   const titulo =
     document
-      .getElementById('titulo')
+      .getElementById(
+        'titulo'
+      )
       .value
       .trim();
 
   const cargador =
     document
-      .getElementById('cargador')
+      .getElementById(
+        'cargador'
+      )
       .value
       .trim();
 
@@ -1249,33 +1613,32 @@ async function guardarCarga() {
 
   cargando = true;
 
-  mostrarLoading(
-    'Creando carpeta...'
-  );
-
 
   try {
 
-    // ------------------------------------------------------
-    // 1. CREAR CARGA
-    // ------------------------------------------------------
+    mostrarLoading(
+      'Creando carpeta...'
+    );
+
 
     const respuesta =
       await enviarPost({
 
-        accion: 'crearCarga',
+        accion:
+          'crearCarga',
 
-        titulo: titulo,
+        titulo:
+          titulo,
 
-        cargador: cargador
+        cargador:
+          cargador
       });
 
 
     if (!respuesta.ok) {
 
       throw new Error(
-        respuesta.error ||
-        'No se pudo crear la carga.'
+        respuesta.error
       );
     }
 
@@ -1283,10 +1646,6 @@ async function guardarCarga() {
     const cargaId =
       respuesta.cargaId;
 
-
-    // ------------------------------------------------------
-    // 2. SUBIR FOTOS UNA POR UNA
-    // ------------------------------------------------------
 
     for (
       let i = 0;
@@ -1298,14 +1657,12 @@ async function guardarCarga() {
         'Subiendo fotografía ' +
         (i + 1) +
         ' de ' +
-        fotos.length +
-        '...'
+        fotos.length
       );
 
 
       const foto =
         fotos[i];
-
 
       const base64 =
         await fileToBase64(
@@ -1316,53 +1673,52 @@ async function guardarCarga() {
       const resultado =
         await enviarPost({
 
-          accion: 'subirFoto',
+          accion:
+            'subirFoto',
 
-          cargaId: cargaId,
+          cargaId:
+            cargaId,
 
-          nombre: foto.name,
+          nombre:
+            foto.name,
 
-          mimeType: foto.type,
+          mimeType:
+            foto.type,
 
-          base64: base64
+          base64:
+            base64
         });
 
 
       if (!resultado.ok) {
 
         throw new Error(
-          'Error en ' +
-          foto.name +
-          ': ' +
           resultado.error
         );
       }
     }
 
 
-    // ------------------------------------------------------
-    // 3. FINALIZAR
-    // ------------------------------------------------------
-
     mostrarLoading(
-      'Finalizando carga...'
+      'Finalizando...'
     );
 
 
     const final =
       await enviarPost({
 
-        accion: 'finalizarCarga',
+        accion:
+          'finalizarCarga',
 
-        cargaId: cargaId
+        cargaId:
+          cargaId
       });
 
 
     if (!final.ok) {
 
       throw new Error(
-        final.error ||
-        'No se pudo finalizar la carga.'
+        final.error
       );
     }
 
@@ -1372,23 +1728,22 @@ async function guardarCarga() {
 
     mostrarMensaje(
       'Carga realizada correctamente. ' +
-      'Se guardaron ' +
       final.total +
-      ' fotografías.',
+      ' fotografías guardadas.',
       'success'
     );
 
 
-    // ------------------------------------------------------
-    // LIMPIAR FORMULARIO
-    // ------------------------------------------------------
-
     document
-      .getElementById('titulo')
+      .getElementById(
+        'titulo'
+      )
       .value = '';
 
     document
-      .getElementById('cargador')
+      .getElementById(
+        'cargador'
+      )
       .value = '';
 
     fotos = [];
@@ -1405,8 +1760,6 @@ async function guardarCarga() {
       'error'
     );
 
-    console.error(error);
-
   } finally {
 
     cargando = false;
@@ -1415,7 +1768,7 @@ async function guardarCarga() {
 
 
 /************************************************************
- * CONVERTIR ARCHIVO A BASE64
+ * BASE64
  ************************************************************/
 
 function fileToBase64(file) {
@@ -1429,19 +1782,18 @@ function fileToBase64(file) {
       reader.onload =
         function() {
 
-          const resultado =
-            reader.result;
-
-          const base64 =
-            resultado.split(',')[1];
-
-          resolve(base64);
+          resolve(
+            reader.result
+              .split(',')[1]
+          );
         };
 
       reader.onerror =
         reject;
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(
+        file
+      );
     }
   );
 }
@@ -1457,9 +1809,12 @@ async function enviarPost(datos) {
     await fetch(
       SCRIPT_URL,
       {
-        method: 'POST',
+
+        method:
+          'POST',
 
         headers: {
+
           'Content-Type':
             'text/plain;charset=utf-8'
         },
@@ -1476,12 +1831,13 @@ async function enviarPost(datos) {
 
   try {
 
-    return JSON.parse(texto);
+    return JSON.parse(
+      texto
+    );
 
   } catch (error) {
 
     console.error(
-      'Respuesta del servidor:',
       texto
     );
 
@@ -1498,21 +1854,27 @@ async function enviarPost(datos) {
 
 function abrirGestor() {
 
-  mostrarTab('gestor');
-
-  // --------------------------------------------------------
-  // SI YA EXISTE TOKEN
-  // --------------------------------------------------------
+  mostrarTab(
+    'gestor'
+  );
 
   if (sessionToken) {
 
     document
-      .getElementById('loginPanel')
-      .classList.add('hidden');
+      .getElementById(
+        'loginPanel'
+      )
+      .classList.add(
+        'hidden'
+      );
 
     document
-      .getElementById('managerPanel')
-      .classList.remove('hidden');
+      .getElementById(
+        'managerPanel'
+      )
+      .classList.remove(
+        'hidden'
+      );
 
     consultar();
 
@@ -1520,49 +1882,75 @@ function abrirGestor() {
   }
 
   document
-    .getElementById('password')
+    .getElementById(
+      'password'
+    )
     .focus();
 }
 
 
 /************************************************************
- * MOSTRAR TAB
+ * TAB
  ************************************************************/
 
 function mostrarTab(tab) {
 
   const carga =
-    document.getElementById('vistaCarga');
+    document.getElementById(
+      'vistaCarga'
+    );
 
   const gestor =
-    document.getElementById('vistaGestor');
+    document.getElementById(
+      'vistaGestor'
+    );
 
   const tabCarga =
-    document.getElementById('tabCarga');
+    document.getElementById(
+      'tabCarga'
+    );
 
   const tabGestor =
-    document.getElementById('tabGestor');
+    document.getElementById(
+      'tabGestor'
+    );
 
 
   if (tab === 'carga') {
 
-    carga.classList.remove('hidden');
+    carga.classList.remove(
+      'hidden'
+    );
 
-    gestor.classList.add('hidden');
+    gestor.classList.add(
+      'hidden'
+    );
 
-    tabCarga.classList.add('active');
+    tabCarga.classList.add(
+      'active'
+    );
 
-    tabGestor.classList.remove('active');
+    tabGestor.classList.remove(
+      'active'
+    );
 
   } else {
 
-    carga.classList.add('hidden');
+    carga.classList.add(
+      'hidden'
+    );
 
-    gestor.classList.remove('hidden');
+    gestor.classList.remove(
+      'hidden'
+    );
 
-    tabCarga.classList.remove('active');
+    tabCarga.classList.remove(
+      'active'
+    );
 
-    tabGestor.classList.add('active');
+    tabGestor.classList.add(
+      'active'
+    );
   }
 }
 
@@ -1575,7 +1963,9 @@ async function iniciarSesion() {
 
   const password =
     document
-      .getElementById('password')
+      .getElementById(
+        'password'
+      )
       .value;
 
 
@@ -1600,9 +1990,11 @@ async function iniciarSesion() {
     const respuesta =
       await enviarPost({
 
-        accion: 'login',
+        accion:
+          'login',
 
-        password: password
+        password:
+          password
       });
 
 
@@ -1612,8 +2004,7 @@ async function iniciarSesion() {
     if (!respuesta.ok) {
 
       throw new Error(
-        respuesta.error ||
-        'No se pudo iniciar sesión.'
+        respuesta.error
       );
     }
 
@@ -1629,18 +2020,28 @@ async function iniciarSesion() {
 
 
     document
-      .getElementById('password')
+      .getElementById(
+        'password'
+      )
       .value = '';
 
 
     document
-      .getElementById('loginPanel')
-      .classList.add('hidden');
+      .getElementById(
+        'loginPanel'
+      )
+      .classList.add(
+        'hidden'
+      );
 
 
     document
-      .getElementById('managerPanel')
-      .classList.remove('hidden');
+      .getElementById(
+        'managerPanel'
+      )
+      .classList.remove(
+        'hidden'
+      );
 
 
     consultar();
@@ -1659,7 +2060,7 @@ async function iniciarSesion() {
 
 
 /************************************************************
- * LOGOUT
+ * CERRAR SESIÓN
  ************************************************************/
 
 async function cerrarSesion() {
@@ -1668,16 +2069,14 @@ async function cerrarSesion() {
 
     await enviarPost({
 
-      accion: 'logout',
+      accion:
+        'logout',
 
-      token: sessionToken
+      token:
+        sessionToken
     });
 
-  } catch (error) {
-
-    console.error(error);
-  }
-
+  } catch (error) {}
 
   sessionToken = '';
 
@@ -1687,19 +2086,21 @@ async function cerrarSesion() {
 
 
   document
-    .getElementById('managerPanel')
-    .classList.add('hidden');
+    .getElementById(
+      'managerPanel'
+    )
+    .classList.add(
+      'hidden'
+    );
 
 
   document
-    .getElementById('loginPanel')
-    .classList.remove('hidden');
-
-
-  document
-    .getElementById('password')
-    .value = '';
-
+    .getElementById(
+      'loginPanel'
+    )
+    .classList.remove(
+      'hidden'
+    );
 }
 
 
@@ -1716,25 +2117,32 @@ async function consultar() {
 
   const titulo =
     document
-      .getElementById('filtroTitulo')
+      .getElementById(
+        'filtroTitulo'
+      )
       .value
       .trim();
 
 
   const cargador =
     document
-      .getElementById('filtroCargador')
+      .getElementById(
+        'filtroCargador'
+      )
       .value
       .trim();
 
 
   const fechaInput =
     document
-      .getElementById('filtroFecha')
+      .getElementById(
+        'filtroFecha'
+      )
       .value;
 
 
   let fecha = '';
+
 
   if (fechaInput) {
 
@@ -1751,7 +2159,7 @@ async function consultar() {
 
 
   mostrarLoading(
-    'Consultando cargas...'
+    'Consultando...'
   );
 
 
@@ -1760,17 +2168,22 @@ async function consultar() {
     const respuesta =
       await enviarPost({
 
-        accion: 'consultarCargas',
+        accion:
+          'consultarCargas',
 
-        token: sessionToken,
+        token:
+          sessionToken,
 
         filtros: {
 
-          titulo: titulo,
+          titulo:
+            titulo,
 
-          cargador: cargador,
+          cargador:
+            cargador,
 
-          fecha: fecha
+          fecha:
+            fecha
         }
       });
 
@@ -1810,16 +2223,19 @@ async function consultar() {
 function renderResultados(lista) {
 
   const contenedor =
-    document.getElementById('resultados');
+    document.getElementById(
+      'resultados'
+    );
 
 
   if (!lista.length) {
 
-    contenedor.innerHTML = `
+    contenedor.innerHTML =
+      `
       <div class="empty">
         No se encontraron cargas.
       </div>
-    `;
+      `;
 
     return;
   }
@@ -1833,7 +2249,7 @@ function renderResultados(lista) {
 
         <tr>
 
-          <th>Título</th>
+          <th>Nombre</th>
 
           <th>Cargador</th>
 
@@ -1841,7 +2257,7 @@ function renderResultados(lista) {
 
           <th>Fotos</th>
 
-          <th>Carpeta</th>
+          <th>Acciones</th>
 
         </tr>
 
@@ -1851,52 +2267,126 @@ function renderResultados(lista) {
   `;
 
 
-  lista.forEach(function(item) {
+  lista.forEach(
+    function(item) {
 
-    html += `
+      const id =
+        'edit_' +
+        item.carpetaId;
 
-      <tr>
 
-        <td>
-          <strong>
-            ${escapeHtml(item.titulo)}
-          </strong>
-        </td>
+      html += `
 
-        <td>
-          ${escapeHtml(item.cargador)}
-        </td>
+        <tr>
 
-        <td>
-          ${escapeHtml(item.fecha)}
-        </td>
+          <td>
 
-        <td>
-          ${item.total}
-        </td>
+            <strong>
+              ${escapeHtml(item.titulo)}
+            </strong>
 
-        <td>
+            <div
+              id="${id}"
+              class="edit-box hidden"
+            >
 
-          <a
-            href="${item.url}"
-            target="_blank"
-            class="link"
-          >
-            📂 Abrir
-          </a>
+              <div class="edit-title">
+                Nuevo nombre de carpeta
+              </div>
 
-          <button
-            class="btn btn-secondary btn-small"
-            onclick="verFotos('${item.carpetaId}')"
-          >
-            🖼 Ver
-          </button>
+              <input
+                id="${id}_input"
+                class="edit-input"
+                value="${escapeHtml(item.titulo)}"
+              >
 
-        </td>
+              <div class="edit-actions">
 
-      </tr>
-    `;
-  });
+                <button
+                  class="btn btn-success btn-small"
+                  onclick="
+                    guardarEdicion(
+                      '${item.carpetaId}',
+                      '${id}'
+                    )
+                  "
+                >
+                  ✓ Guardar
+                </button>
+
+                <button
+                  class="btn btn-secondary btn-small"
+                  onclick="
+                    cancelarEdicion(
+                      '${id}'
+                    )
+                  "
+                >
+                  Cancelar
+                </button>
+
+              </div>
+
+            </div>
+
+          </td>
+
+
+          <td>
+            ${escapeHtml(item.cargador)}
+          </td>
+
+
+          <td>
+            ${escapeHtml(item.fecha)}
+          </td>
+
+
+          <td>
+            ${item.total}
+          </td>
+
+
+          <td>
+
+            <button
+              class="btn btn-secondary btn-small"
+              onclick="
+                verFotos(
+                  '${item.carpetaId}'
+                )
+              "
+            >
+              🖼 Ver
+            </button>
+
+
+            <button
+              class="btn btn-primary btn-small"
+              onclick="
+                abrirEdicion(
+                  '${id}'
+                )
+              "
+            >
+              ✏ Editar
+            </button>
+
+
+            <a
+              href="${item.url}"
+              target="_blank"
+              class="link"
+            >
+              📂 Drive
+            </a>
+
+          </td>
+
+        </tr>
+      `;
+    }
+  );
 
 
   html += `
@@ -1909,6 +2399,122 @@ function renderResultados(lista) {
 
   contenedor.innerHTML =
     html;
+}
+
+
+/************************************************************
+ * ABRIR EDICIÓN
+ ************************************************************/
+
+function abrirEdicion(id) {
+
+  document
+    .getElementById(id)
+    .classList.remove(
+      'hidden'
+    );
+}
+
+
+/************************************************************
+ * CANCELAR EDICIÓN
+ ************************************************************/
+
+function cancelarEdicion(id) {
+
+  document
+    .getElementById(id)
+    .classList.add(
+      'hidden'
+    );
+}
+
+
+/************************************************************
+ * GUARDAR EDICIÓN
+ ************************************************************/
+
+async function guardarEdicion(
+  carpetaId,
+  elementoId
+) {
+
+  const input =
+    document.getElementById(
+      elementoId + '_input'
+    );
+
+
+  const nuevoNombre =
+    input.value.trim();
+
+
+  if (!nuevoNombre) {
+
+    mostrarMensaje(
+      'El nombre no puede estar vacío.',
+      'error'
+    );
+
+    return;
+  }
+
+
+  mostrarLoading(
+    'Renombrando carpeta y fotografías...'
+  );
+
+
+  try {
+
+    const respuesta =
+      await enviarPost({
+
+        accion:
+          'editarCarga',
+
+        token:
+          sessionToken,
+
+        carpetaId:
+          carpetaId,
+
+        nuevoNombre:
+          nuevoNombre
+      });
+
+
+    ocultarLoading();
+
+
+    if (!respuesta.ok) {
+
+      throw new Error(
+        respuesta.error
+      );
+    }
+
+
+    mostrarMensaje(
+      'Nombre actualizado correctamente. ' +
+      respuesta.total +
+      ' fotografías renombradas.',
+      'success'
+    );
+
+
+    consultar();
+
+
+  } catch (error) {
+
+    ocultarLoading();
+
+    mostrarMensaje(
+      error.message,
+      'error'
+    );
+  }
 }
 
 
@@ -1969,7 +2575,11 @@ async function verFotos(folderId) {
     if (!respuesta.fotos.length) {
 
       gallery.innerHTML =
-        '<div class="empty">No hay fotografías.</div>';
+        `
+        <div class="empty">
+          No hay fotografías.
+        </div>
+        `;
 
       return;
     }
@@ -1977,25 +2587,26 @@ async function verFotos(folderId) {
 
     gallery.innerHTML =
       respuesta.fotos
-        .map(function(foto) {
+        .map(
+          function(foto) {
 
-          return `
+            return `
 
-            <a
-              href="${foto.url}"
-              target="_blank"
-            >
-
-              <img
-                src="${foto.thumbnail}"
-                alt="${escapeHtml(foto.nombre)}"
-                title="${escapeHtml(foto.nombre)}"
+              <a
+                href="${foto.url}"
+                target="_blank"
               >
 
-            </a>
-          `;
+                <img
+                  src="${foto.thumbnail}"
+                  alt="${escapeHtml(foto.nombre)}"
+                  title="${escapeHtml(foto.nombre)}"
+                >
 
-        })
+              </a>
+            `;
+          }
+        )
         .join('');
 
 
@@ -2025,14 +2636,11 @@ function mostrarMensaje(
       'message'
     );
 
-
   elemento.textContent =
     texto;
 
-
   elemento.className =
     'message';
-
 
   if (tipo) {
 
@@ -2040,7 +2648,6 @@ function mostrarMensaje(
       tipo
     );
   }
-
 
   setTimeout(
     function() {
@@ -2059,16 +2666,21 @@ function mostrarMensaje(
  * LOADING
  ************************************************************/
 
-function mostrarLoading(texto) {
+function mostrarLoading(
+  texto
+) {
 
   document
-    .getElementById('loadingText')
+    .getElementById(
+      'loadingText'
+    )
     .textContent =
       texto;
 
-
   document
-    .getElementById('loading')
+    .getElementById(
+      'loading'
+    )
     .classList.remove(
       'hidden'
     );
@@ -2078,7 +2690,9 @@ function mostrarLoading(texto) {
 function ocultarLoading() {
 
   document
-    .getElementById('loading')
+    .getElementById(
+      'loading'
+    )
     .classList.add(
       'hidden'
     );
@@ -2086,17 +2700,34 @@ function ocultarLoading() {
 
 
 /************************************************************
- * ESCAPAR HTML
+ * ESCAPE HTML
  ************************************************************/
 
 function escapeHtml(texto) {
 
-  return String(texto || '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  return String(
+    texto || ''
+  )
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+    .replace(
+      /</g,
+      '&lt;'
+    )
+    .replace(
+      />/g,
+      '&gt;'
+    )
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+    .replace(
+      /'/g,
+      '&#039;'
+    );
 }
 
 </script>
