@@ -822,7 +822,13 @@ th {
                         Cerrar sesión
 
                     </button>
+<button
+    class="btn-success"
+    onclick="buscarCargas()">
 
+    Actualizar
+
+</button>
                 </div>
 
             </div>
@@ -895,7 +901,7 @@ th {
 // ============================================================
 
 const SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbw_J3okYqFmMvFAWw9khjIKaq3rHqkgTtdgs1SaskMVC7qxcPKn8RLjgLghX8DL6yIm/exec';
+    'https://script.google.com/macros/s/AKfycbx8VxWSaVG-XXNoHezsgph8TXfE8L5KdgXhCgBaVwUmx0aucONPXr0u94EehZ8txuDU/exec';
 
 
 // ============================================================
@@ -2914,10 +2920,9 @@ async function editarCargaUI(
         });
 
         alert(
-            'Carga actualizada correctamente.'
+            'Carga actualizada correctamente. ' +
+            'Presiona "Actualizar" para ver los cambios en la tabla.'
         );
-
-        buscarCargas();
 
     } catch (error) {
 
@@ -2926,7 +2931,6 @@ async function editarCargaUI(
         );
     }
 }
-
 
 // ============================================================
 // MODAL
