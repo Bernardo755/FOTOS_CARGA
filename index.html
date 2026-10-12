@@ -889,7 +889,7 @@ th {
                         <select id="carpetaDestinoGestion" style="width:100%;padding:12px;border:1px solid #d1d5db;border-radius:9px">
                             <option value="">Carpeta principal (predeterminada)</option>
                         </select>
-                        <div class="drop-help">Solo un usuario que haya iniciado sesión en Gestión puede cambiar esta configuración. Las personas que carguen desde la primera pestaña no podrán elegir ni cambiar la carpeta.</div>
+                        <div class="drop-help">Solo un usuario que haya iniciado sesión en Gestión puede cambiar esta configuración. Cada carpeta tiene su propia hoja en el archivo de Sheets; al fijar una carpeta, aquí se muestran sus registros. “Carpeta principal” muestra la primera hoja REGISTRO_CARGAS. Las personas que carguen desde la primera pestaña no podrán elegir ni cambiar la carpeta.</div>
                     </div>
                     <div style="display:flex;align-items:end">
                         <button class="btn-primary" type="button" id="btnFijarCarpetaDestino" onclick="fijarCarpetaDestino()">Fijar carpeta</button>
@@ -1060,7 +1060,7 @@ th {
 // ============================================================
 
 const SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbyepZjYnSgU5ykNpvbJraYlny8w0OFlaQcg2-EMgLBxUnKozFFbkG9719Fng_9zgfSp/exec';
+    'https://script.google.com/macros/s/AKfycbxGHmerC3yRomlO4_1C52UWjugjf4vcFPWFwzUaGkhAcSHORFoTsvG7JFU-Je7Jty_-/exec';
 
 
 // ============================================================
@@ -1473,8 +1473,8 @@ async function iniciarSesion() {
             .className =
             'status';
 
-        cargarCarpetasDestino();
-        buscarCargas();
+        await cargarCarpetasDestino();
+        await buscarCargas();
 
     } catch (error) {
 
@@ -2722,13 +2722,17 @@ async function buscarCargas() {
                         fecha,
 
                     cargador:
-                        cargador
+                        cargador,
+
+                    // La carpeta fijada determina qué hoja de Sheets se consulta.
+                    carpetaDestinoId:
+                        carpetaDestinoFijadaId || ''
                 }
             });
 
         const cargas = resultado.cargas || [];
         try {
-            const todos = await api({accion:'consultarCargas', token:token, filtros:{}});
+            const todos = await api({accion:'consultarCargas', token:token, filtros:{carpetaDestinoId: carpetaDestinoFijadaId || ''}});
             renderizarContadorCargadores(todos.cargas || []);
         } catch (e) {
             renderizarContadorCargadores(cargas);
@@ -4236,7 +4240,7 @@ async function crearCarpetaDestino() {
         await cargarCarpetasDestino();
         const select = document.getElementById('carpetaDestinoGestion');
         if (select && r.carpeta) select.value = r.carpeta.id;
-        mostrarStatusTabla('Carpeta creada: ' + r.carpeta.nombre + '. Para usarla en nuevas cargas, pulsa “Fijar carpeta”.');
+        mostrarStatusTabla('Carpeta creada: ' + r.carpeta.nombre + '. También se creó la hoja "' + (r.carpeta.hoja || r.carpeta.nombre) + '" en Sheets. Para trabajar con ella, pulsa “Fijar carpeta”.');
     } catch (e) { alert(e.message); }
 }
 
@@ -4254,7 +4258,8 @@ async function fijarCarpetaDestino() {
             estado.textContent = 'Carpeta fijada correctamente: ' + (id ? ((carpetasDestino.find(c => c.id === id) || {}).nombre || 'Carpeta seleccionada') : 'Carpeta principal');
             estado.className = 'status success';
         }
-        mostrarStatusTabla('La carpeta de destino para nuevas cargas quedó fijada.');
+        mostrarStatusTabla('Carpeta fijada. La tabla ahora consulta la hoja correspondiente a esa carpeta.');
+        await buscarCargas();
     } catch (e) {
         if (estado) { estado.textContent = 'No se pudo fijar la carpeta: ' + e.message; estado.className = 'status error'; }
         else alert(e.message);
